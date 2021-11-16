@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Test;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +22,23 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('pages.index');
-});
-Route::get('/admin',[HomeController::class,'goDashboard']);
-// Route::get('/home', function(){
-//     return view('admin.dashboard');
-// } );
+//VISTAS DE VISITANTE
+Route::get('/',[HomeController::class, 'index']);
+Route::get('/categoria/{nombre}',[HomeController::class , 'findByCategoria'])->name('home.find_by_categoria');
+Route::get('/publicar-anuncio', [HomeController::class,'crearAnuncio'])->middleware('auth')->name('home.crearAnuncio');
+Route::post('/publicar-anuncio',[HomeController::class, 'guardarAnuncio'])->middleware('auth')->name('home.guardarAnuncio');
 
-Route::resource('categoria', CategoriaController::class);
-Route::resource('roles', RoleController::class);
+
+// VISTAS DE ADMINISTRADOR
+Route::group(['prefix' => 'admin', 'middleware'=>'auth'] , function() {
+    Route::get('/',[AdminController::class,'goDashboard']);
+    Route::resource('categoria', CategoriaController::class);
+    Route::resource('paquete', PaqueteController::class);
+    Route::resource('anuncio', AnuncioController::class);
+    Route::resource('roles', RoleController::class);
+});
+
+
+
 
 

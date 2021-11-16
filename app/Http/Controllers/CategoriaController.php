@@ -45,7 +45,7 @@ class CategoriaController extends Controller
 
    
        
-        return redirect('categoria')->with('mensaje','Categoría agregada!');
+        return redirect('admin/categoria')->with('mensaje','Categoría agregada!');
     }
 
     public function show(Categoria $categoria)
@@ -70,7 +70,7 @@ class CategoriaController extends Controller
 $datosCategoria = request()->except(['_token','_method']);
 
 Categoria::where('id','=',$id)->update($datosCategoria);
-        return redirect('categoria')->with('mensaje','Categoría actualizada!');
+        return redirect('admin/categoria')->with('mensaje','Categoría actualizada!');
     }
 
   
@@ -78,6 +78,6 @@ Categoria::where('id','=',$id)->update($datosCategoria);
     {
         //
         $categoria=Categoria::destroy($id);
-        return redirect('categoria')->with('mensaje','Categoría eliminada!');
+        return redirect('admin/categoria')->with('mensaje','Categoría eliminada!');
     }
 }

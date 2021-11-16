@@ -273,17 +273,36 @@ return [
 
                 [
                     'text' => 'Agregar categoría',
-                    'url'  => 'categoria/create',
+                    'url'  => 'admin/categoria/create',
                 ],
                 [
                     'text' => ' Ver categorías',
-                    'url'  => 'categoria',
+                    'url'  => 'admin/categoria',
                 ],
 
 
             ]
 
             ],
+
+            [
+                'text'    => 'Paquetes',
+                'icon'    => 'fas fa-fw fa-sync-alt',
+                'submenu' => [
+    
+                    [
+                        'text' => 'Agregar paquete',
+                        'url'  => 'admin/paquete/create',
+                    ],
+                    [
+                        'text' => ' Ver paquetes',
+                        'url'  => 'admin/paquete',
+                    ],
+    
+    
+                ]
+    
+                ],
 
 
         [

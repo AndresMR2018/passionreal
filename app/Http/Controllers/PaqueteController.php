@@ -7,79 +7,63 @@ use Illuminate\Http\Request;
 
 class PaqueteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function index()
     {
-        //
+        $paquetes['paquetes']=Paquete::Paginate(5);
+        return view('admin.paquete.index',$paquetes);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        return view('admin.paquete.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
-        //
+        $request->validate([
+'periodo_horas'=>'unique:paquetes,periodo_horas'
+        ]);
+
+        $datosPaquete = request()->except('_token');
+
+        $c =  Paquete::insert($datosPaquete);
+       
+        return redirect('admin/paquete')->with('mensaje','Paquete agregado!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Paquete  $paquete
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Paquete $paquete)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Paquete  $paquete
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Paquete $paquete)
+  
+    public function edit($id)
     {
-        //
+        $paquete = Paquete::findOrFail($id);
+        return view('admin.paquete.edit', compact('paquete'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Paquete  $paquete
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, Paquete $paquete)
     {
-        //
+        // $request->validate([
+        //     'periodo_horas'=>'required|string|unique:paquetes,periodo_horas'.$paquete->id
+        // ]);
+
+$datosPaquete = request()->except(['_token','_method']);
+
+Paquete::where('id','=',$paquete->id)->update($datosPaquete);
+        return redirect('admin/paquete')->with('mensaje','Paquete actualizado!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Paquete  $paquete
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Paquete $paquete)
+  
+    public function destroy($id)
     {
-        //
+        $paquete=Paquete::destroy($id);
+        return redirect('admin/paquete')->with('mensaje','Categoría eliminada!');
     }
 }

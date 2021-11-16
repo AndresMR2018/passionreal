@@ -31,7 +31,7 @@
     </div>
 
 <input type="submit" class="btn btn-success" value="{{$modo}} categoria">
-<a href="{{url('categoria/')}}" class="btn btn-primary">Regresar</a>
+<a href="{{url('admin/categoria/')}}" class="btn btn-primary">Regresar</a>
 
 {{-- <script src="{{asset('assets/js/imagenes/showImgLoaded.js')}}"></script> --}}
 

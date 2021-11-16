@@ -1,4 +1,4 @@
-<div class="transparent-header">
+<div class="colored-header">
     <!-- Top Bar -->
     <div class="header-top">
         <div class="container">
@@ -68,9 +68,8 @@
         </div>
     </div>
     <!-- Top Bar End -->
-    <!-- Navigation Menu -->
     <div class="clearfix"></div>
-    <!-- menu start -->
+    <!-- Navigation Menu -->
     <nav id="menu-1" class="mega-menu">
         <!-- menu list items container -->
         <section class="menu-list-items">
@@ -323,5 +322,4 @@
             </div>
         </section>
     </nav>
-    <!-- menu end -->
 </div>

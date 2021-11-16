@@ -15,7 +15,7 @@
 
       <div class="menu__datos">
 <div class="botones">
-<a href="{{url('admin/categoria/create')}}" class="btn btn-success mb-2">Registrar nueva categoría</a>
+<a href="{{url('admin/paquete/create')}}" class="btn btn-success mb-2">Registrar nuevo paquete</a>
 <!-- Se manda a llamar al metodo create que trae la vista del formulario -->
 </div>
 
@@ -26,34 +26,30 @@
 <thead class="thead-light">
 <tr>
 <th>#</th>
-<th>Nombre de la categoría</th>
-<th>Foto</th>
+<th>Lapso de activación</th>
 <th>Acciones</th>
 </tr>
 </thead>
 
     <tbody>
-    @foreach($categorias as $c)
+    @foreach($paquetes as $paquete)
         <tr>
-            <td>{{$c->id}}</td>
-            <td>{{$c->nombre}}</td>
+            <td>{{$paquete->id}}</td>
+            <td>{{$paquete->periodo_horas}}</td>
             <td>
-                <img class="img-thumbnail img-fluid" width="100px" src="{{asset('storage').'/'.$c->foto}}" alt=" ">
-                </td>
-            
-            <td>
-            <a href="{{url('admin/categoria/'.$c->id.'/edit')}}" id="botoncol" class="btn btn-warning mb-2 ">Editar</a>
+            <a href="{{url('admin/paquete/'.$paquete->id.'/edit')}}" id="botoncol" class="btn btn-warning mb-2 "><i class="fas fa-edit"></i></a>
 
-            <form method="post" action="{{url('admin/categoria/'.$c->id)}}" class="d-inline">
+            <form method="post" action="{{url('admin/paquete/'.$paquete->id)}}" class="d-inline">
             @csrf
             {{method_field('DELETE')}}
-                <input type="submit" value="Borrar" id="botoncol" class="btn btn-danger" onclick="return confirm('Desea borrar?')">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Desea borrar?')"><i class="fas fa-trash-alt"></i></button>
+              
             </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
-{!!$categorias->links() !!}
+{!!$paquetes->links() !!}
 </div>
 @endsection
