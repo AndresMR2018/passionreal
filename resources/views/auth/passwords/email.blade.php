@@ -1,4 +1,4 @@
-@extends('adminlte::auth.passwords.email'
+@extends('adminlte::auth.passwords.email')
 
 @section('content')
 <div class="container">

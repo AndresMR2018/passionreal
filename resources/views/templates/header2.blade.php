@@ -130,6 +130,11 @@
 
                                 </ul>
                             </li>
+                            @guest
+                            &nbsp;
+                            @else
+                            <li><a href="{{url('/creditos')}}"> Créditos <i class=" fa-indicator"></i></a></li>
+                            @endguest
                             {{-- <li>
                             <a href="javascript:void(0)">Categories <i class="fa fa-angle-down fa-indicator"></i></a>
                             <!-- drop down multilevel  -->

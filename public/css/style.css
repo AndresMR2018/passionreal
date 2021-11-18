@@ -603,6 +603,7 @@ ul {
 .heading-panel {
 	margin-bottom: 30px;
 	overflow: hidden;
+	text-align: center;
 }
 .heading-panel h3.main-title {
 	display: inline-block;
@@ -613,7 +614,6 @@ ul {
 	font-weight: 600;
 	line-height: 60px;
 	margin: 0;
-	text-transform: capitalize;
 }
 .heading-panel h3.small-link {
 	font-size: 12px;
@@ -658,7 +658,7 @@ ul {
 }
 /* =-=-=-=-=-=-= Header Top Bar  =-=-=-=-=-=-= */
 .header-top {
-	background-color: #2d343d;
+	background-color: #532aae
 }
 .header-right {
 	padding: 0;
@@ -2847,7 +2847,7 @@ ul.add_info li i {
 	margin-bottom: 30px;
 }
 .adz-detail .heading-panel h3.main-title {
-	border-bottom: 2px solid #f58936;
+	border-bottom: 2px solid #f20c93;
 	display: block;
 }
 .desc-points {
@@ -4222,7 +4222,7 @@ ul.category-list-data li:hover a span {
 	color: #232323;
 }
 .small-breadcrumb {
-	background: #363c48 none repeat scroll 0 0;
+	background: #532aae none repeat scroll 0 0;
 	overflow: hidden;
 	position: relative;
 	width: 100%;
@@ -5145,7 +5145,6 @@ ul.category-list-data li:hover a span {
 	margin: 0;
 	padding: 0 0 10px;
 	text-align: left;
-	text-transform: capitalize;
 }
 .about-img {
 	float: right;
@@ -5162,6 +5161,7 @@ ul.category-list-data li:hover a span {
 .form-grid {
 	box-shadow: 0 1px 2px #ccc;
 	padding: 30px;
+
 }
 .form-grid .skin-minimal .list li label {
 	padding-left: 10px;

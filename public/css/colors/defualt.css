@@ -5,7 +5,7 @@ a , a:hover {
 	color: #f58936;
 }
 .featured-slider .owl-controls .owl-nav .owl-next:hover, .featured-slider .owl-controls .owl-nav .owl-prev:hover .ms-layer.btn3:hover, .home-category-slider .category-slider .owl-controls .owl-nav .owl-next:hover, .home-category-slider .category-slider .owl-controls .owl-nav .owl-prev:hover, .subscribe button:hover , .featured-slider-1 .owl-controls .owl-nav .owl-next:hover, .featured-slider-1 .owl-controls .owl-nav .owl-prev:hover , .sticky-post-button:hover , .btn-light:hover , .featured-slider-3 .owl-controls .owl-nav .owl-next:hover, .featured-slider-3 .owl-controls .owl-nav .owl-prev:hover  , .hero-form-sub li a:hover {
-	background-color: #dc7b30 !important;
+	background-color: #dc0e97; !important;
 }
  
 .btn-success {
@@ -55,7 +55,7 @@ span.app-store-btn:hover, .social-links-two a:hover , .search-section .search-op
 	background: #f58936 url(../../images/cd-top-arrow.svg) no-repeat center 50%;
 }
 .heading-panel h3.main-title {
-    border-bottom: 2px solid #f58936;
+    border-bottom: 2px solid #f20c93;
 }
 .mega-menu .drop-down a, .mega-menu .drop-down-tab-bar a  {
 	color:#232323;	
@@ -65,8 +65,8 @@ span.app-store-btn:hover, .social-links-two a:hover , .search-section .search-op
 }
 .btn-theme , .btn-light {
 	color: #ffffff;
-	background-color: #f58936;
-	border-color: #f6944a;
+	background-color: #f20c93;
+	border-color: #dc0e97;;
 }
 .btn-theme:hover, .btn-theme:focus, .btn-theme:active, .btn-theme.active, .open .dropdown-toggle.btn-theme , .btn-orange:hover{
 	color: #ffffff;
