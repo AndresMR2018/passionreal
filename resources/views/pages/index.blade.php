@@ -99,7 +99,7 @@
                                           <!-- Category Title -->
                                           <div class="category-title"> <span><a href="#">Mujer</a></span> </div>
                                           <!-- Ad Title -->
-                                          <h3><a>titulo descriptivo</a></h3>
+                                          <h3><a href="{{route('home.detalleAnuncio')}}">titulo descriptivo</a></h3>
                                           <!-- Info Icons -->
                                           <ul class="additional-info pull-right">
                                              <li>
@@ -315,7 +315,7 @@
             </div>
          </div>
       </div>
-      <!-- Product Preview Popup -->
+      <!-- VISTA PREVIA DEL PRODUCTO CON LA LUPA -->
       <div class="quick-view-modal modalopen" id="ad-preview" tabindex="-1" role="dialog" aria-hidden="true">
          <div class="modal-dialog modal-lg ad-modal">
             <button class="close close-btn popup-cls" aria-label="Close" data-dismiss="modal" type="button"> <i class="fa-times fa"></i> </button>

@@ -27,7 +27,7 @@ Route::get('/',[HomeController::class, 'index']);
 Route::get('/categoria/{nombre}',[HomeController::class , 'findByCategoria'])->name('home.find_by_categoria');
 Route::get('/publicar-anuncio', [HomeController::class,'crearAnuncio'])->middleware('auth')->name('home.crearAnuncio');
 Route::post('/publicar-anuncio',[HomeController::class, 'guardarAnuncio'])->middleware('auth')->name('home.guardarAnuncio');
-
+Route::get('/detalle',[HomeController::class,'detalleAnuncio'])->name('home.detalleAnuncio');
 
 // VISTAS DE ADMINISTRADOR
 Route::group(['prefix' => 'admin', 'middleware'=>'auth'] , function() {

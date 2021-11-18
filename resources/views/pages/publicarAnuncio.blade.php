@@ -141,6 +141,15 @@
                                     Publique su anuncio
                                 </h3>
                             </div>
+                            
+                            @if(Session::has('mensaje'))
+<div class="alert alert-success alert-dismissible" role="alert">
+{{Session::get('mensaje')}}
+<button type="button" class="close" data-dismiss="alert" role="alert">
+<span aria-button="true">&times;</span>
+</button>
+</div>
+@endif
                             <p class="lead">Publicar un anuncio en <a href="#">Pasionreal.com</a> es gratis! Sin embargo,
                                 todos los anuncios deben seguir nuestras reglas:</p>
                             <form class="submit-form" action="{{route('home.guardarAnuncio')}}" method="POST">

@@ -11,6 +11,20 @@ class Anuncio extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ciudad',
+        'telefono',
+        'direccion',
+        'edad',
+        'foto',
+        'categoria_id',
+        'user_id',
+        'paquete_id',
+        'zona',
+        'titulo',
+        'descripcion'
+    ];
+
     public function categoria(){
 
         return $this->belongsTo(Categoria::class);

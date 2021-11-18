@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anuncio;
 use App\Models\Categoria;
 use App\Models\Paquete;
 use Illuminate\Http\Request;
@@ -46,9 +47,24 @@ class HomeController extends Controller
 
     public function guardarAnuncio(Request $request){
 
-        
+        Anuncio::create([
+            "ciudad"=>$request->get('ciudad'),
+            "telefono"=>$request->get('telefono'),
+            "edad"=>$request->get('edad'),
+            "direccion"=>$request->get('direccion'),
+            "paquete_id"=>$request->get('paquete_id'),
+            "categoria_id"=>$request->get('categoria_id'),
+            "user_id"=>Auth::id(),
+            "descripcion"=>$request->get('descripcion'),
+            "titulo"=>$request->get('titulo')
+        ]);
 
-        return back();
+        return back()->with('mensaje','Anuncio publicado!');
+    }
+
+    public function detalleAnuncio(){
+
+        return view('pages.detalleAnuncio');
     }
 
     
