@@ -67,5 +67,13 @@ class HomeController extends Controller
         return view('pages.detalleAnuncio');
     }
 
-    
+    public function miCuenta(){
+        return view('pages.miCuenta');
+    }
+
+    public function misAnuncios(){
+        return view('pages.misAnuncios');
+    }
+
+
 }

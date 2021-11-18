@@ -28,11 +28,11 @@
                <li>
                   <a href="#." class="red" id="red"></a>
                </li>
-               
+
                <li>
                   <a href="#." class="sea-green" id="sea-green"></a>
                </li>
-              
+
             </ul>
          </div>
          <div class="clearfix"> </div>
@@ -40,7 +40,7 @@
     <!-- =-=-=-=-=-=-= Light Header =-=-=-=-=-=-= -->
     @include('templates.header2')
     {{-- @include('templates.header') --}}
-    
+
     <!-- Navigation Menu End -->
     <!-- =-=-=-=-=-=-= Light Header End  =-=-=-=-=-=-= -->
     <!-- =-=-=-=-=-=-= Transparent Breadcrumb =-=-=-=-=-=-= -->
@@ -51,7 +51,7 @@
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a class="active"  href="">Categorías</a></li> 
+                    <li><a class="active"  href="">Categorías</a></li>
                 </ul>
             </div>
         </div>
@@ -67,8 +67,8 @@
                 <!-- Row -->
                 <div class="row">
                     @foreach ($categoriasByName as $categoria)
-                        
-                    
+
+
                     <!-- Minimal Category -->
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <a href="#">
@@ -86,14 +86,14 @@
                     </div>
                     <!-- Minimal Category -->
                     @endforeach
-                  
+
                 </div>
-                <div class="text-center">
+               {{--  <div class="text-center">
                     <div class="load-more-btn margin-top-30">
                         <button class="btn btn-theme" id="loadMore"> Load More <i class="fa fa-refresh"></i>
                         </button>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Row End -->
             </div>
             <!-- Main Container End -->

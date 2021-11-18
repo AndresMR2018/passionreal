@@ -40,7 +40,7 @@
                                             class="caret"></span></a>
                                     <ul class="dropdown-menu">
 
-                                        <li><a href="">Mi cuenta</a></li>
+                                        <li><a href="{{route('home.miCuenta')}}">Mi cuenta</a></li>
                                         @if (Auth::check())
                                             <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                         @endif
@@ -87,7 +87,7 @@
                         <ul class="menu-links">
                             <!-- active class -->
                             <li>
-                                <a href="javascript:void(0)"> Inicio <i class=" fa-indicator"></i></a>
+                                <a href="{{url('/')}}"> Inicio <i class=" fa-indicator"></i></a>
                                 {{-- <div class="drop-down grid-col-8">
                                <!--grid row-->
                                <div class="grid-row">
@@ -134,11 +134,11 @@
                             <a href="javascript:void(0)">Categories <i class="fa fa-angle-down fa-indicator"></i></a>
                             <!-- drop down multilevel  -->
                             <ul class="drop-down-multilevel">
-                               
+
                                <li><a href="category-2.html">Modern Variation</a></li>
                                <li><a href="category-3.html">Minimal Variation</a></li>
                                <li><a href="category-4.html">Fancy Variation</a></li>
-                               
+
                                <li><a href="category-6.html">Flat Variation</a></li>
                             </ul>
                          </li> --}}
@@ -185,7 +185,7 @@
                                      </ul>
                                   </div>
                                   <!--grid column 2-->
-       
+
                                   <div class="grid-col-3">
                                      <h4>Others</h4>
                                      <ul>
@@ -309,7 +309,7 @@
                                </li>
                             </ul>
                          </li> --}}
-                            <li><a href="contact.html">Fotos</a></li>
+                         {{--    <li><a href="contact.html">Fotos</a></li> --}}
                         </ul>
                         <ul class="menu-search-bar">
                             <li>

@@ -496,37 +496,33 @@
                             <!-- Short Description  -->
                             <div class="ad-box">
                                 <div class="ad-title clearfix">
-                                    <h2><a href="#"> ASRock H97M PRO4 LGA1150 / Intel H97 / DDR3 / Quad CrossFireX /
-                                            Motherboard</a> </h2>
+                                    <h2><a href="#"> Titulo del anuncio </a> </h2>
                                 </div>
                                 <div class="short-features">
                                     <!-- Heading Area -->
                                     <div class="heading-panel">
                                         <h3 class="main-title text-left">
-                                            Description
+                                            Información del anuncio
                                         </h3>
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Condition</strong> :</span> Used
+                                        <span><strong>Nombre:</strong> :</span> lorem
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Brand</strong> :</span> AsRock
+                                        <span><strong>Ciudad:</strong> :</span> Quito
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Model</strong> :</span> ASRock H97M
+                                        <span><strong>Edad:</strong> :</span> 27
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Product Type</strong>:</span> Motherboard
+                                        <span><strong>Tlfn:</strong>:</span> 0987654321
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Date</strong> :</span> 2014-10-06
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Price</strong> :</span> Rs. 22,000
+                                        <span><strong>Fecha:</strong> :</span> 2021-10-06
                                     </div>
                                 </div>
                                 <!-- Short Features  -->
-                                <div class="desc-points">
+                               {{--  <div class="desc-points">
                                     <ul>
                                         <li>
                                             Premium Alloy Choke (Reduces 70% core loss compared to iron powder choke).
@@ -557,69 +553,54 @@
                                             Audio Caps.
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <!-- Related Image  -->
-                                <div class="ad-related-img">
+                              {{--   <div class="ad-related-img">
                                     <img src="{{asset('images/asrock-diagram.jpg')}}" alt="" class="img-responsive center-block">
-                                </div>
+                                </div> --}}
                                 <!-- Ad Specifications -->
                                 <div class="specification">
                                     <!-- Heading Area -->
                                     <div class="heading-panel">
                                         <h3 class="main-title text-left">
-                                            Specifications
+                                           Descripción
                                         </h3>
                                     </div>
                                     <p>
-                                        samsung galaxy note 2 new condition with handsfree and charger urgent sale. with
-                                        book pouch original 4g lte. 16 gb condition 10/10 andriod kitkat4.4.2
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi vitae neque similique aut aspernatur cum unde, incidunt, rem doloribus aperiam fuga voluptates tempore temporibus, quidem nulla mollitia ducimus sint?
                                     </p>
                                     <p>
-                                        Bank Leased 5 Year plan 2013 Honda Civic 1.8 Vti Oriel Prosmatec Automatic ( New
-                                        Shape ) Attractive Silver Color 1 year installments paid Lahore Reg number Well
-                                        Maintained Insurance + tracker etc included Options: Sunroof
+                                       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque repellendus quod optio, maiores cupiditate odit perferendis delectus quas repellat, ut voluptas ipsa fugiat voluptatibus ducimus facilis dolorem commodi. Itaque, praesentium!
                                     </p>
-                                    <p>
-                                        Chilled AC Power Windows Power Steering ABS braking system ETC 15000 km
-                                        carefully driven No SMS / Email , Serious Buyers Requested To Call .
-                                    </p>
-                                    <p>
-                                        Chilled AC Power Windows Power Steering ABS braking system ETC 15000 km
-                                        carefully driven No SMS / Email , Serious Buyers Requested To Call .
-                                    </p>
-                                    <p>
-                                        Bank Leased 5 Year plan 2013 Honda Civic 1.8 Vti Oriel Prosmatec Automatic ( New
-                                        Shape ) Attractive Silver Color 1 year installments paid Lahore Reg number Well
-                                        Maintained Insurance + tracker etc included Options: Sunroof
-                                    </p>
+
+
                                 </div>
                                 <div class="clearfix"></div>
                                 <!-- Heading Area -->
-                                <div class="heading-panel">
+                              {{--   <div class="heading-panel">
                                     <h3 class="main-title text-left">
                                         Location
                                     </h3>
                                 </div>
-                                <div id="itemMap"></div>
+                                <div id="itemMap"></div> --}}
                                 <div class="clearfix"></div>
                             </div>
                             <!-- Share Ad  -->
                             <div class="ad-share text-center">
                                 <div data-toggle="modal" data-target=".share-ad"
                                     class="ad-box col-md-4 col-sm-4 col-xs-12">
-                                    <i class="fa fa-share-alt"></i> <span class="hidetext">Share</span>
+                                    <i class="fa fa-whatsapp"></i> <span class="hidetext">Compartir</span>
                                 </div>
                                 <a class="ad-box col-md-4 col-sm-4 col-xs-12" href="#"><i
-                                        class="fa fa-star active"></i> <span class="hidetext">Add to
-                                        watchlist</span></a>
+                                        class="fa fa-phone active"></i> <span class="hidetext">Compartir</span></a>
                                 <div data-target=".report-quote" data-toggle="modal"
                                     class="ad-box col-md-4 col-sm-4 col-xs-12">
-                                    <i class="fa fa-warning"></i> <span class="hidetext">Report</span>
+                                    <i class="fa fa-warning"></i> <span class="hidetext">Reportar</span>
                                 </div>
                             </div>
-                            <div class="clearfix"></div>
+                           {{--  <div class="clearfix"></div> --}}
                             <!-- Price Alert -->
-                            <div class="alert-box-container  margin-top-30">
+                            {{-- <div class="alert-box-container  margin-top-30">
                                 <div class="well">
                                     <h3>Create Alert</h3>
                                     <p>Receive emails for the latest ads matching your search criteria</p>
@@ -641,10 +622,10 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Price Alert End -->
                             <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
-                            <div class="grid-panel margin-top-30">
+                            {{-- <div class="grid-panel margin-top-30">
                                 <div class="heading-panel">
                                     <div class="col-xs-12 col-md-12 col-sm-12">
                                         <h3 class="main-title text-left">
@@ -1019,11 +1000,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- =-=-=-=-=-=-= Latest Ads End =-=-=-=-=-=-= -->
 
                             <!-- =-=-=-=-=-=-= Comments Section =-=-=-=-=-=-= -->
-                            <div class="comment-section ad-box">
+                            {{-- <div class="comment-section ad-box">
                                 <div class="heading-panel">
                                     <h3 class="main-title text-left">
                                         Comments (20)
@@ -1136,7 +1117,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- =-=-=-=-=-=-= Comments Section End =-=-=-=-=-=-= -->
                         </div>
                         <!-- Single Ad End -->
@@ -1148,43 +1129,43 @@
                             <!-- Contact info -->
                             <div class="contact white-bg">
                                 <!-- Email Button trigger modal -->
-                                <button class="btn-block btn-contact contactEmail" data-toggle="modal"
-                                    data-target=".price-quote">Contact Seller Via Email</button>
+                              {{--   <button class="btn-block btn-contact contactEmail" data-toggle="modal"
+                                    data-target=".price-quote">Contact Seller Via Email</button> --}}
                                 <!-- Email Modal -->
                                 <button class="btn-block btn-contact contactPhone number"
-                                    data-last="111111X">0320<span>XXXXXXX</span></button>
+                                    data-last="111111X">098<span>8703020</span></button>
                             </div>
                             <!-- Price info block -->
-                            <div class="ad-listing-price">
+                            {{-- <div class="ad-listing-price">
                                 <p>Rs. 22,000</p>
-                            </div>
+                            </div> --}}
                             <!-- User Info -->
                             <div class="white-bg user-contact-info">
                                 <div class="user-info-card">
-                                    <div class="user-photo col-md-4 col-sm-3  col-xs-4">
+                                    {{-- <div class="user-photo col-md-4 col-sm-3  col-xs-4">
                                         <img src="{{asset('images/users/3.jpg')}}" alt="">
-                                    </div>
+                                    </div> --}}
                                     <div class="user-information no-padding col-md-8 col-sm-9 col-xs-8">
-                                        <span class="user-name"><a class="hover-color"
-                                                href="profile.html">Sonu Monu</a></span>
-                                        <div class="item-date">
-                                            <span class="ad-pub">Published on: 10 Dec 2017</span><br>
-                                            <a href="#" class="link">More Ads</a>
-                                        </div>
+                                        {{-- <span class="user-name"><a class="hover-color"
+                                                href="profile.html">Sonu Monu</a></span> --}}
+                                       {{--  <div class="item-date">
+                                            <span class="ad-pub">Publicado: 13 agosto 2021</span><br>
+                                            <a href="#" class="link"></a>
+                                        </div> --}}
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="ad-listing-meta">
                                     <ul>
-                                        <li>Ad Id: <span class="color">4143</span></li>
-                                        <li>Categories: <span class="color">Used Cars</span></li>
-                                        <li>Visits: <span class="color">9</span></li>
-                                        <li>Location: <span class="color">New York, USA</span></li>
+                                        <li>Id de anuncio: <span class="color">1</span></li>
+                                        <li>Categoría: <span class="color">Mujeres</span></li>
+                                        <li>Visitas: <span class="color">10</span></li>
+                                        <li>Ubicación: <span class="color">Quito, Carolina</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- Featured Ads -->
-                            <div class="widget">
+                           {{--  <div class="widget">
                                 <div class="widget-heading">
                                     <h4 class="panel-title"><a>Featured Ads</a></h4>
                                 </div>
@@ -1397,9 +1378,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Recent Ads -->
-                            <div class="widget">
+                           {{--  <div class="widget">
                                 <div class="widget-heading">
                                     <h4 class="panel-title"><a>Recent Ads</a></h4>
                                 </div>
@@ -1535,9 +1516,9 @@
                                         <!-- /.recent-ads-container -->
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Saftey Tips  -->
-                            <div class="widget">
+                            {{-- <div class="widget">
                                 <div class="widget-heading">
                                     <h4 class="panel-title"><a>Safety tips for deal</a></h4>
                                 </div>
@@ -1548,7 +1529,7 @@
                                         <li>Beware of unrealistic offers</li>
                                     </ol>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- Sidebar Widgets End -->
                     </div>
@@ -1717,7 +1698,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span
                             aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h3 class="modal-title">Share</h3>
+                    <h3 class="modal-title">Compartir</h3>
                 </div>
                 <div class="modal-body">
                     <div class="recent-ads">
