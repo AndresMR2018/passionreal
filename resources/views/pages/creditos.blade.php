@@ -10,42 +10,42 @@
     <meta name="author" content="ScriptsBundle">
     <title>AdForest | Largest Classifieds Portal</title>
     <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-    <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon" />
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <!-- =-=-=-=-=-=-= Template CSS Style =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- =-=-=-=-=-=-= Font Awesome =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" type="text/css">
     <!-- =-=-=-=-=-=-= Flat Icon =-=-=-=-=-=-= -->
-    <link href="{{asset('css/flaticon.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/flaticon.css') }}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Et Line Fonts =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/et-line-fonts.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/et-line-fonts.css') }}" type="text/css">
     <!-- =-=-=-=-=-=-= Menu Drop Down =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/forest-menu.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/forest-menu.css') }}" type="text/css">
     <!-- =-=-=-=-=-=-= Animation =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" type="text/css">
     <!-- =-=-=-=-=-=-= Select Options =-=-=-=-=-=-= -->
-    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     <!-- =-=-=-=-=-=-= noUiSlider =-=-=-=-=-=-= -->
-    <link href="{{asset('css/nouislider.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/nouislider.min.css') }}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Listing Slider =-=-=-=-=-=-= -->
-    <link href="{{asset('css/slider.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Owl carousel =-=-=-=-=-=-= -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/owl.carousel.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/owl.theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.css') }}">
     <!-- =-=-=-=-=-=-= Check boxes =-=-=-=-=-=-= -->
     <link href="skins/minimal/minimal.css')}}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Responsive Media =-=-=-=-=-=-= -->
-    <link href="{{asset('css/responsive-media.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/responsive-media.css') }}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Template Color =-=-=-=-=-=-= -->
-    <link rel="stylesheet" id="color" href="{{asset('css/colors/defualt.css')}}">
+    <link rel="stylesheet" id="color" href="{{ asset('css/colors/defualt.css') }}">
     <!-- =-=-=-=-=-=-= For Style Switcher =-=-=-=-=-=-= -->
     <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
     <!-- JavaScripts -->
-    <script src="{{asset('js/modernizr.js')}}"></script>
+    <script src="{{ asset('js/modernizr.js') }}"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -462,89 +462,92 @@
         <div class="container">
             <div class=" breadcrumb-link">
                 <ul>
-                    <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a href="{{url('/creditos')}}">Comprar</a></li>
+                    <li><a href="{{ url('/') }}">Inicio</a></li>
+                    <li><a href="{{ url('/creditos') }}">Comprar</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- Small Breadcrumb -->
     <!-- =-=-=-=-=-=-= Transparent Breadcrumb End =-=-=-=-=-=-= -->
-<!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
-<div class="main-content-area clearfix">
-    <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
-    <section class="section-padding  gray ">
-       <!-- Main Container -->
-       <div class="container">
-          <!-- Row -->
-          <div class="row">
-             <div class="col-md-12">
-                <!-- end post-padding -->
-                <div class="post-ad-form extra-padding postdetails">
-                   <div class="heading-panel">
-                      <h3 class="main-title text-left">
-                         Compra créditos
-                      </h3>
-                   </div>
-                   
-                   <form  class="submit-form">
- 
-                      <!-- Select Package  -->
-                      <div class="select-package">
-                             <div class="no-padding col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                            <h3 class="margin-bottom-20">Seleccionar crédito</h3>
-                            <div class="pricing-list">
-                               <div class="row">
-                                  <div class="col-md-9 col-sm-9 col-xs-12">
-                                     <h3>1 Crédito </h3>
-                                     <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
-                                  </div>
-                                  <!-- end col -->
-                                  <div class="col-md-3 col-sm-3 col-xs-12">
-                                     <div class="pricing-list-price text-center">
-                                        <h4>€0.20</h4>
-                                        <a href="#submit" class="btn btn-theme btn-sm btn-block">Seleccionar</a>
-                                     </div>
-                                  </div>
-                                  <!-- end col -->
-                               </div>
-                               <!-- end row -->
+    <!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
+    <div class="main-content-area clearfix">
+        <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
+        <section class="section-padding  gray ">
+            <!-- Main Container -->
+            <div class="container">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- end post-padding -->
+                        <div class="post-ad-form extra-padding postdetails">
+                            <div class="heading-panel">
+                                <h3 class="main-title text-left">
+                                    Compra créditos
+                                </h3>
                             </div>
-                        
-                         </div>
-                      </div>   
 
-                      <!-- Featured Ad  -->
-                      <div class="row">
-                         <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                            <label class="control-label">Selecciona la forma de pago  <small class="pull-right" > </small></label>
-                            <div class="skin-minimal">
-                               <ul class="list">
-                                  <li>
-                                     <input type="radio" id="paypal" name="minimal-radio" checked>
-                                     <label for="paypal">Paypal</label>
-                                  </li>
-                                  <li>
-                                     <input type="radio" id="card" name="minimal-radio" checked>
-                                     <label for="card">Tarjeta de débito o crédito</label>
-                                  </li>
-                               </ul>
-                            </div>
-                         </div>
-                      </div>
-                      <!-- end row -->
-                      <button class="btn btn-theme pull-right">Pagar crédito</button>
-                   </form>
+                            <form class="submit-form">
+
+                                <!-- Select Package  -->
+                                <div class="select-package">
+                                    <div class="no-padding col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                        <h3 class="margin-bottom-20">Seleccionar crédito</h3>
+                                        <div class="pricing-list">
+                                            <div class="row">
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <h3>1 Crédito </h3>
+                                                    <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a
+                                                        euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                </div>
+                                                <!-- end col -->
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="pricing-list-price text-center">
+                                                        <h4>€0.20</h4>
+                                                        <a href="#submit"
+                                                            class="btn btn-theme btn-sm btn-block">Seleccionar</a>
+                                                    </div>
+                                                </div>
+                                                <!-- end col -->
+                                            </div>
+                                            <!-- end row -->
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Featured Ad  -->
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                        <label class="control-label">Selecciona la forma de pago <small
+                                                class="pull-right"> </small></label>
+                                        <div class="skin-minimal">
+                                            <ul class="list">
+                                                <li>
+                                                    <input type="radio" id="paypal" name="minimal-radio" checked>
+                                                    <label for="paypal">Paypal</label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="card" name="minimal-radio" checked>
+                                                    <label for="card">Tarjeta de débito o crédito</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                                <button class="btn btn-theme pull-right">Pagar crédito</button>
+                            </form>
+                        </div>
+                        <!-- end post-ad-form-->
+                    </div>
+                    <!-- end col -->
                 </div>
-                <!-- end post-ad-form-->
-             </div>
-             <!-- end col -->
-          </div>
-          <!-- Row End -->
-       </div>
-       <!-- Main Container End -->
-        @include('templates.footer')
-        <!-- =-=-=-=-=-=-= FOOTER END =-=-=-=-=-=-= -->
+                <!-- Row End -->
+            </div>
+            <!-- Main Container End -->
+            @include('templates.footer')
+            <!-- =-=-=-=-=-=-= FOOTER END =-=-=-=-=-=-= -->
     </div>
     <!-- Main Content Area End -->
     <!-- Post Ad Sticky -->
@@ -571,7 +574,7 @@
                             <div class="recent-ads-container">
                                 <div class="recent-ads-list-image">
                                     <a href="#" class="recent-ads-list-image-inner">
-                                        <img src="{{asset('images/car.png')}}" alt="">
+                                        <img src="{{ asset('images/car.png') }}" alt="">
                                     </a><!-- /.recent-ads-list-image-inner -->
                                 </div>
                                 <!-- /.recent-ads-list-image -->
@@ -614,7 +617,7 @@
                                 rows="3"
                                 class="form-control">What is the price of the 2015 Honda Accord EX-L you have in your inventory?</textarea>
                         </div>
-                        <div class="col-md-12  col-sm-12"> <img src="{{asset('images/captcha.gif')}}" alt=""
+                        <div class="col-md-12  col-sm-12"> <img src="{{ asset('images/captcha.gif') }}" alt=""
                                 class="img-responsive"> </div>
                         <div class="clearfix"></div>
                         <div class="col-md-12  col-sm-12 margin-bottom-20 margin-top-20">
@@ -640,7 +643,7 @@
                             <div class="recent-ads-container">
                                 <div class="recent-ads-list-image">
                                     <a href="#" class="recent-ads-list-image-inner">
-                                        <img src="{{asset('images/car.png')}}" alt="">
+                                        <img src="{{ asset('images/car.png') }}" alt="">
                                     </a><!-- /.recent-ads-list-image-inner -->
                                 </div>
                                 <!-- /.recent-ads-list-image -->
@@ -722,7 +725,8 @@
                             <textarea placeholder="This ad not belong to me" rows="3"
                                 class="form-control">This ad not belong to me</textarea>
                         </div>
-                        <div class="col-md-12 col-sm-12"> <img src="{{asset('images/captcha.gif')}}" alt="" class="img-responsive">
+                        <div class="col-md-12 col-sm-12"> <img src="{{ asset('images/captcha.gif') }}" alt=""
+                                class="img-responsive">
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-md-12 col-sm-12 margin-bottom-20 margin-top-20">
@@ -764,39 +768,39 @@
         </div>
     </div> --}}
     <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
-    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <!-- Bootstrap Core Css  -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- Jquery Easing -->
-    <script src="{{asset('js/easing.js')}}"></script>
+    <script src="{{ asset('js/easing.js') }}"></script>
     <!-- Menu Hover  -->
-    <script src="{{asset('js/forest-megamenu.js')}}"></script>
+    <script src="{{ asset('js/forest-megamenu.js') }}"></script>
     <!-- Jquery Appear Plugin -->
-    <script src="{{asset('js/jquery.appear.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.appear.min.js') }}"></script>
     <!-- Numbers Animation   -->
-    <script src="{{asset('js/jquery.countTo.js')}}"></script>
+    <script src="{{ asset('js/jquery.countTo.js') }}"></script>
     <!-- Jquery Smooth Scroll  -->
-    <script src="{{asset('js/jquery.smoothscroll.js')}}"></script>
+    <script src="{{ asset('js/jquery.smoothscroll.js') }}"></script>
     <!-- Jquery Select Options  -->
-    <script src="{{asset('js/select2.min.js')}}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     <!-- noUiSlider -->
-    <script src="{{asset('js/nouislider.all.min.js')}}"></script>
+    <script src="{{ asset('js/nouislider.all.min.js') }}"></script>
     <!-- Carousel Slider  -->
-    <script src="{{asset('js/carousel.min.js')}}"></script>
-    <script src="{{asset('js/slide.js')}}"></script>
+    <script src="{{ asset('js/carousel.min.js') }}"></script>
+    <script src="{{ asset('js/slide.js') }}"></script>
     <!-- Image Loaded  -->
-    <script src="{{asset('js/imagesloaded.js')}}"></script>
-    <script src="{{asset('js/isotope.min.js')}}"></script>
+    <script src="{{ asset('js/imagesloaded.js') }}"></script>
+    <script src="{{ asset('js/isotope.min.js') }}"></script>
     <!-- CheckBoxes  -->
-    <script src="{{asset('js/icheck.min.js')}}"></script>
+    <script src="{{ asset('js/icheck.min.js') }}"></script>
     <!-- Jquery Migration  -->
-    <script src="{{asset('js/jquery-migrate.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-migrate.min.js') }}"></script>
     <!-- Sticky Bar  -->
-    <script src="{{asset('js/theia-sticky-sidebar.js')}}"></script>
+    <script src="{{ asset('js/theia-sticky-sidebar.js') }}"></script>
     <!-- Style Switcher -->
-    <script src="{{asset('js/color-switcher.js')}}"></script>
+    <script src="{{ asset('js/color-switcher.js') }}"></script>
     <!-- Template Core JS -->
-    <script src="{{asset('js/custom.js')}}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     <!-- For This Page Only -->
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVj6yChAfe1ilA4YrZgn_UCAnei8AhQxQ&sensor=false"></script>

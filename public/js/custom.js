@@ -101,7 +101,7 @@ Designed and Development by: ScriptsBundle
 
     /* ======= Jquery Select Dropdowns ======= */
     $("select").select2({
-        placeholder: "Select an option",
+        placeholder: "Seleccione una opción",
         allowClear: true,
         width: '100%'
     });

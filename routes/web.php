@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 //VISTAS DE VISITANTE
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home.inicio');
+Route::get('/', [HomeController::class, 'validarCuenta'])->name('home.validarCuenta');
+
 Route::get('/categoria/{nombre}', [HomeController::class, 'findByCategoria'])->name('home.find_by_categoria');
 Route::get('/publicar-anuncio', [HomeController::class, 'crearAnuncio'])->middleware('auth')->name('home.crearAnuncio');
 Route::get('/mi-cuenta', [HomeController::class, 'miCuenta'])->middleware('auth')->name('home.miCuenta');

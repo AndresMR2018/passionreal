@@ -402,7 +402,7 @@
     <!-- Post Ad Sticky -->
     <a href="#" class="sticky-post-button hidden-xs">
         <span class="sell-icons">
-            <i class="flaticon-transport-9"></i>
+            <i class="flaticon-photo"></i>
         </span>
         <h4>Publicar</h4>
     </a>

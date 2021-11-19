@@ -50,6 +50,8 @@
       <link href="skins/minimal/minimal.css" rel="stylesheet">
       <!-- JavaScripts -->
       <script src="js/modernizr.js"></script>
+
+      {{-- <script src="js/campoVisible.js"></script> --}}
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -57,7 +59,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body>
+ 
 <!-- =-=-=-=-=-=-= Preloader =-=-=-=-=-=-= -->
    {{--  <div id="loader-wrapper">
         <div id="loader"></div>
@@ -132,6 +134,7 @@
          <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
          <section class="section-padding error-page">
             @yield('content')
+          
          </section>
         
          <!-- =-=-=-=-=-=-= Ads Archives End =-=-=-=-=-=-= -->

@@ -86,4 +86,9 @@ class HomeController extends Controller
 
         return view('pages.creditos');
     }
+
+    public function validarCuenta(){
+        
+        return view('pages.validarCuenta');
+    }
 }

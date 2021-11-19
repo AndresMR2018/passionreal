@@ -119,7 +119,7 @@
                             </div> --}}
                             </li>
                             <li>
-                                <a href="javascript:void(0)">Categorías <i
+                                <a>Categorías <i
                                         class="fa fa-angle-down fa-indicator"></i></a>
                                 <!-- drop down multilevel  -->
                                 <ul class="drop-down-multilevel">

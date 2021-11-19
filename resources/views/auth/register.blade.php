@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{asset('css/campoVisible.css')}}">
 @extends('layouts.main')
 
 @section('content')
@@ -14,40 +15,59 @@
                 <h3 class="main-title text-left">
                   Registra tu cuenta
                 </h3>
+              
              </div>
-             <form>
+             <form method="POST" action="{{ route('register') }}" id="form-registro">
+               @csrf
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input placeholder="Ingresa tu nombre" class="form-control" type="text">
+
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                  </div>
                 <div class="form-group">
                    <label>Correo electrónico</label>
-                   <input placeholder="Ingresa tu correo electrónico" class="form-control" type="email">
+                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                 </div>
                 <div class="form-group">
                    <label>Contraseña</label>
-                   <input placeholder="Ingresa tu contraseña" class="form-control" type="password">
+                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                   @error('password')
+                       <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                   @enderror
                 </div>
                 <div class="form-group">
                     <label>Confirmar contraseña</label>
-                    <input placeholder="Vuelve a ingresar tu contraseña" class="form-control" type="password">
+                    <input placeholder="Vuelve a ingresar tu contraseña" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                  </div>
-                <div class="form-group">
-                    <div class="row">
-                       <div class="col-xs-12 col-sm-7">
-                          <div class="skin-minimal">
-                             <ul class="list">
-                                <li>
-                                   <input  type="checkbox" id="minimal-checkbox-1" value="1" name="minimal-checkbox-1">
-                                   <label for="minimal-checkbox-1">Verificar cuenta</label>
-                                </li>
-                             </ul>
-                          </div>
-                       </div>
-                      
-                    </div>
-                 </div>
-                 @if (Request::get('minimal-checkbox-1'))
+                 <div class="form-group">
+                  <label>Deseas validar la cuenta a registrar?</label>
+                  <select id="opcionValidar" class="form-select" onchange="opcion();" name="opcionValidar">
+                    <option  value="Si" >Si</option>
+                    <option  value="No" selected>No</option> 
+                  </select>
+                </div>
+               
+                  <div class="form-group hidden" id="telefono">
+                     <label for="telefono">Ingresa el contacto al que quieres que te llegue el código de verificación</label>
+                     <input type="tel" class="form-control" name="telefono" id="telefono" >
+                  </div>
+               
+                 {{-- @if (Request::get('minimal-checkbox-1'))
                  {
                     <div class="form-group">
                         <label>Fotos</label>
@@ -58,9 +78,9 @@
                         <input placeholder="Ingresa tu número de contacto" class="form-control" type="text">
                      </div>
                  }
-                 @endif
+                 @endif --}}
                  
-                <button class="btn btn-theme btn-lg btn-block">Registrarse</button>
+                <button type="submit" class="btn btn-theme btn-lg btn-block">Registrarse</button>
                 <p></p>
                 <div class="row">
                 <div class="col-xs-12 center-block text-center">
@@ -77,6 +97,25 @@
     </div>
     <!-- Row End -->
  </div>
+
  <!-- Main Container End -->
+
+ <script>
+    function opcion(){
+  var op = document.getElementById("opcionValidar").value;
+  console.log(op);
+  var telefono = document.getElementById('telefono');
+  if(op == "No"){
+    telefono.className+=" hidden";
+  }else{
+    telefono.classList.remove('hidden');
+  }
+}
+ </script>
+ 
+
 @endsection
+
+
+
 

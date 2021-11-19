@@ -20,13 +20,13 @@
                             <li><span class="icon fa fa-envelope-o"></span> correo@gmail.com</li>
                             {{-- <li><span class="icon fa fa-fax"></span> (042) 1234 7777</li> --}}
                          </ul>
-                         <div class="social-links-two clearfix"> 
+                         {{-- <div class="social-links-two clearfix"> 
                             <a class="facebook img-circle" href="#"><span class="fa fa-facebook-f"></span></a>
                             <a class="twitter img-circle" href="#"><span class="fa fa-twitter"></span></a>
                             <a class="google-plus img-circle" href="#"><span class="fa fa-google-plus"></span></a>
                             <a class="linkedin img-circle" href="#"><span class="fa fa-pinterest-p"></span></a>
                             <a class="linkedin img-circle" href="#"><span class="fa fa-linkedin"></span></a> 
-                         </div>
+                         </div> --}}
                       </div>
                    </div>
                    <!--Footer Column-->
@@ -60,6 +60,8 @@
                                <a href="#">Términos y condiciones</a>
                                <br/>
                                <a href="#">Políticas de privacidad</a>
+                               <br/>
+                               <a href="#">Soporte técnico</a>
                             </div>
                            
                          </div>
@@ -75,7 +77,6 @@
                          </div>
                          <ul>
                             <li><a href="">Categorías</a></li>
-                            <li><a href="#">Fotos</a></li>
                             <li><a href="#">Registrarse</a></li>
                             <li><a href="#">Iniciar sesión</a></li>
                             <li><a href="">Contáctanos</a></li>

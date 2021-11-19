@@ -64,10 +64,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        // if($data['opcionVerificar']=="No"){
+            
+            $opValidar = $data['opcionValidar'];
+
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'cta_validada'=>$opValidar,
+            ]);
+
+            if($opValidar==="No"){
+              return redirect()->route('home.inicio');
+            }
+                return redirect()->route('home.validarCuenta');
+            
+        
     }
 }
