@@ -25,7 +25,9 @@ Auth::routes();
 
 //VISTAS DE VISITANTE
 Route::get('/', [HomeController::class, 'index'])->name('home.inicio');
-Route::get('/', [HomeController::class, 'validarCuenta'])->name('home.validarCuenta');
+Route::post('/post-validar-cuenta', [HomeController::class, 'postValidarCuenta'])->name('home.postValidarCuenta');
+Route::get('/validar-cuenta',[HomeController::class,'getValidarCuenta'])->name('home.getValidarCuenta');
+
 
 Route::get('/categoria/{nombre}', [HomeController::class, 'findByCategoria'])->name('home.find_by_categoria');
 Route::get('/publicar-anuncio', [HomeController::class, 'crearAnuncio'])->middleware('auth')->name('home.crearAnuncio');

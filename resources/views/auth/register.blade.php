@@ -15,9 +15,8 @@
                 <h3 class="main-title text-left">
                   Registra tu cuenta
                 </h3>
-              
              </div>
-             <form method="POST" action="{{ route('register') }}" id="form-registro">
+             <form method="POST" action="{{route('home.postValidarCuenta')}}" id="form-registro">
                @csrf
                 <div class="form-group">
                     <label>Nombre</label>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Anuncio;
 use App\Models\Categoria;
 use App\Models\Paquete;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -87,8 +89,27 @@ class HomeController extends Controller
         return view('pages.creditos');
     }
 
-    public function validarCuenta(){
-        
+    public function postValidarCuenta(Request $request){
+
+           
+        $opValidar = $request['opcionValidar'];
+             User::create([
+           'name' => $request['name'],
+           'email' => $request['email'],
+           'password' => Hash::make($request['password']),
+           'cta_validada'=>$opValidar,
+       ]);
+
+       if($opValidar=="No"){
+        return redirect()->route('home.inicio');
+       }
+       else{
+           return redirect()->route('home.getValidarCuenta');
+       }
+    }
+
+    public function getValidarCuenta(){
         return view('pages.validarCuenta');
     }
+    
 }

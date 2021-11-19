@@ -103,11 +103,18 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="header-page">
-                        @if(Request::url() === (env('APP_URL').':8000/login'))
+                        @if(Request::path() == 'login')
+                        <h1>Iniciar sesión</h1>
+                        @elseif(Request::path() == 'validar-cuenta')
+                        <h1>Validar cuenta</h1>
+                        @else
+                        <h1>Registrarse</h1>
+                    @endif
+                        {{-- @if(Request::url() === (env('APP_URL').':8000/login'))
                         <h1>Iniciar sesión</h1>
                         @else
                         <h1>Registrarse</h1>
-                        @endif
+                        @endif --}}
                     </div>
                 </div>
             </div>
@@ -134,7 +141,6 @@
          <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
          <section class="section-padding error-page">
             @yield('content')
-          
          </section>
         
          <!-- =-=-=-=-=-=-= Ads Archives End =-=-=-=-=-=-= -->
