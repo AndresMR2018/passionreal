@@ -14,38 +14,38 @@
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <!-- =-=-=-=-=-=-= Template CSS Style =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="css/style.css">
     <!-- =-=-=-=-=-=-= Font Awesome =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
     <!-- =-=-=-=-=-=-= Flat Icon =-=-=-=-=-=-= -->
-    <link href="{{asset('css/flaticon.css')}}" rel="stylesheet">
+    <link href="css/flaticon.css" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Et Line Fonts =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/et-line-fonts.css')}}" type="text/css">
+    <link rel="stylesheet" href="css/et-line-fonts.css" type="text/css">
     <!-- =-=-=-=-=-=-= Menu Drop Down =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/forest-menu.css')}}" type="text/css">
+    <link rel="stylesheet" href="css/forest-menu.css" type="text/css">
     <!-- =-=-=-=-=-=-= Animation =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
     <!-- =-=-=-=-=-=-= Select Options =-=-=-=-=-=-= -->
-    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
+    <link href="css/select2.min.css" rel="stylesheet" />
     <!-- =-=-=-=-=-=-= noUiSlider =-=-=-=-=-=-= -->
-    <link href="{{asset('css/nouislider.min.css')}}" rel="stylesheet">
+    <link href="css/nouislider.min.css" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Listing Slider =-=-=-=-=-=-= -->
-    <link href="{{asset('css/slider.css')}}" rel="stylesheet">
+    <link href="css/slider.css" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Owl carousel =-=-=-=-=-=-= -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/owl.carousel.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/owl.theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
     <!-- =-=-=-=-=-=-= Check boxes =-=-=-=-=-=-= -->
-    <link href="skins/minimal/minimal.css')}}" rel="stylesheet">
+    <link href="skins/minimal/minimal.css" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Responsive Media =-=-=-=-=-=-= -->
-    <link href="{{asset('css/responsive-media.css')}}" rel="stylesheet">
+    <link href="css/responsive-media.css" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Template Color =-=-=-=-=-=-= -->
-    <link rel="stylesheet" id="color" href="{{asset('css/colors/defualt.css')}}">
+    <link rel="stylesheet" id="color" href="css/colors/defualt.css">
     <!-- =-=-=-=-=-=-= For Style Switcher =-=-=-=-=-=-= -->
     <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
     <!-- JavaScripts -->
-    <script src="{{asset('js/modernizr.js')}}"></script>
+    <script src="js/modernizr.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -1829,39 +1829,39 @@
         </div>
     </div> --}}
     <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
-    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="js/jquery.min.js"></script>
     <!-- Bootstrap Core Css  -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- Jquery Easing -->
-    <script src="{{asset('js/easing.js')}}"></script>
+    <script src="js/easing.js"></script>
     <!-- Menu Hover  -->
-    <script src="{{asset('js/forest-megamenu.js')}}"></script>
+    <script src="js/forest-megamenu.js"></script>
     <!-- Jquery Appear Plugin -->
-    <script src="{{asset('js/jquery.appear.min.js')}}"></script>
+    <script src="js/jquery.appear.min.js"></script>
     <!-- Numbers Animation   -->
-    <script src="{{asset('js/jquery.countTo.js')}}"></script>
+    <script src="js/jquery.countTo.js"></script>
     <!-- Jquery Smooth Scroll  -->
-    <script src="{{asset('js/jquery.smoothscroll.js')}}"></script>
+    <script src="js/jquery.smoothscroll.js"></script>
     <!-- Jquery Select Options  -->
-    <script src="{{asset('js/select2.min.js')}}"></script>
+    <script src="js/select2.min.js"></script>
     <!-- noUiSlider -->
-    <script src="{{asset('js/nouislider.all.min.js')}}"></script>
+    <script src="js/nouislider.all.min.js"></script>
     <!-- Carousel Slider  -->
-    <script src="{{asset('js/carousel.min.js')}}"></script>
-    <script src="{{asset('js/slide.js')}}"></script>
+    <script src="js/carousel.min.js"></script>
+    <script src="js/slide.js"></script>
     <!-- Image Loaded  -->
-    <script src="{{asset('js/imagesloaded.js')}}"></script>
-    <script src="{{asset('js/isotope.min.js')}}"></script>
+    <script src="js/imagesloaded.js"></script>
+    <script src="js/isotope.min.js"></script>
     <!-- CheckBoxes  -->
-    <script src="{{asset('js/icheck.min.js')}}"></script>
+    <script src="js/icheck.min.js"></script>
     <!-- Jquery Migration  -->
-    <script src="{{asset('js/jquery-migrate.min.js')}}"></script>
+    <script src="js/jquery-migrate.min.js"></script>
     <!-- Sticky Bar  -->
-    <script src="{{asset('js/theia-sticky-sidebar.js')}}"></script>
+    <script src="js/theia-sticky-sidebar.js"></script>
     <!-- Style Switcher -->
-    <script src="{{asset('js/color-switcher.js')}}"></script>
+    <script src="js/color-switcher.js"></script>
     <!-- Template Core JS -->
-    <script src="{{asset('js/custom.js')}}"></script>
+    <script src="js/custom.js"></script>
     <!-- For This Page Only -->
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVj6yChAfe1ilA4YrZgn_UCAnei8AhQxQ&sensor=false"></script>
