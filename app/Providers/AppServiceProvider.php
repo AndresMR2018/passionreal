@@ -26,12 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-                // $categorias = Categoria::all();
-                // $paquetes = Paquete::all();
-                // view()->share([
-                // 'categorias'=>$categorias,
-                // 'paquetes'=>$paquetes
-                // ]);
+                $categorias = Categoria::all();
+                $paquetes = Paquete::all();
+                view()->share([
+                'categorias'=>$categorias,
+                'paquetes'=>$paquetes
+                ]);
 
     }
 }
