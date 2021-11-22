@@ -40,12 +40,12 @@
                                             class="caret"></span></a>
                                     <ul class="dropdown-menu">
 
-                                        <li><a href="{{route('home.miCuenta')}}">Mi cuenta</a></li>
+                                        <li><a href="{{route('cliente.miCuenta')}}">Mi cuenta</a></li>
                                         @if (Auth::check())
                                             <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                         @endif
-                                        <li><a href="">Anuncios</a></li>
-                                        <li><a href="">Anuncios pendientes</a></li>
+                                        <li><a href="{{route('cliente.misAnuncios')}}">Mis anuncios</a></li>
+                                        
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
                                             @csrf
@@ -318,7 +318,7 @@
                         </ul>
                         <ul class="menu-search-bar">
                             <li>
-                                <a href="{{ route('home.crearAnuncio') }}" class="btn btn-light"><i
+                                <a href="{{ route('cliente.crearAnuncio') }}" class="btn btn-light"><i
                                         class="fa fa-plus" aria-hidden="true"></i> Publicar anuncio</a>
                             </li>
                         </ul>

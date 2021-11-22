@@ -8,9 +8,9 @@
         <![endif]-->
         <meta name="description" content="">
         <meta name="author" content="ScriptsBundle">
-        <title>AdForest | Largest Classifieds Portal</title>
+        <title>Pasionreal</title>
         <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="images/logo/logoPassionReal.jpeg" type="image/x-icon" />
         <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
@@ -60,41 +60,7 @@
      </head>
 
 <body>
-    <!-- =-=-=-=-=-=-= Preloader =-=-=-=-=-=-= -->
-    {{-- <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div> --}}
-
-    <!-- =-=-=-=-=-=-= Color Switcher =-=-=-=-=-=-= -->
-    {{-- <div class="color-switcher" id="choose_color">
-        <a href="#." class="picker_close"><i class="fa fa-gear"></i></a>
-        <h5>STYLE SWITCHER</h5>
-        <div class="theme-colours">
-            <p> Choose Colour style </p>
-            <ul>
-                <li>
-                    <a href="#." class="defualt" id="defualt"></a>
-                </li>
-                <li>
-                    <a href="#." class="green" id="green"></a>
-                </li>
-                <li>
-                    <a href="#." class="blue" id="blue"></a>
-                </li>
-                <li>
-                    <a href="#." class="red" id="red"></a>
-                </li>
-
-                <li>
-                    <a href="#." class="sea-green" id="sea-green"></a>
-                </li>
-
-            </ul>
-        </div>
-        <div class="clearfix"> </div>
-    </div> --}}
+  
 
     <!-- =-=-=-=-=-=-= Light Header =-=-=-=-=-=-= -->
     @include('templates.header2')
@@ -152,7 +118,7 @@
 @endif
                             <p class="lead">Publicar un anuncio en <a href="#">Pasionreal.com</a> es gratis! Sin embargo,
                                 todos los anuncios deben seguir nuestras reglas:</p>
-                            <form class="submit-form" action="{{route('home.guardarAnuncio')}}" method="POST">
+                            <form class="submit-form" action="{{route('cliente.guardarAnuncio')}}" method="POST" enctype="multipart/form-data">
                                 <!-- Title  -->
                                 @csrf
                                 <div class="row">
@@ -217,7 +183,6 @@
                                             <label class="control-label">Dirección </label>
                                             <input class="form-control" name="direccion" id="direccion"
                                                 value="">
-                                        
                                     </div>
                                 </div>
                                 {{-- <div class="row">
@@ -237,7 +202,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Fotos para tu anuncio <small>Por favor agrega imagenes para tu anuncio.</small></label>
-                                        <div id="dropzone" class="dropzone"></div>
+                                        <input type="file" name="foto" id="foto">
                                     </div>
 
                                 </div>

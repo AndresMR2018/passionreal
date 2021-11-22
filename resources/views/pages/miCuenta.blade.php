@@ -8,9 +8,9 @@
       <![endif]-->
     <meta name="description" content="">
     <meta name="author" content="ScriptsBundle">
-    <title>AdForest | Largest Classifieds Portal</title>
+    <title>Pasionreal</title>
     <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/logo/logoPassionReal.jpeg" type="image/x-icon" />
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
@@ -101,7 +101,7 @@
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a href="{{route('home.miCuenta')}}">Mi perfil</a></li>
+                    <li><a href="{{route('cliente.miCuenta')}}">Mi perfil</a></li>
 
                 </ul>
             </div>
@@ -120,26 +120,26 @@
                     <div class="col-md-4 col-sm-12 col-xs-12 leftbar-stick blog-sidebar">
                         <!-- Sidebar Widgets -->
                         <div class="user-profile">
-                            <a href="profile.html"><img src="images/users/9.jpg" alt=""></a>
+                            <a><img src="{{asset('storage/'.$perfil->foto)}}" alt="foto"></a>
                             <div class="profile-detail">
-                                <h6>Nombre de la persona</h6>
+                                <h6>{{$user->name}}</h6>
                                 <ul class="contact-details">
                                     <li>
-                                        <i class="fa fa-map-marker"></i> Ubicacion
+                                        <i class="fa fa-map-marker"></i> Ubicacion, agregar este campo en perfil 
                                     </li>
                                     <li>
-                                        <i class="fa fa-envelope"></i>user@gmail.com
+                                        <i class="fa fa-envelope"></i>{{$user->email}}
                                     </li>
                                     <li>
-                                        <i class="fa fa-phone"></i> 0998989898
+                                        <i class="fa fa-phone"></i>{{$perfil->telefono}}
                                     </li>
                                 </ul>
                             </div>
                             <ul>
-                                <li class="active"><a href="profile.html">Perfil</a></li>
+                                <li class="active"><a href="">Perfil</a></li>
                                {{--  <li><a href="active-ads.html">Mis anuncios <span class="badge">3</span></a></li> --}}
                                {{--  <li><a href="favourite.html">Favourites Ads <span class="badge">15</span></a></li> --}}
-                                <li><a href="{{route('home.misAnuncios')}}">Mis anuncios</a></li>
+                                <li><a href="{{route('cliente.misAnuncios')}}">Mis anuncios</a></li>
                                {{--  <li><a href="messages.html">Messages</a></li> --}}
                                 <li><a href="{{route('logout')}}">Cerrar sesión</a></li>
                             </ul>
@@ -171,20 +171,20 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="profile-edit tab-pane fade in active" id="profile">
-                                        <h2 class="heading-md">Administre su nombr, identificación y dirección de correo electrónico.</h2>
+                                        <h2 class="heading-md">Administre sus datos.</h2>
                                         <p>A continuación se muestran el nombre y las direcciones de correo electrónico registradas para su cuenta.</p>
                                         <dl class="dl-horizontal">
                                             <dt><strong>Su nombre </strong></dt>
                                             <dd>
-                                                Maria Jose
+                                               {{$perfil->nombre}}
                                             </dd>
                                             <dt><strong>Dirección de correo </strong></dt>
                                             <dd>
-                                               user@gmail.com
+                                              {{$user->email}}
                                             </dd>
                                             <dt><strong>Número de teléfono </strong></dt>
                                             <dd>
-                                                0988888888
+                                          {{$perfil->telefono}}
                                             </dd>
                                             {{-- <dt><strong>País </strong></dt>
                                             <dd>
@@ -192,81 +192,49 @@
                                             </dd> --}}
                                             <dt><strong>Ciudad </strong></dt>
                                             <dd>
-                                                Málaga
+                                                Málaga, agregar este campo en perfil
                                             </dd>
-                                            <dt><strong>Eres un  </strong></dt>
+                                            <a href="{{route('home.getValidarCuenta')}}">
+                                                <dt><strong>Usuario verificado: </strong></dt>
+                                            </a>
+                                            
                                             <dd>
-                                                usuario verificado
+                                                 {{$user->cta_validada}}
                                             </dd>
-                                            <dt><strong>Dirección </strong></dt>
+                                            {{-- <dt><strong>Dirección </strong></dt>
                                             <dd>
                                                calle x y calle v
-                                            </dd>
+                                            </dd> --}}
                                         </dl>
                                     </div>
                                     <div class="profile-edit tab-pane fade" id="edit">
                                         <h2 class="heading-md">Administra tu configuración de seguridad</h2>
                                         <p>Gestiona tu cuenta</p>
                                         <div class="clearfix"></div>
-                                        <form>
+                                        <form method="POST" action="{{route('cliente.editarMiPerfil')}}" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <label>Tu nombre </label>
-                                                    <input type="text" class="form-control margin-bottom-20">
+                                                    <label>Tu nombre completo </label>
+                                                    <input name="nombre" type="text" class="form-control margin-bottom-20">
                                                 </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <label>Dirección de correo electrónico<span class="color-red">*</span></label>
-                                                    <input type="text" class="form-control margin-bottom-20">
-                                                </div>
+                                               
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label>Número de contacto <span class="color-red">*</span></label>
-                                                    <input type="text" class="form-control margin-bottom-20">
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12 margin-bottom-20">
-                                                    <label>Ciudad <span class="color-red">*</span></label>
-                                                    <select class="form-control">
-                                                        <option value="0">ciudad1</option>
-                                                        <option value="1">ciudad2</option>
-                                                        <option value="2">ciudad3</option>
-                                                        <option value="3">ciudad4</option>
-                                                        {{-- <option value="4">ciudad1</option>
-                                                        <option value="5">ciudad1</option> --}}
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12 margin-bottom-20">
-                                                    <label>Zona <span class="color-red">*</span></label>
-                                                    <select class="form-control">
-                                                        <option value="0">sur</option>
-                                                        <option value="1">norte</option>
-                                                        <option value="2">zona2</option>
-                                                    {{--     <option value="3">Cardiff</option>
-                                                        <option value="4">Bradford</option>
-                                                        <option value="5">Cambridge</option> --}}
-                                                    </select>
+                                                    <input name="telefono" type="text" class="form-control margin-bottom-20">
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <label>Dirección <span class="color-red">*</span></label>
-                                                    <textarea class="form-control margin-bottom-20" rows="3"></textarea>
+                                                    <label>DNI <span class="color-red">*</span></label>
+                                                    <input name="dni" type="text" class="form-control margin-bottom-20">
                                                 </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <label>Foto <span class="color-red">*</span></label>
+                                                  
+                                                    <input  type="file" name="foto" id="foto" class="form-control margin-bottom-20">
+                                                </div>
+                                             
                                             </div>
-                                            {{-- <div class="row margin-bottom-20">
-                                                <div class="form-group">
-                                                    <div class="col-md-9">
-                                                        <div class="input-group">
-                                                            <span class="input-group-btn">
-                                                                <span class="btn btn-default btn-file">
-                                                                    Browse… <input type="file" id="imgInp">
-                                                                </span>
-                                                            </span>
-                                                            <input type="text" class="form-control" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <img id="img-upload" class="img-responsive"
-                                                            src="images/users/2.jpg" alt="" />
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+                                           
                                             <div class="clearfix"></div>
                                             <div class="row">
                                                 <div class="col-md-8 col-sm-8 col-xs-12">

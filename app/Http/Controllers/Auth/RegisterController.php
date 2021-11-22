@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -62,20 +62,21 @@ class RegisterController extends Controller
         // if($data['opcionVerificar']=="No"){
             // dd($data);
             $opValidar = $data['opcionValidar'];
-             return User::create([
+              return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'cta_validada'=>$opValidar,
             ]);
+           
 
 
             
             // if($opValidar=="Si"){
-            //     return view('pages.validarCuenta');
+            //     return redirect()->route('home.getValidarCuenta');
             // }else{
-            //     return view('pages.index');
+            //     return redirect()->route('home.inicio');
             // }
         
     }
+
 }

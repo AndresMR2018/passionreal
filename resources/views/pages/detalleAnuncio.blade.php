@@ -8,9 +8,9 @@
       <![endif]-->
     <meta name="description" content="">
     <meta name="author" content="ScriptsBundle">
-    <title>AdForest | Largest Classifieds Portal</title>
+    <title>Pasionreal</title>
     <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-    <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon" />
+    <link rel="icon" href="images/logo/logoPassionReal.jpeg" type="image/x-icon" />
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
@@ -463,7 +463,7 @@
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a href="{{route('home.detalleAnuncio')}}">Detalles de anuncio</a></li>
+                    <li><a href="{{url('/detalle/'.$anuncio->id)}}">Detalles de anuncio</a></li>
                 </ul>
             </div>
         </div>
@@ -485,18 +485,18 @@
                             <!-- Ad Slider -->
                             <div class="owl-carousel owl-theme single-details">
                                 <!-- Slide -->
-                                <div class="item"><img src="{{asset('images/single-page/7.jpg')}}" alt=""></div>
+                                <div class="item"><img src="{{asset('storage/'.$anuncio->foto)}}" alt=""></div>
                                 <!-- Slide -->
-                                <div class="item"><img src="{{asset('images/single-page/8.jpg')}}" alt=""></div>
+                                <div class="item"><img src="{{asset('storage/'.$anuncio->foto)}}" alt=""></div>
                                 <!-- Slide -->
-                                <div class="item"><img src="{{asset('images/single-page/9.jpg')}}" alt=""></div>
+                                <div class="item"><img src="{{asset('storage/'.$anuncio->foto)}}" alt=""></div>
                                 <!-- Slide -->
-                                <div class="item"><img src="{{asset('images/single-page/10.jpg')}}" alt=""></div>
+                                <div class="item"><img src="{{asset('storage/'.$anuncio->foto)}}" alt=""></div>
                             </div>
                             <!-- Short Description  -->
                             <div class="ad-box">
                                 <div class="ad-title clearfix">
-                                    <h2><a href="#"> Titulo del anuncio </a> </h2>
+                                    <h2><a href="#"> {{$anuncio->titulo}} </a> </h2>
                                 </div>
                                 <div class="short-features">
                                     <!-- Heading Area -->
@@ -506,19 +506,19 @@
                                         </h3>
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Nombre:</strong> :</span> lorem
+                                        <span><strong>Nombre:</strong> :</span> {{$anuncio->user->name}}
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Ciudad:</strong> :</span> Quito
+                                        <span><strong>Ciudad:</strong> :</span> {{$anuncio->ciudad}}
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Edad:</strong> :</span> 27
+                                        <span><strong>Edad:</strong> :</span> {{$anuncio->edad}}
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Tlfn:</strong>:</span> 0987654321
+                                        <span><strong>Tlfn:</strong>:</span> {{$anuncio->telefono}}
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
-                                        <span><strong>Fecha:</strong> :</span> 2021-10-06
+                                        <span><strong>Fecha:</strong> :</span> {{$anuncio->created_at}}
                                     </div>
                                 </div>
                                 <!-- Short Features  -->
@@ -567,11 +567,10 @@
                                         </h3>
                                     </div>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi vitae neque similique aut aspernatur cum unde, incidunt, rem doloribus aperiam fuga voluptates tempore temporibus, quidem nulla mollitia ducimus sint?
-                                    </p>
-                                    <p>
-                                       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque repellendus quod optio, maiores cupiditate odit perferendis delectus quas repellat, ut voluptas ipsa fugiat voluptatibus ducimus facilis dolorem commodi. Itaque, praesentium!
-                                    </p>
+
+                                        {{$anuncio->descripcion}}
+                                          </p>
+                                 
 
 
                                 </div>
@@ -1157,10 +1156,10 @@
                                 </div>
                                 <div class="ad-listing-meta">
                                     <ul>
-                                        <li>Id de anuncio: <span class="color">1</span></li>
-                                        <li>Categoría: <span class="color">Mujeres</span></li>
+                                        <li>Id de anuncio: <span class="color">{{$anuncio->id}}</span></li>
+                                        <li>Categoría: <span class="color">{{$anuncio->categoria->nombre}}</span></li>
                                         <li>Visitas: <span class="color">10</span></li>
-                                        <li>Ubicación: <span class="color">Quito, Carolina</span></li>
+                                        <li>Ubicación: <span class="color">{{$anuncio->ciudad}}, {{$anuncio->direccion}}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1637,7 +1636,7 @@
                             <div class="recent-ads-container">
                                 <div class="recent-ads-list-image">
                                     <a href="#" class="recent-ads-list-image-inner">
-                                        <img src="{{asset('images/car.png')}}" alt="">
+                                        <img src="{{asset('storage/'.$anuncio->foto)}}" alt="">
                                     </a><!-- /.recent-ads-list-image-inner -->
                                 </div>
                                 <!-- /.recent-ads-list-image -->
@@ -1680,7 +1679,7 @@
                                 rows="3"
                                 class="form-control">What is the price of the 2015 Honda Accord EX-L you have in your inventory?</textarea>
                         </div>
-                        <div class="col-md-12  col-sm-12"> <img src="{{asset('images/captcha.gif')}}" alt=""
+                        <div class="col-md-12  col-sm-12"> <img src="{{asset('storage/'.$anuncio->foto)}}" alt=""
                                 class="img-responsive"> </div>
                         <div class="clearfix"></div>
                         <div class="col-md-12  col-sm-12 margin-bottom-20 margin-top-20">
@@ -1706,7 +1705,7 @@
                             <div class="recent-ads-container">
                                 <div class="recent-ads-list-image">
                                     <a href="#" class="recent-ads-list-image-inner">
-                                        <img src="{{asset('images/car.png')}}" alt="">
+                                        <img src="{{asset('storage/'.$anuncio->foto)}}" alt="">
                                     </a><!-- /.recent-ads-list-image-inner -->
                                 </div>
                                 <!-- /.recent-ads-list-image -->
@@ -1788,7 +1787,7 @@
                             <textarea placeholder="This ad not belong to me" rows="3"
                                 class="form-control">This ad not belong to me</textarea>
                         </div>
-                        <div class="col-md-12 col-sm-12"> <img src="{{asset('images/captcha.gif')}}" alt="" class="img-responsive">
+                        <div class="col-md-12 col-sm-12"> <img src="{{asset('storage/'.$anuncio->foto)}}" alt="" class="img-responsive">
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-md-12 col-sm-12 margin-bottom-20 margin-top-20">

@@ -314,7 +314,7 @@
                         </ul>
                         <ul class="menu-search-bar">
                             <li>
-                                <a href="{{ route('home.crearAnuncio') }}" class="btn btn-light"><i
+                                <a href="{{ route('cliente.crearAnuncio') }}" class="btn btn-light"><i
                                         class="fa fa-plus" aria-hidden="true"></i> Publicar anuncio</a>
                             </li>
                         </ul>

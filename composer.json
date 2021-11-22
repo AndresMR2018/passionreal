@@ -6,14 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "cloudinary-labs/cloudinary-laravel": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jeroennoten/laravel-adminlte": "^3.7",
         "laravel/framework": "^8.65",
+        "laravel/nexmo-notification-channel": "^2.5",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "spatie/laravel-permission": "^5.3"
+        "spatie/laravel-permission": "^5.3",
+        "twilio/sdk": "^6.31"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

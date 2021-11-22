@@ -10,9 +10,9 @@
       <![endif]-->
       <meta name="description" content="">
       <meta name="author" content="ScriptsBundle">
-      <title>AdForest | Largest Classifieds Portal</title>
+      <title>Passionreal</title>
       <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-      <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="images/logo/logoPassionReal.jpeg" type="image/x-icon" />
       <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->

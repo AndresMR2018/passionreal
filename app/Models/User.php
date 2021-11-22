@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Perfil;
+use App\Models\Solicitud;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,13 @@ class User extends Authenticatable
 
     public function perfil(){
         return $this->hasOne(Perfil::class);
+    }
+
+    public function solicitudes(){
+        return $this->hasMany(Solicitud::class);
+    }
+
+    public function anuncios(){
+        return $this->hasMany(Anuncio::class);
     }
 }

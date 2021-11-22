@@ -19,6 +19,7 @@ class CreatePerfilsTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('telefono')->nullable();
             $table->string('dni')->nullable();
+            $table->string('foto')->nullable();
             $table->unsignedBigInteger('user_id')->unique()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');;
             $table->timestamps();

@@ -8,9 +8,9 @@
       <![endif]-->
     <meta name="description" content="">
     <meta name="author" content="ScriptsBundle">
-    <title>AdForest | Largest Classifieds Portal</title>
+    <title>Pasionreal</title>
     <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/logo/logoPassionReal.jpeg" type="image/x-icon" />
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
@@ -101,8 +101,8 @@
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a href="{{route('home.miCuenta')}}">Perfil</a></li>
-                    <li><a href="{{route('home.misAnuncios')}}">Mis anuncios</a></li>
+                    <li><a href="{{route('cliente.miCuenta')}}">Perfil</a></li>
+                    <li><a href="{{route('cliente.misAnuncios')}}">Mis anuncios</a></li>
                 </ul>
             </div>
         </div>
@@ -122,22 +122,22 @@
                         <div class="user-profile">
                             <a href="profile.html"><img src="images/users/9.jpg" alt=""></a>
                             <div class="profile-detail">
-                                <h6>Nombre de la persona</h6>
+                                <h6>{{$user->name}}</h6>
                                 <ul class="contact-details">
+                                    {{-- <li>
+                                        <i class="fa fa-map-marker"></i>
+                                    </li> --}}
                                     <li>
-                                        <i class="fa fa-map-marker"></i> Ubicación
+                                        <i class="fa fa-envelope"></i>{{$user->email}}
                                     </li>
-                                    <li>
-                                        <i class="fa fa-envelope"></i>correo@gmail.com
-                                    </li>
-                                    <li>
+                                    {{-- <li>
                                         <i class="fa fa-phone"></i> 09-999-999-999
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                             <ul>
-                                <li><a href="{{route('home.miCuenta')}}">Perfil</a></li>
-                                <li class="active"><a href="{{route('home.misAnuncios')}}">Mis anuncios <span class="badge">5</span></a>
+                                <li><a href="{{route('cliente.miCuenta')}}">Perfil</a></li>
+                                <li class="active"><a href="{{route('cliente.misAnuncios')}}">Mis anuncios <span class="badge">5</span></a>
                                 </li>
                                 <li><a href="{{route('logout')}}">Cerrar sesión</a></li>
                             </ul>
@@ -175,6 +175,7 @@
                                     <!-- Ads Listing -->
 
                                     <!-- Ads Listing -->
+                                    @foreach ($anuncios as $anuncio)
                                     <div class="ads-list-archive">
                                         <!-- Image Block -->
                                         <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
@@ -182,7 +183,7 @@
                                             <div class="ad-archive-img">
                                                 <a href="#">
                                                    {{--  <div class="ribbon expired">Expired</div> --}}
-                                                    <img src="images/posting/4.jpg" alt="">
+                                                    <img src="{{asset('storage/'.$anuncio->foto)}}" alt="foto">
                                                 </a>
                                             </div>
                                             <!-- Img Block -->
@@ -190,20 +191,20 @@
                                         <!-- Ads Listing -->
                                         <div class="clearfix visible-xs-block"></div>
                                         <!-- Content Block -->
+                                       
                                         <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
                                             <!-- Ad Desc -->
                                             <div class="ad-archive-desc">
                                                 <!-- Price -->
                                                {{--  <div class="ad-price">$120</div> --}}
                                                 <!-- Title -->
-                                                <h3>Titulo</h3>
+                                                <h3>{{$anuncio->titulo}}</h3>
                                                 <!-- Category -->
-                                                <div class="category-title"> <span><a href="#">Categoria </a></span>
+                                                <div class="category-title"> <span><a href="#">{{$anuncio->categoria->nombre}}</a></span>
                                                 </div>
                                                 <!-- Short Description -->
                                                 <div class="clearfix visible-xs-block"></div>
-                                                <p class="hidden-sm">Lorem ipsum dolor sit amet, quem convenire
-                                                    interesset ut vix, maiestatis inciderint no, eos in elit dicat.....
+                                                <p class="hidden-sm">{{$anuncio->descripcion}}
                                                 </p>
                                                 <!-- Ad Features -->
                                                 <ul class="add_info">
@@ -216,7 +217,7 @@
                                                                 <h4>Contacto</h4>
 
                                                                 <strong>Celular</strong> <span
-                                                                    class="label label-success">0998870404</span>
+                                                                    class="label label-success">{{$anuncio->telefono}}</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -227,7 +228,7 @@
                                                                     class="fa fa-map-marker"></i></span>
                                                             <div class="tooltip-content">
                                                                 <h4>Dirección</h4>
-                                                                Calle x y calle v
+                                                                {{$anuncio->direccion}}
                                                             </div>
                                                         </div>
                                                     </li>
@@ -266,8 +267,11 @@
                                             </div>
                                             <!-- Ad Desc End -->
                                         </div>
+                                      
+                                       
                                         <!-- Content Block End -->
                                     </div>
+                                    @endforeach
                                     <!-- Ads Listing -->
 
                                 </div>
