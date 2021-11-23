@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    
+
 @include('templates.head')
 
 <body>
@@ -193,7 +193,7 @@
         <!-- =-=-=-=-=-=-= Featured Ad Parallex =-=-=-=-=-=-= -->
         <section class="parallex bg-3 featured-ads">
             <div class="container">
-                <!-- Container -->
+                {{-- <!-- Container -->
                 <div class="container">
                     <div class="col-md-8 col-sm-6 no-padding">
                         <div class="app-text-section">
@@ -221,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container /- -->
+                <!-- Container /- --> --}}
             </div>
         </section>
         <!-- =-=-=-=-=-=-= Featured Ad Parallex End =-=-=-=-=-=-= -->
