@@ -129,7 +129,7 @@
                                         <li><a href="{{ route('home.find_by_categoria', $categoria->nombre) }}">{{ $categoria->nombre }}
                                             </a></li>
                                     @endforeach --}}
-
+                                          
                                 </ul>
                             </li>
                             @guest

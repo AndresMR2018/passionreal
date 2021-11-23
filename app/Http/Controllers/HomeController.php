@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function index()
     {
         // $categorias = Categoria::all();
-        $anuncios = Anuncio::Paginate(3);
+        $anuncios = Anuncio::all();
         return view('pages.index',compact('anuncios'));
     }
 
