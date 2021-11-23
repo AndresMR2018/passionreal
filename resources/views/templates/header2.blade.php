@@ -123,12 +123,12 @@
                                         class="fa fa-angle-down fa-indicator"></i></a>
                                 <!-- drop down multilevel  -->
                                 <ul class="drop-down-multilevel">
-                                 {{-- <li><a href="">Categorias
-                                 </a></li> --}}
-                                    @foreach ($categorias as $categoria)
+                                 <li><a href="">Categorias
+                                 </a></li>
+                                    {{-- @foreach ($categorias as $categoria)
                                         <li><a href="{{ route('home.find_by_categoria', $categoria->nombre) }}">{{ $categoria->nombre }}
                                             </a></li>
-                                    @endforeach
+                                    @endforeach --}}
 
                                 </ul>
                             </li>
