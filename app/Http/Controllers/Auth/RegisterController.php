@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RegisterController extends Controller
 {
@@ -30,13 +32,14 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
+
+    public function redirectTo()
+    {
+       
+    }
     public function __construct()
     {
         $this->middleware('guest');
@@ -62,21 +65,13 @@ class RegisterController extends Controller
         // if($data['opcionVerificar']=="No"){
             // dd($data);
             $opValidar = $data['opcionValidar'];
-              return User::create([
+              $user =  User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-            ]);
-           
+            ])->assignRole('Client');
 
-
-            
-            // if($opValidar=="Si"){
-            //     return redirect()->route('home.getValidarCuenta');
-            // }else{
-            //     return redirect()->route('home.inicio');
-            // }
-        
+            return $user;
     }
 
 }

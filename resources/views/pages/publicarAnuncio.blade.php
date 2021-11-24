@@ -51,6 +51,7 @@
         <link href="css/jquery.tagsinput.min.css" rel="stylesheet">
         <!-- JavaScripts -->
         <script src="js/modernizr.js"></script>
+        <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -114,6 +115,17 @@
 <button type="button" class="close" data-dismiss="alert" role="alert">
 <span aria-button="true">&times;</span>
 </button>
+</div>
+@endif
+@if(count($errors)>0)
+<div class="alert alert-danger" role="alert">
+<ul>
+@foreach($errors->all() as $error)
+<li>
+{{$error}}
+</li>
+@endforeach
+</ul>
 </div>
 @endif
                             <p class="lead">Publicar un anuncio en <a href="#">Pasionreal.com</a> es gratis! Sin embargo,
@@ -308,7 +320,7 @@
                                 </div> --}}
                                 <div class="row">
                                 <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
-                                    <label class="control-label">Paquete <small>Selecciona el paquete para tu anuncio</small></label>
+                                    <label class="control-label">Paquete <small>Costo por activación de paquete (1 crédito)</small></label>
                                     <select class="category form-control" name="paquete_id">
                                         <option label="Select Option"></option>
                                         @foreach ($paquetes as $paquete)

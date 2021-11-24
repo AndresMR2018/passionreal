@@ -1078,7 +1078,7 @@ ul {
 
 /* =-=-=-=-=-=-= Home With Static Banner =-=-=-=-=-=-= */
 #banner {
-	background: url("../images/banner-5.jpg");
+	background: url("../images/banner_1280_880.jpg");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -4168,7 +4168,7 @@ ul.category-list-data li:hover a span {
 }
 /* =-=-=-=-=-=-= Breadcrumbs =-=-=-=-=-=-= */
 .page-header-area {
-	background: rgba(0, 0, 0, 0) url("../images/breadcrumb.jpg") no-repeat scroll center center / cover;
+	background: rgba(0, 0, 0, 0) url("../images/banner_1280_330.jpg") no-repeat scroll center center / cover;
 	padding: 50px 0;
 	text-align: left;
 	position: relative;

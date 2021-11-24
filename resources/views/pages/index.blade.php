@@ -3,6 +3,8 @@
 
 @include('templates.head')
 
+<link rel="stylesheet" href="{{asset('css/paginador.css')}}">
+
 <body>
     <!-- =-=-=-=-=-=-= Preloader =-=-=-=-=-=-= -->
     {{-- <div id="loader-wrapper">
@@ -120,7 +122,7 @@
                                                         <ul class="additional-info pull-right">
                                                             <li>
                                                                 <a data-toggle="tooltip" title="Enviar whatsapp"
-                                                                    href="#" class="fa fa-whatsapp"></a>
+                                                                    href="#" class="fab fa-whatsapp"></a>
                                                             </li>
                                                             <li>
                                                                 <a data-toggle="tooltip" title="Contactar" href="#"
@@ -134,7 +136,12 @@
                                                         <ul class="ad-meta-info">
                                                             <li> <i class="fa fa-map-marker"></i><a href="#">{{$anuncio->ciudad}}</a>
                                                             </li>
-                                                            <li> <i class="fa fa-user"></i>{{$anuncio->user->name}}</li>
+                                                            <li > <i class="fa fa-user"></i>{{$anuncio->user->name}}</li>
+                                                            @if ($anuncio->user->cta_validada=="Si")
+                                                            <li title="Cuenta verificada"><i class="fas fa-user-check"></i></li>
+                                                            @else
+                                                            <li title="Cuenta no verificada"><i class="fas fa-user-times"></i></li>
+                                                            @endif
                                                         </ul>
                                                         <!-- Ad Description-->
                                                         <div class="ad-details">
@@ -167,20 +174,13 @@
                                     </div>
                                 @endforeach
 
+                             
                             </li>
 
 
                         </ul>
                         <div class="text-center">
-                            <ul class="pagination ">
-                                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">10</a></li>
-                                <li><a href="#">20</a></li>
-                                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                            </ul>
+                            {!!$anuncios->links() !!}
                         </div>
                     </div>
                     <!-- Middle Content Box End -->

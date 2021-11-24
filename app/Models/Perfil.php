@@ -12,6 +12,7 @@ class Perfil extends Model
         'nombre',
         'telefono',
         'foto',
-        'dni'
+        'dni',
+        'creditos'
     ];
 }

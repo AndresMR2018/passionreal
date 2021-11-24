@@ -50,6 +50,7 @@
       <link href="skins/minimal/minimal.css" rel="stylesheet">
       <!-- JavaScripts -->
       <script src="js/modernizr.js"></script>
+      <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
 
       {{-- <script src="js/campoVisible.js"></script> --}}
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

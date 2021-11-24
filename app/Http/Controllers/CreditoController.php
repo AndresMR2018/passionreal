@@ -7,79 +7,51 @@ use Illuminate\Http\Request;
 
 class CreditoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $creditos=Credito::Paginate(3);
+        return view('admin.credito.index',compact('creditos'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
-        //
+        return view('admin.credito.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
-        //
+        $datosCredito = request()->except('_token');
+        Credito::insert($datosCredito);
+        return redirect()->route('credito.index')->with('mensaje','Credito agregado con exito!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Credito  $credito
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Credito $credito)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Credito  $credito
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Credito $credito)
+   
+    public function edit($id)
     {
-        //
+        $credito = Credito::findOrFail($id);
+        return view('admin.credito.edit', compact('credito'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Credito  $credito
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, Credito $credito)
     {
-        //
+        $datosCredito = request()->except(['_token','_method']);
+
+Credito::where('id','=',$credito->id)->update($datosCredito);
+        return redirect('admin/credito')->with('mensaje','Credito actualizado!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Credito  $credito
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Credito $credito)
+    public function destroy($id)
     {
-        //
+        $credito=Credito::destroy($id);
+        return redirect('admin/credito')->with('mensaje','Credito eliminado!');
     }
 }

@@ -306,16 +306,16 @@ return [
 
 
         [
-            'text'    => 'Productos',
+            'text'    => 'Creditos',
             'icon'    => 'fas fa-fw fa-tv',
             'submenu' => [
                 [
-                    'text' => 'Agregar producto',
-                    'url'  => 'producto/create',
+                    'text' => 'Agregar credito',
+                    'url'  => 'admin/credito/create',
                 ],
                 [
-                    'text' => ' Ver productos',
-                    'url'  => 'producto',
+                    'text' => ' Ver creditos',
+                    'url'  => 'admin/credito',
                 ],
               
                
@@ -326,17 +326,12 @@ return [
             'text'    => 'Ordenes',
             'icon'    => 'fas fa-fw fa-clipboard',
             'submenu' => [
-
-               
                 [
                     'text' => ' Ver ordenes',
                     'url'  => 'orden',
                 ],
-
-
             ]
-
-            ],
+        ],
 
         [
             'text'    => 'Carrusel',
@@ -344,111 +339,64 @@ return [
             'submenu' => [
                 [
                     'text' => 'Agregar item',
-                    'url'  => 'carrusel/create',
+                    'url'  => 'admin/carrusel/create',
                 ],
                 [
                     'text' => ' Ver items',
-                    'url'  => 'carrusel',
-                ], 
-            ],
-        ],
-        [
-            'text'    => 'Marcas',
-            'icon'    => 'fas fa-fw fa-icons',
-            'submenu' => [
-                [
-                    'text' => 'Agregar marca',
-                    'url'  => 'marca/create',
-                ],
-                [
-                    'text' => ' Ver marcas',
-                    'url'  => 'marca',
+                    'url'  => 'admin/carrusel',
                 ], 
             ],
         ],
         
-        [
-            'text'    => 'Ofertas',
-            'icon'    => 'fas fa-fw fa-tag',
-            'submenu' => [
-                [
-                    'text' => 'Agregar oferta',
-                    'url'  => 'oferta/create',
-                ],
-                [
-                    'text' => ' Ver ofertas',
-                    'url'  => 'oferta',
-                ], 
-            ],
-        ],
-
-        
-
+ 
             [
                 'text'    => 'Consultas',
                 'icon'    => 'fas fa-fw fa-search-dollar',
                 'submenu' => [
-    
                     [
                         'text' => 'Ver consultas',
-                        'url'  => 'consulta',
+                        'url'  => 'admin/consulta',
                     ],
-                   
-    
                 ]
-    
-                ],
 
-                [
-                    'text'    => 'Preguntas',
-                    'icon'    => 'fas fa-fw fa-question-circle',
-                    'submenu' => [
-        
-                        [
-                            'text' => 'Ver preguntas',
-                            'url'  => 'preguntas',
-                        ],
-                       
-        
-                    ]
-        
-                    ],
+            ],
 
-            [
-                'text'    => 'Menu Principal',
-                'icon'    => 'fas fa-fw fa-chevron-circle-down',
-                'submenu' => [
-    
-                    [
-                        'text' => 'Agregar item',
-                        'url'  => 'nodo/create',
-                    ],
-                    [
-                        'text' => ' Ver items',
-                        'url'  => 'nodo',
-                    ],
-    
-                ]
-    
-                ],
 
-                [
-                    'text'    => 'Sub Menus',
-                    'icon'    => 'fas fa-fw fa-caret-down',
-                    'submenu' => [
+            // [
+            //     'text'    => 'Menu Principal',
+            //     'icon'    => 'fas fa-fw fa-chevron-circle-down',
+            //     'submenu' => [
+    
+            //         [
+            //             'text' => 'Agregar item',
+            //             'url'  => 'nodo/create',
+            //         ],
+            //         [
+            //             'text' => ' Ver items',
+            //             'url'  => 'nodo',
+            //         ],
+    
+            //     ]
+    
+            // ],
+
+                // [
+                //     'text'    => 'Sub Menus',
+                //     'icon'    => 'fas fa-fw fa-caret-down',
+                //     'submenu' => [
         
-                        [
-                            'text' => 'Agregar sub Item',
-                            'url'  => 'subnodo/create',
-                        ],
-                        [
-                            'text' => ' Ver sub items',
-                            'url'  => 'subnodo',
-                        ],
+                //         [
+                //             'text' => 'Agregar sub Item',
+                //             'url'  => 'subnodo/create',
+                //         ],
+                //         [
+                //             'text' => ' Ver sub items',
+                //             'url'  => 'subnodo',
+                //         ],
         
-                    ]
+                //     ]
         
-                    ],
+                // ],
 
         
     ],

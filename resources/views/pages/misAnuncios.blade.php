@@ -48,6 +48,7 @@
     <link href="skins/minimal/minimal.css" rel="stylesheet">
     <!-- JavaScripts -->
     <script src="js/modernizr.js"></script>
+    <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -137,9 +138,18 @@
                             </div>
                             <ul>
                                 <li><a href="{{route('cliente.miCuenta')}}">Perfil</a></li>
-                                <li class="active"><a href="{{route('cliente.misAnuncios')}}">Mis anuncios <span class="badge">5</span></a>
+                                <li class="active"><a href="{{route('cliente.misAnuncios')}}">Mis anuncios <span class="badge">{{count($anuncios)}}</span></a>
                                 </li>
-                                <li><a href="{{route('logout')}}">Cerrar sesión</a></li>
+                                <li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+
+                                    <a  href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                                
+                                </li>
                             </ul>
                         </div>
                         <!-- Categories -->

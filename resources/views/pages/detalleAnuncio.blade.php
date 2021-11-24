@@ -46,6 +46,7 @@
     <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
     <!-- JavaScripts -->
     <script src="js/modernizr.js"></script>
+    <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

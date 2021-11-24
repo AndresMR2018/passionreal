@@ -48,6 +48,7 @@
     <link href="skins/minimal/minimal.css" rel="stylesheet">
     <!-- JavaScripts -->
     <script src="js/modernizr.js"></script>
+    <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -102,7 +103,6 @@
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
                     <li><a href="{{route('cliente.miCuenta')}}">Mi perfil</a></li>
-
                 </ul>
             </div>
         </div>
@@ -132,6 +132,9 @@
                                     </li>
                                     <li>
                                         <i class="fa fa-phone"></i>{{$perfil->telefono}}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-coins"></i>{{$perfil->creditos}} créditos
                                     </li>
                                 </ul>
                             </div>

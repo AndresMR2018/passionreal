@@ -33,6 +33,7 @@
                                                 aria-hidden="true"></i>Registrarse</a></li>
                                 @endif
                             @else
+                            <li style="color: white"><a href="{{url('/creditos')}}"><i style="color: white" class="fas fa-coins"></i>{{Auth::user()->perfil->creditos}} créditos</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false"><i class="icon-profile-male"
@@ -41,7 +42,7 @@
                                     <ul class="dropdown-menu">
 
                                         <li><a href="{{route('cliente.miCuenta')}}">Mi cuenta</a></li>
-                                        @if (Auth::check())
+                                        @if (Auth::check() )
                                             <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                         @endif
                                         <li><a href="{{route('cliente.misAnuncios')}}">Mis anuncios</a></li>
@@ -79,7 +80,7 @@
                         <!-- menu logo -->
                         <ul class="menu-logo">
                             <li>
-                                <a href="index.html"><img style="width: 100px"
+                                <a href="{{route('home.inicio')}}"><img style="width: 100px"
                                         src="{{ asset('/images/logo/logoPassionReal.jpeg') }}" alt="logo"> </a>
                             </li>
                         </ul>
@@ -123,12 +124,12 @@
                                         class="fa fa-angle-down fa-indicator"></i></a>
                                 <!-- drop down multilevel  -->
                                 <ul class="drop-down-multilevel">
-                                 <li><a href="">Categorias
-                                 </a></li>
-                                    {{-- @foreach ($categorias as $categoria)
-                                        <li><a href="{{ route('home.find_by_categoria', $categoria->nombre) }}">{{ $categoria->nombre }}
+                                 {{-- <li><a href="">Categorias
+                                 </a></li> --}}<li><a href="{{route('home.findAllCategorias')}}">Todas</a></li>
+                                    @foreach ($categorias as $categoria)
+                                        <li><a href="{{ route('home.find_by_categoria', $categoria->id) }}">{{ $categoria->nombre }}
                                             </a></li>
-                                    @endforeach --}}
+                                    @endforeach
                                           
                                 </ul>
                             </li>

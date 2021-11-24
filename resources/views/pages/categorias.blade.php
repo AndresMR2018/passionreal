@@ -3,40 +3,6 @@
 @include('templates.head')
 
 <body>
-    <!-- =-=-=-=-=-=-= Preloader =-=-=-=-=-=-= -->
-    {{-- <div id="loader-wrapper">
-         <div id="loader"></div>
-         <div class="loader-section section-left"></div>
-         <div class="loader-section section-right"></div>
-    </div> --}}
-    <!-- =-=-=-=-=-=-= Color Switcher =-=-=-=-=-=-= -->
-    {{-- <div class="color-switcher" id="choose_color">
-         <a href="#." class="picker_close"><i class="fa fa-gear"></i></a>
-         <h5>STYLE SWITCHER</h5>
-         <div class="theme-colours">
-            <p> Choose Colour style </p>
-            <ul>
-               <li>
-                  <a href="#." class="defualt" id="defualt"></a>
-               </li>
-               <li>
-                  <a href="#." class="green" id="green"></a>
-               </li>
-               <li>
-                  <a href="#." class="blue" id="blue"></a>
-               </li>
-               <li>
-                  <a href="#." class="red" id="red"></a>
-               </li>
-
-               <li>
-                  <a href="#." class="sea-green" id="sea-green"></a>
-               </li>
-
-            </ul>
-         </div>
-         <div class="clearfix"> </div>
-    </div> --}}
     <!-- =-=-=-=-=-=-= Light Header =-=-=-=-=-=-= -->
     @include('templates.header2')
     {{-- @include('templates.header') --}}
@@ -44,14 +10,14 @@
     <!-- Navigation Menu End -->
     <!-- =-=-=-=-=-=-= Light Header End  =-=-=-=-=-=-= -->
     <!-- =-=-=-=-=-=-= Transparent Breadcrumb =-=-=-=-=-=-= -->
-    @include('components.banner1280x330')
+    @include('components.banner1280x330',['titulo'=>'Anuncios por categoría'])
     <!-- Small Breadcrumb -->
     <div class="small-breadcrumb">
         <div class="container">
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a class="active"  href="">Categorías</a></li>
+                    <li><a class="active"  href="">Categorias</a></li>
                 </ul>
             </div>
         </div>
@@ -66,20 +32,23 @@
             <div class="container">
                 <!-- Row -->
                 <div class="row">
-                    @foreach ($categoriasByName as $categoria)
-
-
+                    @foreach ($anuncios as $anuncio)
                     <!-- Minimal Category -->
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <a href="#">
                             <div class="minimal-category">
                                 <div class="minimal-img">
-                                    <img alt="imagen de categoria" class="img-responsive" src="{{asset('storage').'/'.$categoria->foto}}">
-                                </div>
+                                   
+                                        <img alt="imagen de categoria" class="img-responsive" src="{{asset('storage').'/'.$anuncio->categoria->foto}}">
+                                   
+                                     </div>
                                 <div class="minimal-overlay"></div>
                                 <div class="description">
-                                    <span>{{$categoria->nombre}}</span>
-                                    <div class="ads-count">2,768 Ads</div>
+                                    <a href="{{route('home.find_by_categoria', $anuncio->categoria->id)}}">
+                                        <span>{{$anuncio->categoria->nombre}}</span>
+                                    </a>
+                                  
+                                    <div class="ads-count"> {{$anuncio->ads_count}} Anuncios</div>
                                 </div>
                             </div>
                         </a>

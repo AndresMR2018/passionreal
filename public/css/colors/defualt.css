@@ -5,11 +5,11 @@ a , a:hover {
 	color: #f58936;
 }
 .featured-slider .owl-controls .owl-nav .owl-next:hover, .featured-slider .owl-controls .owl-nav .owl-prev:hover .ms-layer.btn3:hover, .home-category-slider .category-slider .owl-controls .owl-nav .owl-next:hover, .home-category-slider .category-slider .owl-controls .owl-nav .owl-prev:hover, .subscribe button:hover , .featured-slider-1 .owl-controls .owl-nav .owl-next:hover, .featured-slider-1 .owl-controls .owl-nav .owl-prev:hover , .sticky-post-button:hover , .btn-light:hover , .featured-slider-3 .owl-controls .owl-nav .owl-next:hover, .featured-slider-3 .owl-controls .owl-nav .owl-prev:hover  , .hero-form-sub li a:hover {
-	background-color: #dc0e97; !important;
+	background-color: #f20c93 !important;
 }
  
 .btn-success {
-    background-color: #f58936 !important;
+    background-color: #acacac !important;
     border-color: #f6944a !important;
 }
 .btn-success:hover {
@@ -17,7 +17,7 @@ a , a:hover {
   border-color: #f6944a !important;
 }
 .app-download-button.hover, .app-download-button:hover, .app-download-button.focus, .app-download-button:focus, .app-download-button:active, .app-download-button.active, .ms-layer.btn3, .minimal-footer-1 .widget .social-links a:hover, .subscribe button, .social-area-share > a:hover , .search-section .search-options > li .btn.btn-danger:hover , .featured-slider-1 .owl-controls .owl-nav .owl-next, .featured-slider-1 .owl-controls .owl-nav .owl-prev , .featured-slider .owl-controls .owl-nav .owl-next, .featured-slider .owl-controls .owl-nav .owl-prev, .category-grid-box-1 .price-tag .price span , .featured-slider-3 .owl-controls .owl-nav .owl-next, .featured-slider-3 .owl-controls .owl-nav .owl-prev  , .small-breadcrumb .breadcrumb-link ul li a::after , .user-profile .badge , .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y , .sticky-post-button , .select2-container--default .select2-results__option--highlighted[aria-selected] ,  .mega-menu .menu-links > li.activeTriggerMobile , .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
-	background-color: #f58936 !important;
+	background-color: #f20c93 !important;
 }
 span.app-store-btn:hover, .social-links-two a:hover , .search-section .search-options > li .btn.btn-danger:hover  {
 	border: 1px solid #f58936 !important;
