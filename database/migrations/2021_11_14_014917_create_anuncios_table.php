@@ -21,7 +21,7 @@ class CreateAnunciosTable extends Migration
             $table->string('titulo')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('telefono')->nullable();
-            $table->string('foto')->nullable();
+            // $table->string('foto')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')

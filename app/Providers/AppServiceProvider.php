@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Anuncio;
 use App\Models\Categoria;
 use App\Models\Paquete;
 use Illuminate\Support\ServiceProvider;
@@ -32,9 +33,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
                 $categorias = Categoria::all();
                 $paquetes = Paquete::all();
+                $anuncios = Anuncio::Paginate(3);
                 view()->share([
                 'categorias'=>$categorias,
-                'paquetes'=>$paquetes
+                'paquetes'=>$paquetes,
+                'anuncios'=>$anuncios
                 ]);
 
     }

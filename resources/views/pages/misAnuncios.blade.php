@@ -14,38 +14,38 @@
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <!-- =-=-=-=-=-=-= Template CSS Style =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- =-=-=-=-=-=-= Font Awesome =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}" type="text/css">
     <!-- =-=-=-=-=-=-= Flat Icon =-=-=-=-=-=-= -->
-    <link href="css/flaticon.css" rel="stylesheet">
+    <link href="{{asset('css/flaticon.css')}}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Et Line Fonts =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="css/et-line-fonts.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/et-line-fonts.css')}}" type="text/css">
     <!-- =-=-=-=-=-=-= Menu Drop Down =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="css/forest-menu.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/forest-menu.css')}}" type="text/css">
     <!-- =-=-=-=-=-=-= Animation =-=-=-=-=-=-= -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/animate.min.css')}}" type="text/css">
     <!-- =-=-=-=-=-=-= Select Options =-=-=-=-=-=-= -->
-    <link href="css/select2.min.css" rel="stylesheet" />
+    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
     <!-- =-=-=-=-=-=-= noUiSlider =-=-=-=-=-=-= -->
-    <link href="css/nouislider.min.css" rel="stylesheet">
+    <link href="{{asset('css/nouislider.min.css')}}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Listing Slider =-=-=-=-=-=-= -->
-    <link href="css/slider.css" rel="stylesheet">
+    <link href="{{asset('css/slider.css')}}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Owl carousel =-=-=-=-=-=-= -->
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/owl.carousel.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/owl.theme.css')}}">
     <!-- =-=-=-=-=-=-= Check boxes =-=-=-=-=-=-= -->
     <link href="skins/minimal/minimal.css" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Responsive Media =-=-=-=-=-=-= -->
-    <link href="css/responsive-media.css" rel="stylesheet">
+    <link href="{{asset('css/responsive-media.css')}}" rel="stylesheet">
     <!-- =-=-=-=-=-=-= Template Color =-=-=-=-=-=-= -->
-    <link rel="stylesheet" id="color" href="css/colors/defualt.css">
+    <link rel="stylesheet" id="color" href="{{asset('css/colors/defualt.css')}}">
     <!-- =-=-=-=-=-=-= For Style Switcher =-=-=-=-=-=-= -->
     <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
     <!-- =-=-=-=-=-=-= Check boxes =-=-=-=-=-=-= -->
-    <link href="skins/minimal/minimal.css" rel="stylesheet">
+    <link href="{{asset('skins/minimal/minimal.css')}}" rel="stylesheet">
     <!-- JavaScripts -->
     <script src="js/modernizr.js"></script>
     <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
@@ -56,6 +56,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
 </head>
+{{-- @include('templates.head') --}}
 
 <body>
     <!-- =-=-=-=-=-=-= Preloader =-=-=-=-=-=-= -->
@@ -193,7 +194,7 @@
                                             <div class="ad-archive-img">
                                                 <a href="#">
                                                    {{--  <div class="ribbon expired">Expired</div> --}}
-                                                    <img src="{{asset('storage/'.$anuncio->foto)}}" alt="foto">
+                                                    <img src="{{$anuncio->images->pluck('url')[0]}}" alt="foto">
                                                 </a>
                                             </div>
                                             <!-- Img Block -->
@@ -270,7 +271,7 @@
 
                                                     <div class="ad-meta">
                                                         <a class="btn save-ad"><i class="fa fa-down"></i>Desactivar</a>
-                                                        <a class="btn btn-success"><i class="fa fa-pencil"></i> Editar</a>
+                                                        <a href="{{url('/editar-anuncio/'.$anuncio->id)}}" class="btn btn-success"><i class="fa fa-pencil"></i> Editar</a>
                                                         <a class="btn btn-danger"><i class="fa fa-times"></i> Eliminar</a>
                                                     </div>
                                                 </div>

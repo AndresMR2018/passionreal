@@ -34,7 +34,7 @@ Route::post('/validacion-cuenta',[HomeController::class,'validacionCuenta'])->na
 Route::get('/detalle/{id}', [HomeController::class, 'detalleAnuncio']);
 Route::get('/categoria/{id}', [HomeController::class, 'findByCategoria'])->name('home.find_by_categoria');
 Route::get('/categorias',[HomeController::class, 'findAllCategorias'])->name('home.findAllCategorias');
-
+Route::get('/buscar',[HomeController::class, 'filtrado'])->name('home.filtrado');
 
 //PERSONAS REGISTRADAS
 Route::get('/creditos', [ClienteController::class, 'creditos'])->middleware('cliente')->name('cliente.creditos');
@@ -43,6 +43,9 @@ Route::get('/publicar-anuncio', [ClienteController::class, 'crearAnuncio'])->mid
 Route::post('/publicar-anuncio', [ClienteController::class, 'guardarAnuncio'])->middleware('cliente')->name('cliente.guardarAnuncio');
 Route::get('/mis-anuncios', [ClienteController::class, 'misAnuncios'])->middleware('cliente')->name('cliente.misAnuncios');
 Route::post('/editar-perfil',[ClienteController::class,'editarMiPerfil'])->middleware('cliente')->name('cliente.editarMiPerfil');
+Route::get('/editar-anuncio/{id}',[ClienteController::class,'editarAnuncio'])->middleware('cliente')->name('cliente.editarAnuncio');
+Route::post('/editar-anuncio',[ClienteController::class,'postEditarAnuncio'])->middleware('cliente')->name('cliente.postEditarAnuncio');
+Route::get('/retirar-imagen/{id}',[ClienteController::class,'retirarImagen'])->middleware('cliente');
 Route::get('/creditos',[ClienteController::class,'creditos'])->middleware('cliente')->name('cliente.creditos');
 Route::post('/creditos',[ClienteController::class,'postCredito'])->middleware('cliente')->name('cliente.postCredito');
 
@@ -55,7 +58,6 @@ Route::post('/custom', [HomeController::class,'sendCustomMessage']);
 //CLOUDINARY
 
 Route::get('/upload',function(){
-
     return view('imagen');
 });
 Route::post('/upload',function (Request $request){

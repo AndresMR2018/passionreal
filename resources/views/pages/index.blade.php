@@ -3,7 +3,7 @@
 
 @include('templates.head')
 
-<link rel="stylesheet" href="{{asset('css/paginador.css')}}">
+<link rel="stylesheet" href="{{ asset('css/paginador.css') }}">
 
 <body>
     <!-- =-=-=-=-=-=-= Preloader =-=-=-=-=-=-= -->
@@ -93,19 +93,24 @@
                                         <div class="col-md-3 col-sm-5 col-xs-12 grid-style no-padding">
                                             <!-- Image Box -->
                                             <div class="img-box">
-                                             
-                                           
-                                                <img src="{{asset('storage/'.$anuncio->foto)}}" class="img-responsive" alt="">
-                                          
-                                                <div class="total-images"><strong>8</strong> fotos </div>
+
+
+                                                <img src="{{ $anuncio->images->pluck('url')[0] }}"
+                                                    class="img-responsive" alt="">
+
+
+
+                                                <div class="total-images">
+                                                    <strong>{{ count($anuncio->images) }}</strong> fotos </div>
                                                 <div class="quick-view"> <a href="#ad-preview" data-toggle="modal"
                                                         class="view-button"><i class="fa fa-search"></i></a> </div>
                                             </div>
                                             <!-- Ad Status --><span class="ad-status"> Top </span>
                                             <!-- User Preview -->
                                             <div class="user-preview">
-                                                <a href="{{url('/detalle/'.$anuncio->id)}}"> <img src="{{asset('storage').'/'.$anuncio->foto}}" class="avatar avatar-small"
-                                                        alt="foto"> </a>
+                                                <a href="{{ url('/detalle/' . $anuncio->id) }}"> <img
+                                                        src="{{ $anuncio->images->pluck('url')[0] }}"
+                                                        class="avatar avatar-small" alt="foto"> </a>
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-7 col-xs-12">
@@ -114,10 +119,13 @@
                                                 <div class="content-area">
                                                     <div class="col-md-9 col-sm-12 col-xs-12">
                                                         <!-- Category Title -->
-                                                        <div class="category-title"> <span><a href="#">{{$anuncio->categoria->nombre}}</a></span>
+                                                        <div class="category-title"> <span><a
+                                                                    href="#">{{ $anuncio->categoria->nombre }}</a></span>
                                                         </div>
                                                         <!-- Ad Title -->
-                                                        <h3><a href="{{url('/detalle/'.$anuncio->id)}}">{{$anuncio->titulo}}</a></h3>
+                                                        <h3><a
+                                                                href="{{ url('/detalle/' . $anuncio->id) }}">{{ $anuncio->titulo }}</a>
+                                                        </h3>
                                                         <!-- Info Icons -->
                                                         <ul class="additional-info pull-right">
                                                             <li>
@@ -134,19 +142,24 @@
                                                         </ul>
                                                         <!-- Ad Meta Info -->
                                                         <ul class="ad-meta-info">
-                                                            <li> <i class="fa fa-map-marker"></i><a href="#">{{$anuncio->ciudad}}</a>
+                                                            <li> <i class="fa fa-map-marker"></i><a
+                                                                    href="#">{{ $anuncio->ciudad }}</a>
                                                             </li>
-                                                            <li > <i class="fa fa-user"></i>{{$anuncio->user->name}}</li>
-                                                            @if ($anuncio->user->cta_validada=="Si")
-                                                            <li title="Cuenta verificada"><i class="fas fa-user-check"></i></li>
+                                                            <li> <i
+                                                                    class="fa fa-user"></i>{{ $anuncio->user->name }}
+                                                            </li>
+                                                            @if ($anuncio->user->cta_validada == 'Si')
+                                                                <li title="Cuenta verificada"><i
+                                                                        class="fas fa-user-check"></i></li>
                                                             @else
-                                                            <li title="Cuenta no verificada"><i class="fas fa-user-times"></i></li>
+                                                                <li title="Cuenta no verificada"><i
+                                                                        class="fas fa-user-times"></i></li>
                                                             @endif
                                                         </ul>
                                                         <!-- Ad Description-->
                                                         <div class="ad-details">
                                                             <p>
-                                                               {{$anuncio->descripcion}}</p>
+                                                                {{ $anuncio->descripcion }}</p>
 
 
                                                         </div>
@@ -154,17 +167,18 @@
                                                     <div class="col-md-3 col-xs-12 col-sm-12">
                                                         <!-- Ad Stats -->
                                                         <div class="short-info">
-                                                            <div class="ad-stats hidden-xs"><span>Edad : </span>{{$anuncio->edad}}
+                                                            <div class="ad-stats hidden-xs"><span>Edad :
+                                                                </span>{{ $anuncio->edad }}
                                                             </div>
                                                             <div class="ad-stats hidden-xs"><span>Dirección :
-                                                                </span>{{$anuncio->direccion}}</div>
-
+                                                                </span>{{ $anuncio->direccion }}</div>
                                                         </div>
                                                         <!-- Price -->
                                                         {{-- <div class="price"> <span>$00,00</span> </div> --}}
                                                         <!-- Ad View Button -->
-                                                        <a href="{{url('/detalle/'.$anuncio->id)}}" class="btn btn-block btn-success"><i
-                                                                class="fa fa-eye" aria-hidden="true"></i> Ver
+                                                        <a href="{{ url('/detalle/' . $anuncio->id) }}"
+                                                            class="btn btn-block btn-success"><i class="fa fa-eye"
+                                                                aria-hidden="true"></i> Ver
                                                             más</a>
                                                     </div>
                                                 </div>
@@ -173,14 +187,10 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-                             
                             </li>
-
-
                         </ul>
                         <div class="text-center">
-                            {!!$anuncios->links() !!}
+                            {!! $anuncios->links() !!}
                         </div>
                     </div>
                     <!-- Middle Content Box End -->
@@ -191,9 +201,9 @@
         </section>
         <!-- =-=-=-=-=-=-= Trending Ads End =-=-=-=-=-=-= -->
         <!-- =-=-=-=-=-=-= Featured Ad Parallex =-=-=-=-=-=-= -->
-        <section class="parallex bg-3 featured-ads">
+        {{-- <section class="parallex bg-3 featured-ads">
             <div class="container">
-                {{-- <!-- Container -->
+                <!-- Container -->
                 <div class="container">
                     <div class="col-md-8 col-sm-6 no-padding">
                         <div class="app-text-section">
@@ -221,71 +231,81 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container /- --> --}}
+                <!-- Container /- -->
             </div>
-        </section>
+        </section> --}}
         <!-- =-=-=-=-=-=-= Featured Ad Parallex End =-=-=-=-=-=-= -->
         <!-- =-=-=-=-=-=-= Blog Section =-=-=-=-=-=-= -->
         {{-- <section class="custom-padding">
             <!-- Main Container -->
             <div class="container">
-               <!-- Content Box -->
-               <!-- Row -->
-               <div class="row">
-                  <!-- Heading Area -->
-                  <div class="heading-panel">
-                     <div class="col-xs-12 col-md-12 col-sm-12 text-center">
-                        <!-- Main Title -->
-                        <h1>Latest <span class="heading-color"> Blog</span> Post</h1>
-                        <!-- Short Description -->
-                        <p class="heading-text">Eu delicata rationibus usu. Vix te putant utroque, ludus fabellas duo eu, his dico ut debet consectetuer.</p>
-                     </div>
-                  </div>
-                  <!-- Middle Content Box -->
-                  <div class="col-md-12 col-xs-12 col-sm-12">
-                     <div class="row">
-                        <!-- Blog Post-->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                           <div class="blog-post">
-                              <div class="post-img">
-                                 <a href="#"> <img class="img-responsive" alt="" src="images/blog/1.jpg"> </a>
-                              </div>
-                              <div class="post-info"> <a href="">Aug 30, 2017</a> <a href="#">23 comments</a> </div>
-                              <h3 class="post-title"> <a href="#"> Sony Xperia XZ: Release date and everything you need to know</a> </h3>
-                              <p class="post-excerpt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam neque tempora odit atque repellat est molestiae perferendis. </p>
-                           </div>
+                <!-- Content Box -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- Heading Area -->
+                    <div class="heading-panel">
+                        <div class="col-xs-12 col-md-12 col-sm-12 text-center">
+                            <!-- Main Title -->
+                            <h1>Latest <span class="heading-color"> Blog</span> Post</h1>
+                            <!-- Short Description -->
+                            <p class="heading-text">Eu delicata rationibus usu. Vix te putant utroque, ludus fabellas
+                                duo eu, his dico ut debet consectetuer.</p>
                         </div>
-                        <!-- Blog Post-->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                           <div class="blog-post">
-                              <div class="post-img">
-                                 <a href="#"> <img class="img-responsive" alt="" src="images/blog/2.jpg"> </a>
-                              </div>
-                              <div class="post-info"> <a href="">Aug 30, 2017</a> <a href="#">23 comments</a> </div>
-                              <h3 class="post-title"> <a href="#"> Review of the 2017 Honda Accord Sport </a> </h3>
-                              <p class="post-excerpt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam neque tempora odit atque repellat est molestiae perferendis. </p>
-                           </div>
+                    </div>
+                    <!-- Middle Content Box -->
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <div class="row">
+                            <!-- Blog Post-->
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="blog-post">
+                                    <div class="post-img">
+                                        <a href="#"> <img class="img-responsive" alt="" src="images/blog/1.jpg"> </a>
+                                    </div>
+                                    <div class="post-info"> <a href="">Aug 30, 2017</a> <a href="#">23 comments</a>
+                                    </div>
+                                    <h3 class="post-title"> <a href="#"> Sony Xperia XZ: Release date and everything
+                                            you need to know</a> </h3>
+                                    <p class="post-excerpt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Quisquam neque tempora odit atque repellat est molestiae perferendis. </p>
+                                </div>
+                            </div>
+                            <!-- Blog Post-->
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="blog-post">
+                                    <div class="post-img">
+                                        <a href="#"> <img class="img-responsive" alt="" src="images/blog/2.jpg"> </a>
+                                    </div>
+                                    <div class="post-info"> <a href="">Aug 30, 2017</a> <a href="#">23 comments</a>
+                                    </div>
+                                    <h3 class="post-title"> <a href="#"> Review of the 2017 Honda Accord Sport </a>
+                                    </h3>
+                                    <p class="post-excerpt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Quisquam neque tempora odit atque repellat est molestiae perferendis. </p>
+                                </div>
+                            </div>
+                            <!-- Blog Post-->
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="blog-post">
+                                    <div class="post-img">
+                                        <a href="#"> <img class="img-responsive" alt="" src="images/blog/3.jpg"> </a>
+                                    </div>
+                                    <div class="post-info"> <a href="">Aug 30, 2017</a> <a href="#">23 comments</a>
+                                    </div>
+                                    <h3 class="post-title"> <a href="#"> How to Buy a House 6 Must-Dos Before Buying
+                                            A Home</a> </h3>
+                                    <p class="post-excerpt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Quisquam neque tempora odit atque repellat est molestiae perferendis. </p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <!-- Blog Post-->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                           <div class="blog-post">
-                              <div class="post-img">
-                                 <a href="#"> <img class="img-responsive" alt="" src="images/blog/3.jpg"> </a>
-                              </div>
-                              <div class="post-info"> <a href="">Aug 30, 2017</a> <a href="#">23 comments</a> </div>
-                              <h3 class="post-title"> <a href="#"> How to Buy a House 6 Must-Dos Before Buying A Home</a> </h3>
-                              <p class="post-excerpt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam neque tempora odit atque repellat est molestiae perferendis. </p>
-                           </div>
-                        </div>
-                        <div class="clearfix"></div>
-                     </div>
-                  </div>
-                  <!-- Middle Content Box End -->
-               </div>
-               <!-- Row End -->
+                    </div>
+                    <!-- Middle Content Box End -->
+                </div>
+                <!-- Row End -->
             </div>
             <!-- Main Container End -->
-         </section> --}}
+        </section> --}}
         <!-- =-=-=-=-=-=-= Blog Section End =-=-=-=-=-=-= -->
         <!-- =-=-=-=-=-=-= App Download Section =-=-=-=-=-=-= -->
         {{-- @include('components.publicidad') --}}

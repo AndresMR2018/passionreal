@@ -33,5 +33,9 @@ return [
     'nexmo' => [
         'sms_from' => '15556666666',
     ],
+    
+    'sendgrid' => [
+        'api_key' => env('SENDGRID_API_KEY'),
+    ],
 
 ];

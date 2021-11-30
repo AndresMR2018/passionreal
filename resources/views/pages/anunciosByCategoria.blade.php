@@ -74,7 +74,7 @@
                         <a href="#">
                             <div class="minimal-category">
                                 <div class="minimal-img">
-                                    <img alt="imagen de categoria" class="img-responsive" src="{{asset('storage').'/'.$anuncio->foto}}">
+                                    <img alt="imagen de categoria" class="img-responsive" src="{{$anuncio->images->pluck('url')[0]}}">
                                 </div>
                                 <div class="minimal-overlay"></div>
                                 <div class="description">

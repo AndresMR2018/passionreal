@@ -16,6 +16,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MensajeRecibido;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -31,13 +33,19 @@ class HomeController extends Controller
     {
         // $categorias = Categoria::all(); Ahora se cargan desde AppServiceProvider para toda la app
         $anuncios = Anuncio::Paginate(3);
+        return view('pages.index'); // los anuncios igual se cargan desde el provider app
+    }
+
+    public function filtrado(Request $request){
+        $titulo = $request->get('titulo');
+        $ciudad = $request->get('ciudad');
+        $categoria = $request->get('categoria');
+        $anuncios = Anuncio::ciudades($ciudad)->categorias($categoria)->titulos($titulo)->paginate(3);
         return view('pages.index', compact('anuncios'));
     }
 
-
     public function findByCategoria($id)
     {
-
         $anunciosByCategoria = Anuncio::where('categoria_id',$id)->get();
         // $cantidadAnuncios = Anuncio::count();
         // $categoriasByName = Categoria::where('nombre', $nombre)->get();
@@ -91,13 +99,17 @@ class HomeController extends Controller
             'nombre' => 'edite su nombre',
         ]); //creamos el perfil vacio
         Auth::login($user);
+        //generamos el codigo random
+        $codigo = mt_rand(1000000000,9999999999);
 
         if ($opValidar == "No" && $user->hasRole('Client')) {
             return redirect()->route('home.inicio');
         } else {
-            if ($opValidar == "Si" && $user->hasRole('Client'))
+            if ($opValidar == "Si" && $user->hasRole('Client')){
+                Mail::to($user->email)->send(new MensajeRecibido($codigo));//enviamos el mail al correo del cliente que se registro
+            //    return new MensajeRecibido($codigo);
                 return redirect()->route('home.getValidarCuenta');
-            else
+            }else
                 return view('admin.dashboard');
         }
     }

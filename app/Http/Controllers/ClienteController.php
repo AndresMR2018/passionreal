@@ -8,11 +8,14 @@ use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Anuncio;
 use App\Models\Categoria;
 use App\Models\Credito;
+use App\Models\Image;
 use App\Models\Paquete;
 use App\Models\Perfil;
 use App\Models\User;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Cloudinary\Api\Upload\UploadApi;
 
 class ClienteController extends Controller
 {
@@ -74,33 +77,104 @@ class ClienteController extends Controller
         return view('pages.publicarAnuncio', compact('categorias', 'paquetes', 'user_id'));
     }
 
+    public function upload_image($request, $anuncio){
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $name = time().'_'.$file->getClientOriginalName();
+            $ruta=public_path().'/image';
+            $file->move($ruta, $name);
+            $urlimage = '/image/'.$name;
+        }
+        $anuncio->images()->create([
+            'url'=>$urlimage
+        ]);
+    }
+
+    public function postEditarAnuncio(Request $request){
+
+        $anuncio = Anuncio::findOrFail($request->get('anuncio_id'));
+        $datosAnuncio = request()->except(['_token','anuncio_id']);
+        $anuncio->update([
+            "categoria_id"=>$datosAnuncio['categoria_id'],
+            "paquete_id"=>$datosAnuncio['paquete_id'],
+            "titulo"=>$datosAnuncio['titulo'],
+            "descripcion"=>$datosAnuncio['descripcion'],
+            "ciudad"=>$datosAnuncio['ciudad'],
+            "direccion"=>$datosAnuncio['direccion'],
+            "edad"=>$datosAnuncio['edad'],
+            "telefono"=>$datosAnuncio['telefono'],
+        ]);
+        //relacionamos la nueva imagen que añadio
+        $this->upload_image($request, $anuncio);
+
+        return back()->with('mensaje','Su anuncio se actualizo con exito!');
+      
+    }
+    
+    public function editarAnuncio($id){
+        $anuncio = Anuncio::findOrFail($id);
+        $categorias = Categoria::all();
+        $paquetes = Paquete::all();
+        return view('pages.editarAnuncio', compact('anuncio','categorias','paquetes'));
+    }
+
+    public function upload_file($request , $producto){
+        $urlimages = [];
+        if($request->hasFile('images')){
+            $images = $request->file('images');
+            foreach($images as $image){
+            $nombre = time().$image->getClientOriginalName();
+            $ruta = public_path().'/image';
+            $image->move($ruta,$nombre);
+            $urlimages[]['url']='/image/'.$nombre;
+            }
+        }
+
+      
+        $producto->images()->createMany($urlimages);
+    }
+
+    public function cargar_imagenes($request , $producto){
+        $urlimages = [];
+        if($request->hasFile('images')){
+            $images = $request->file('images');
+            foreach($images as $image){
+            $res =  (new UploadApi())->upload($image);
+             $url = json_decode(json_encode($res))->url;
+            $urlimages[]['url']=$url;
+            }
+        }
+$producto->images()->createMany($urlimages);
+
+}
+
+    public function retirarImagen($id){
+        Image::destroy($id);
+        return back()->with('mensaje','Imagen eliminada de su galería');
+    }
+
     public function guardarAnuncio(Request $request)
     {
-        // dd($request);
+     
         $creditos_perfil = auth()->user()->perfil->creditos;
         if($creditos_perfil-1 <0 ){
             return back()->with('mensaje','Ups! al parecer se han agotado tus créditos');
         }
-       
-        
         $datosAnuncio = request()->except('_token');
-      
-        
         $campos=[
             'titulo'=>'required|string|max:20',
             'descripcion'=>'required|string|max:200',
             'categoria_id'=>'required',
             'ciudad'=>'required|String|max:100',
             'direccion'=>'required|String|max:15',
-            'foto'=>'required|max:10000|mimes:jpeg,png,jpg',
+            // 'foto'=>'required|max:10000|mimes:jpeg,png,jpg',
             'edad'=>'required|numeric|min:18',
             'telefono'=>'required|string|max:20',
             'paquete_id'=>'required'
-            
         ];
         $mensaje= [
             'required'=>'El :attribute es requerido',
-            'foto.required'=>'La foto es requerida',
+            // 'foto.required'=>'La foto es requerida',
             'categoria_id.required'=>'La categoría es requerida',
             'ciudad.required'=>'La ciudad es requerida',
             'edad.required'=>'La edad es requerida',
@@ -108,33 +182,32 @@ class ClienteController extends Controller
             'descripcion.required'=>'La descripción es requerida',
         ];
         $this->validate($request, $campos, $mensaje);
-
-        if ($request->hasFile('foto')) {
-            $datosAnuncio['foto'] = $request->file('foto')->store('uploads', 'public');
-        }
-        dd($datosAnuncio);
-        if($datosAnuncio['foto']==null){
-            $datosAnuncio['foto']="fda";
-        }
-
-        
-
-        Anuncio::create([
+        // if ($request->hasFile('foto')) {
+        //     $datosAnuncio['foto'] = $request->file('foto')->store('uploads', 'public');
+        // }
+        // if($datosAnuncio['foto']==null){
+        //     $datosAnuncio['foto']="fda";
+        // }
+       $anuncio =  Anuncio::create([
             "ciudad" => $request->get('ciudad'),
             "telefono" => $request->get('telefono'),
             "edad" => $request->get('edad'),
             "direccion" => $request->get('direccion'),
-            "foto" =>  $datosAnuncio['foto'],
+            // "foto" =>  $datosAnuncio['foto'],
             "descripcion" => $request->get('descripcion'),
             "titulo" => $request->get('titulo'),
             "paquete_id" => $request->get('paquete_id'),
             "categoria_id" => $request->get('categoria_id'),
             "user_id" => Auth::id(),
         ]);
+        $this->upload_file($request,$anuncio);
+
         $creditos_perfil = $creditos_perfil-1;
         auth()->user()->perfil->update(['creditos'=>$creditos_perfil]);
         return back()->with('mensaje', 'Anuncio publicado!');
     }
+
+   
 
     public function miCuenta()
     {

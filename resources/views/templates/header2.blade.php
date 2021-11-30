@@ -42,7 +42,7 @@
                                     <ul class="dropdown-menu">
 
                                         <li><a href="{{route('cliente.miCuenta')}}">Mi cuenta</a></li>
-                                        @if (Auth::check() )
+                                        @if (Auth::check() && Auth()->user()->hasRole('Admin') )
                                             <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                         @endif
                                         <li><a href="{{route('cliente.misAnuncios')}}">Mis anuncios</a></li>

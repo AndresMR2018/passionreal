@@ -52,6 +52,8 @@
         <!-- JavaScripts -->
         <script src="js/modernizr.js"></script>
         <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -214,7 +216,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Fotos para tu anuncio <small>Por favor agrega imagenes para tu anuncio.</small></label>
-                                        <input type="file" name="foto" id="foto">
+                                        <input class="dropify" type="file" name="images[]" id="images" multiple>
                                     </div>
 
                                 </div>

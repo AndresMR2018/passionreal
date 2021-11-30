@@ -267,6 +267,21 @@ return [
         ['header' => 'SISTEMA'],
 
         [
+            'text'    => 'Solicitudes',
+            'icon'    => 'fas fa-fw fa-list-alt',
+            'submenu' => [
+
+                [
+                    'text' => ' Ver solicitudes',
+                    'url'  => 'admin/solicitud',
+                ],
+
+
+            ]
+
+        ],
+
+        [
             'text'    => 'Categorías',
             'icon'    => 'fas fa-fw fa-list-alt',
             'submenu' => [
@@ -283,7 +298,7 @@ return [
 
             ]
 
-            ],
+        ],
 
             [
                 'text'    => 'Paquetes',
