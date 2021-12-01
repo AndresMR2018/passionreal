@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
+use App\Mail\MensajeRecibido;
 use App\Models\Anuncio;
 use App\Models\Categoria;
 use App\Models\Credito;
@@ -16,9 +17,25 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cloudinary\Api\Upload\UploadApi;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Nette\Utils\Random;
 
 class ClienteController extends Controller
 {
+
+    public function validarCuenta(){
+        $codigo = mt_rand(1000000000,9999999999);
+        Mail::to('gamr130898@gmail.com')->send(new MensajeRecibido($codigo));
+        // $codigo = mt_rand(1000000000,9999999999);
+        // Mail::send('emails.mensajeRecibido',$codigo,function($smj){
+        //     $smj->subject('Correo de contacto');
+        //     $smj->to('gamr130898@gmail.com');
+        // });
+        // Session::flash('mensaje', 'Mensaje enviado');
+        return redirect()->route('home.inicio');
+    }
+
 
     public function index()
     {
@@ -77,6 +94,7 @@ class ClienteController extends Controller
         return view('pages.publicarAnuncio', compact('categorias', 'paquetes', 'user_id'));
     }
 
+    // DESARROLLO LOCAL
     public function upload_image($request, $anuncio){
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -89,6 +107,26 @@ class ClienteController extends Controller
             'url'=>$urlimage
         ]);
     }
+    // EN PRODUCCION
+    // public function upload_image($request, $anuncio){
+       
+    //     if($request->hasFile('image')){
+    //         $file = $request->file('image');
+    //         $extension = $request->file('image')->extension();
+    //         if($extension=="png" || $extension=="jpg" || $extension=="jpeg"){
+    //                 $url = Cloudinary::upload($file->getRealPath(),['folder'=>'testing'])->getSecurePath();
+    //                 $anuncio->images()->create([
+    //         'url'=>$url
+    //     ]);
+    //         }else{
+    //             $url = Cloudinary::uploadVideo($file->getRealPath(),['folder'=>'testing'])->getSecurePath();
+    //             $anuncio->images()->create([
+            
+    //     ]);'url'=>$url
+    //         }
+    //     }
+        
+    // }
 
     public function postEditarAnuncio(Request $request){
 
@@ -118,6 +156,7 @@ class ClienteController extends Controller
         return view('pages.editarAnuncio', compact('anuncio','categorias','paquetes'));
     }
 
+    //DESARROLLO LOCAL
     public function upload_file($request , $producto){
         $urlimages = [];
         if($request->hasFile('images')){
@@ -134,19 +173,26 @@ class ClienteController extends Controller
         $producto->images()->createMany($urlimages);
     }
 
-    public function cargar_imagenes($request , $producto){
-        $urlimages = [];
-        if($request->hasFile('images')){
-            $images = $request->file('images');
-            foreach($images as $image){
-            $res =  (new UploadApi())->upload($image);
-             $url = json_decode(json_encode($res))->url;
-            $urlimages[]['url']=$url;
-            }
-        }
-$producto->images()->createMany($urlimages);
-
-}
+/// PRODUCCION 
+// public function upload_file($request , $producto){
+        
+//     $urlimages = [];
+//     if($request->hasFile('images')){
+//         $images = $request->file('images');
+//         foreach($images as $image){
+//         $originalName =$image-> getClientOriginalName();
+//            if(Str::endsWith($originalName, 'mp4')){
+//            $url = Cloudinary::uploadVideo($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
+//         $urlimages[]['url']=$url;
+//             }else{
+//                  $url = Cloudinary::upload($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
+//         $urlimages[]['url']=$url;
+//             }
+//         }
+//          $producto->images()->createMany($urlimages);
+//     }
+   
+// }
 
     public function retirarImagen($id){
         Image::destroy($id);
@@ -205,6 +251,12 @@ $producto->images()->createMany($urlimages);
         $creditos_perfil = $creditos_perfil-1;
         auth()->user()->perfil->update(['creditos'=>$creditos_perfil]);
         return back()->with('mensaje', 'Anuncio publicado!');
+    }
+
+
+    public function eliminarAnuncio($id){
+        Anuncio::destroy($id);
+        return back()->with('mensaje','Anuncio eliminado');
     }
 
    

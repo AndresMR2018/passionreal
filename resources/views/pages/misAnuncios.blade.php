@@ -109,6 +109,14 @@
             </div>
         </div>
     </div>
+    @if (Session::has('mensaje'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{ Session::get('mensaje') }}
+        <button type="button" class="close" data-dismiss="alert" role="alert">
+            <span aria-button="true">&times;</span>
+        </button>
+    </div>
+@endif
     <!-- Small Breadcrumb -->
     <!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
     <div class="main-content-area clearfix">
@@ -209,7 +217,7 @@
                                                 <!-- Price -->
                                                {{--  <div class="ad-price">$120</div> --}}
                                                 <!-- Title -->
-                                                <h3>{{$anuncio->titulo}}</h3>
+                                                <h3><a href="{{url('/detalle/'.$anuncio->id)}}">{{$anuncio->titulo}}</a></h3>
                                                 <!-- Category -->
                                                 <div class="category-title"> <span><a href="#">{{$anuncio->categoria->nombre}}</a></span>
                                                 </div>
@@ -272,7 +280,7 @@
                                                     <div class="ad-meta">
                                                         <a class="btn save-ad"><i class="fa fa-down"></i>Desactivar</a>
                                                         <a href="{{url('/editar-anuncio/'.$anuncio->id)}}" class="btn btn-success"><i class="fa fa-pencil"></i> Editar</a>
-                                                        <a class="btn btn-danger"><i class="fa fa-times"></i> Eliminar</a>
+                                                        <a href="{{url('/anuncio/'.$anuncio->id)}}" class="btn btn-danger"><i class="fa fa-times"></i> Eliminar</a>
                                                     </div>
                                                 </div>
                                             </div>

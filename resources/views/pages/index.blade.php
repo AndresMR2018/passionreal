@@ -130,11 +130,7 @@
                                                         <ul class="additional-info pull-right">
                                                             <li>
                                                                 <a data-toggle="tooltip" title="Enviar whatsapp"
-                                                                    href="#" class="fab fa-whatsapp"></a>
-                                                            </li>
-                                                            <li>
-                                                                <a data-toggle="tooltip" title="Contactar" href="#"
-                                                                    class="fa fa-phone"></a>
+                                                                    href="tel:{{$anuncio->telefono}}" class="fab fa-whatsapp"></a>
                                                             </li>
                                                             {{-- <li>
                                                 <a data-toggle="tooltip" title="Bookmark" href="#" class="fa fa-heart"></a>
@@ -168,7 +164,7 @@
                                                         <!-- Ad Stats -->
                                                         <div class="short-info">
                                                             <div class="ad-stats hidden-xs"><span>Edad :
-                                                                </span>{{ $anuncio->edad }}
+                                                                </span>{{ $anuncio->edad }} años
                                                             </div>
                                                             <div class="ad-stats hidden-xs"><span>Dirección :
                                                                 </span>{{ $anuncio->direccion }}</div>

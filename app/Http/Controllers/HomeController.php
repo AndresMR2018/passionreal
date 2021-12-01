@@ -100,15 +100,16 @@ class HomeController extends Controller
         ]); //creamos el perfil vacio
         Auth::login($user);
         //generamos el codigo random
-        $codigo = mt_rand(1000000000,9999999999);
+        
 
-        if ($opValidar == "No" && $user->hasRole('Client')) {
+        if ($opValidar == "No" && $user->hasRole('Client')){
             return redirect()->route('home.inicio');
         } else {
             if ($opValidar == "Si" && $user->hasRole('Client')){
-                Mail::to($user->email)->send(new MensajeRecibido($codigo));//enviamos el mail al correo del cliente que se registro
-            //    return new MensajeRecibido($codigo);
-                return redirect()->route('home.getValidarCuenta');
+                //enviaremos este codigo a traves de las vistas, hasta llegar a la de ingreso de codigo
+              //    return new MensajeRecibido($codigo);
+                // return redirect()->route('home.getValidarCuenta',compact('key'));
+                return view('pages.validarCuenta');
             }else
                 return view('admin.dashboard');
         }
@@ -116,19 +117,24 @@ class HomeController extends Controller
 
     public function getValidarCuenta()
     {
-        return view('pages.validarCuenta');
+        $key = mt_rand(1000000000,9999999999);
+           // Mail::to('gamr130898@gmail.com')->send(new MensajeRecibido($codigo));//enviamos el mail al correo del cliente que se registro
+          
+        return view('pages.validarCuenta', compact('key'));
     }
 
     public function validacionCuenta(Request $request)
     {
         //si decide validar la cuenta, creamos la solicitud para que sea validada por el admin
         $datosValidacion = request()->except('_token');
-        if ($request->hasFile('foto')) {
+        if ($request->hasFile('foto')){
             $datosValidacion['foto'] = $request->file('foto')->store('uploads', 'public');
         }
 
+
         Solicitud::create([
             'user_id' => Auth::id(),
+            'codigo_generado' => $request['key'],
             'codigo_enviado' => $request['codigo_enviado'],
             'foto' => $datosValidacion['foto'],
         ]);

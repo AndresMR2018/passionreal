@@ -16,10 +16,10 @@ class MensajeRecibido extends Mailable
      *
      * @return void
      */
-    public $msg;
-    public function __construct($mensaje)
+    public $codigo;
+    public function __construct($codigo)
     {
-        $this->msg=$mensaje;
+        $this->codigo=$codigo;
     }
 
     public $subject = "Mensaje recibido por parte de PasionReal.com";

@@ -12,6 +12,7 @@ use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\SolicitudController;
+use App\Mail\MensajeRecibido;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 /*
@@ -48,6 +49,13 @@ Route::post('/editar-anuncio',[ClienteController::class,'postEditarAnuncio'])->m
 Route::get('/retirar-imagen/{id}',[ClienteController::class,'retirarImagen'])->middleware('cliente');
 Route::get('/creditos',[ClienteController::class,'creditos'])->middleware('cliente')->name('cliente.creditos');
 Route::post('/creditos',[ClienteController::class,'postCredito'])->middleware('cliente')->name('cliente.postCredito');
+Route::get('/anuncio/{id}', [ClienteController::class,'eliminarAnuncio'])->middleware('cliente')->name('cliente.deleteAnuncio');
+Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->middleware('cliente')->name('cliente.validarCuenta');
+// Route::get('/contactanos',function(){
+//       $correo = new MensajeRecibido; 
+//       Mail::to('gamr130898@gmail.com')->send($correo);
+//        return "mensaje enviado";
+//     });
 
 ///NOTIFICACIONES
 Route::get('/mensaje',[SmsController::class,'sendMessage'])->name('sms.validarCodigo');

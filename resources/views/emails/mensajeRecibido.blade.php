@@ -9,6 +9,6 @@
 <body>
     <p>Recibiste un mensaje de: admin@pasionreal.com</p>
     <p>Asunto: Código para validar la cuenta</p>
-    <p>Código: {{$msg}}</p>
+    <p>Código: {{$codigo}}</p>
 </body>
 </html>

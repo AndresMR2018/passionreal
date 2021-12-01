@@ -33,8 +33,8 @@
                    </span>
                @enderror
                 </div>
+                <input type="text" name="key" value="{{$key}}" style="display:none;">
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Enviar código</button>
-                <p></p>
              </form>
           </div>
           <!-- Form -->

@@ -31,7 +31,7 @@
             <td>{{$s->id}}</td>
             <td>{{$s->user->name}}</td>
             <td>{{$s->user->cta_validada}}</td>
-            <td>codigo por recibir de api</td>
+            <td>{{$s->codigo_generado}}</td>
             <td>{{$s->codigo_enviado}}</td>
             <td>
                 <img class="img-thumbnail img-fluid" width="100px" src="{{asset('storage').'/'.$s->foto}}" alt=" ">
