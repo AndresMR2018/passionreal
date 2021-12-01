@@ -39,6 +39,5 @@ class AppServiceProvider extends ServiceProvider
                 'paquetes'=>$paquetes,
                 'anuncios'=>$anuncios
                 ]);
-
     }
 }

@@ -17,6 +17,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cloudinary\Api\Upload\UploadApi;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Nette\Utils\Random;
@@ -300,8 +301,30 @@ class ClienteController extends Controller
 
     public function postcredito(Request $request)
     {// aqui se compra el credito
+        // dd($request);
         
-       
+        if($request['idcredito'==null])
+        return back()->with('mensaje','No ha seleccionado un credito para su compra');
+
+       if($request['idcredito']=="0"){
+        $user_id = Auth::id();
+        $user = User::findOrFail($user_id);
+        // dd($user);
+        $user = DB::table('users')
+        ->where('id', $user_id)
+        ->update(['credito_gratis' => '1']);
+        // $user->update([
+        //     "credito_gratis"=>"1"
+        // ]);
+        
+        $cantidad_creditos = 10;
+        $user = auth()->user();
+        $creditos_actuales = auth()->user()->perfil->creditos;
+        $user->perfil->update([
+            "creditos"=>$creditos_actuales+$cantidad_creditos,
+        ]);
+        return back()->with('mensaje','Tus '.$cantidad_creditos.' creditos han sido recargados');
+    }else{
         $credito = Credito::find($request['idcredito']);
        
         $cantidad_creditos = $credito->cantidad;
@@ -311,14 +334,8 @@ class ClienteController extends Controller
             "creditos"=>$creditos_actuales+$cantidad_creditos,
         ]);
 
-        $pagoPaypal = $request['minimal-radio1'];
-        // $pagoTarjeta = $request['minimal-radio2'];
-        if($pagoPaypal == "on")
-            $mpago=1;
-        else
-            $mpago=2;
-
         return back()->with('mensaje','Tus '.$cantidad_creditos.' creditos han sido recargados');
-
+    }
+      
     }
 }

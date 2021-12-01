@@ -141,39 +141,46 @@
                                             <!-- end row -->
                                         </div> --}}
 
-                                        @foreach ($creditos as $credito)
+                                        {{-- @foreach ($creditos as $credito) --}}
                                         <div class="pricing-list">
+                                            @if(Auth::user()->credito_gratis=="0")
                                             <div class="row">
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h3>{{$credito->cantidad}} créditos </h3>
+                                                    <h3>
+                                                        {{-- {{$credito->cantidad}}  --}}
+                                                       10 créditos </h3>
                                                     <p>Por la aquisición de cada crédito tendrás la posibilidad de ubicar a tus anuncios en lo más alto.</p>
                                                 </div>
                                                 <!-- end col -->
                                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                                     <div class="pricing-list-price text-center">
                                                         
-                                                        @if($credito->valor==0)
+                                                        <h4>Gratis</h4>
+                                                        {{-- @if($credito->valor==0)
                                                         <h4 style="color:green">Gratis</h4>
                                                         @else
                                                         <h4>€ {{$credito->valor}} c/crédito </h4>
-                                                        @endif
-
-                                                        <a id="{{$credito->id}}"
+                                                        @endif --}}
+                                                        <a  id="0"
+                                                        {{-- id="{{$credito->id}}" --}}
                                                             class="btn btn-theme btn-sm btn-block">Seleccionar</a>
                                                     </div>
                                                 </div>
                                                 
                                                 <!-- end col -->
                                             </div>
+                                            @else
+                                            <h4>No hay cupos gratis disponibles</h4>
+                                            @endif
                                             <!-- end row -->
                                         </div>
-                                        @endforeach
-                                        <input type="text" id="idcredito" name="idcredito" style="display: none" >
+                                        {{-- @endforeach --}}
+                                        <input type="text" id="idcredito" name="idcredito"   style="display: none" >
                                     </div>
                                 </div>
 
                                 <!-- Featured Ad  -->
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Selecciona la forma de pago <small
                                                 class="pull-right"> </small></label>
@@ -191,7 +198,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- end row -->
                                 <button type="submit" class="btn btn-theme pull-right">Pagar crédito</button>
                             </form>
