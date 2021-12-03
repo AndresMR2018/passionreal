@@ -16,14 +16,12 @@ class CreateOrdensTable extends Migration
         Schema::create('ordens', function (Blueprint $table) {
             $table->id();
             $table->timestamp('order_date')->nullable();
-            $table->decimal('subtotal');
-            
+            $table->decimal('subtotal')->default(0);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
-            $table->unsignedBigInteger('credito_id')->nullable();
-            $table->foreign('credito_id')->references('id')->on('creditos');
-            $table->timestamps();
+            // $table->unsignedBigInteger('credito_id')->nullable();
+            // $table->foreign('credito_id')->references('id')->on('creditos');
+            // $table->timestamps();
         });
     }
 

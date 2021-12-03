@@ -17,8 +17,10 @@ class CreateCarritosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');;
-            $table->unsignedBigInteger('credito_id')->unique()->nullable();
-            $table->foreign('credito_id')->references('id')->on('creditos')->onUpdate('cascade')->onDelete('cascade');;
+            $table->integer('cantidad-creditos')->default(0);
+            $table->decimal('subtotal')->default(0);
+            // $table->unsignedBigInteger('credito_id')->unique()->nullable();
+            // $table->foreign('credito_id')->references('id')->on('creditos')->onUpdate('cascade')->onDelete('cascade');;
            
             $table->timestamps();
         });

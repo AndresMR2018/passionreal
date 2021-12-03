@@ -56,7 +56,6 @@ class SolicitudController extends Controller
     public function aprobarCuenta($id){
         $usuario = User::findOrFail($id);
         $cta_validada = $usuario['cta_validada'];
-
         if($cta_validada=="No"){
             $user = DB::table('users')
             ->where('id', $id)

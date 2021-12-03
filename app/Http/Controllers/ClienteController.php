@@ -303,7 +303,7 @@ class ClienteController extends Controller
     {// aqui se compra el credito
         // dd($request);
         
-        if($request['idcredito'==null])
+        if($request['idcredito']==null)
         return back()->with('mensaje','No ha seleccionado un credito para su compra');
 
        if($request['idcredito']=="0"){

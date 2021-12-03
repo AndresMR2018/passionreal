@@ -155,7 +155,7 @@
                                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                                     <div class="pricing-list-price text-center">
                                                         
-                                                        <h4>Gratis</h4>
+                                                        <h2>Gratis</h2>
                                                         {{-- @if($credito->valor==0)
                                                         <h4 style="color:green">Gratis</h4>
                                                         @else
@@ -170,13 +170,17 @@
                                                 <!-- end col -->
                                             </div>
                                             @else
-                                            <h4>No hay cupos gratis disponibles</h4>
+                                            <h2>No hay cupos gratis disponibles</h2>
                                             @endif
                                             <!-- end row -->
                                         </div>
                                         {{-- @endforeach --}}
                                         <input type="text" id="idcredito" name="idcredito"   style="display: none" >
                                     </div>
+                                </div>
+                                <div>
+                                        <label class="control-label">Créditos <small>Indique la cantidad de créditos a adquirir</small></label>
+                                       <input type="number" class="creditos" min="1" max="100" name="creditos" id="creditos">
                                 </div>
 
                                 <!-- Featured Ad  -->
@@ -200,6 +204,9 @@
                                     </div>
                                 </div> --}}
                                 <!-- end row -->
+                                <div class="total" 
+                                style="display: flex; justify-content:flex-end; color:black; font-weight:700;"
+                                ><p>Total:$<small id="total" style="color:black; font-weight:700;">0</small></p></div>
                                 <button type="submit" class="btn btn-theme pull-right">Pagar crédito</button>
                             </form>
                         </div>
@@ -440,8 +447,16 @@ function traer(e){
     idcredito.value = e.currentTarget.id;
     console.log('valor de id credito' , idcredito.value);
 }
+function actualizar(e){
+    console.log(e.currentTarget.value);
+    $subtotal = e.currentTarget.value * 0.20; //valor del euro
+    $total = document.getElementById('total');
+    $total.textContent= $subtotal;
+}
 
 document.addEventListener('DOMContentLoaded', e => {
+    
+    document.querySelector('.creditos').addEventListener('change',actualizar);
     // Obtener todos los li y asignar evento
     document.querySelectorAll('.pricing-list-price a').forEach(item => {
         item.addEventListener('click', traer);

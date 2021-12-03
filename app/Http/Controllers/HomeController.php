@@ -77,11 +77,9 @@ class HomeController extends Controller
 
     protected function postValidarCuenta(Request $request)
     {
-
         // $validatedData = $request->validate([
         //     'telefono' => 'required|numeric'
         // ]);
-
         $opValidar = $request['opcionValidar'];
         //     $registro = new RegisterController();
         // $usuarioCreado = $registro->create($data);
@@ -106,9 +104,6 @@ class HomeController extends Controller
             return redirect()->route('home.inicio');
         } else {
             if ($opValidar == "Si" && $user->hasRole('Client')){
-                //enviaremos este codigo a traves de las vistas, hasta llegar a la de ingreso de codigo
-              //    return new MensajeRecibido($codigo);
-                // return redirect()->route('home.getValidarCuenta',compact('key'));
                 return view('pages.validarCuenta');
             }else
                 return view('admin.dashboard');
@@ -130,8 +125,6 @@ class HomeController extends Controller
         if ($request->hasFile('foto')){
             $datosValidacion['foto'] = $request->file('foto')->store('uploads', 'public');
         }
-
-
         Solicitud::create([
             'user_id' => Auth::id(),
             'codigo_generado' => $request['key'],
@@ -141,6 +134,25 @@ class HomeController extends Controller
 
         return redirect()->route('home.inicio')->with('mensaje', 'Solicitud de registro enviada. Por la comodidad y bienestar de nuestros usuarios PassionReal se tomará unos minutos hasta validar sus datos.');
     }
+
+    // public function validacionCuenta(Request $request)
+    // {
+    //     //si decide validar la cuenta, creamos la solicitud para que sea validada por el admin
+    //     $url="";
+    //     $datosValidacion = request()->except('_token');
+    //     if ($request->hasFile('foto')) {
+    //         $file = $datosValidacion['foto'];
+    //           $url = Cloudinary::upload($file->getRealPath(),['folder'=>'solicitudes'])->getSecurePath();
+    //     }
+
+    //     $solicitud = Solicitud::create([
+    //         'user_id' => Auth::id(),
+    //          'codigo_generado' => $request['key'],
+    //         'codigo_enviado' => $request['codigo_enviado'],
+    //         'foto' => $url,
+    //     ]);
+    //     return redirect()->route('home.inicio')->with('mensaje', 'Solicitud de registro enviada. Por la comodidad y bienestar de nuestros usuarios PassionReal se tomará unos minutos hasta validar sus datos.');
+    // }
 
 
     public function storePhoneNumber(Request $request)

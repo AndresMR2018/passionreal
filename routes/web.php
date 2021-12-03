@@ -11,6 +11,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CreditoController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SolicitudController;
 use App\Mail\MensajeRecibido;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -51,6 +52,7 @@ Route::get('/creditos',[ClienteController::class,'creditos'])->middleware('clien
 Route::post('/creditos',[ClienteController::class,'postCredito'])->middleware('cliente')->name('cliente.postCredito');
 Route::get('/anuncio/{id}', [ClienteController::class,'eliminarAnuncio'])->middleware('cliente')->name('cliente.deleteAnuncio');
 Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->middleware('cliente')->name('cliente.validarCuenta');
+Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
 // Route::get('/contactanos',function(){
 //       $correo = new MensajeRecibido; 
 //       Mail::to('gamr130898@gmail.com')->send($correo);
