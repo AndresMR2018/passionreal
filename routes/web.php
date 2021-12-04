@@ -11,6 +11,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CreditoController;
+use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SolicitudController;
 use App\Mail\MensajeRecibido;
@@ -53,6 +54,7 @@ Route::post('/creditos',[ClienteController::class,'postCredito'])->middleware('c
 Route::get('/anuncio/{id}', [ClienteController::class,'eliminarAnuncio'])->middleware('cliente')->name('cliente.deleteAnuncio');
 Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->middleware('cliente')->name('cliente.validarCuenta');
 Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
+Route::get('/datos-cliente/{id}',[OrdenController::class, 'show'])->middleware('cliente');
 // Route::get('/contactanos',function(){
 //       $correo = new MensajeRecibido; 
 //       Mail::to('gamr130898@gmail.com')->send($correo);
@@ -92,4 +94,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::resource('paquete', PaqueteController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('solicitud',SolicitudController::class);
+    Route::resource('orden',OrdenController::class);
 });

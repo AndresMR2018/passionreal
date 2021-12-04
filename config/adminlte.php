@@ -343,7 +343,7 @@ return [
             'submenu' => [
                 [
                     'text' => ' Ver ordenes',
-                    'url'  => 'orden',
+                    'url'  => 'admin/orden',
                 ],
             ]
         ],

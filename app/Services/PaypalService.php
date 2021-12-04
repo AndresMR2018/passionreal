@@ -45,7 +45,7 @@ class PayPalService
     public function handlePayment(Request $request)
     {
         $currency="usd";
-        $total=100;
+        $total=$request['creditos']*0.20;
         $order = $this->createOrder($total, $currency);
 
         $orderLinks = collect($order->links);

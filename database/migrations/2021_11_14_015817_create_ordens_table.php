@@ -15,7 +15,7 @@ class CreateOrdensTable extends Migration
     {
         Schema::create('ordens', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('order_date')->nullable();
+            $table->string('fecha_orden')->nullable();
             $table->decimal('subtotal')->default(0);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
