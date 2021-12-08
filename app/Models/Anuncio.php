@@ -22,8 +22,10 @@ class Anuncio extends Model
         'paquete_id',
         'zona',
         'titulo',
-        'descripcion'
+        'descripcion',
     ];
+    public $timestamps = true;
+    protected $dates = ['created_at', 'updated_at'];
 
     public function categoria(){
 

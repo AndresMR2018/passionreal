@@ -130,7 +130,7 @@
                     <div class="col-md-4 col-sm-12 col-xs-12 leftbar-stick blog-sidebar">
                         <!-- Sidebar Widgets -->
                         <div class="user-profile">
-                            <a href="profile.html"><img src="images/users/9.jpg" alt=""></a>
+                            <a href="profile.html"><img src="{{$user->perfil->foto}}" alt=""></a>
                             <div class="profile-detail">
                                 <h6>{{$user->name}}</h6>
                                 <ul class="contact-details">
@@ -299,14 +299,15 @@
                             <div class="clearfix"></div>
                             <!-- Pagination -->
                             <div class="col-md-12 col-xs-12 col-sm-12">
-                                <ul class="pagination pagination-lg">
+                                {!! $anuncios->links() !!}
+                                {{-- <ul class="pagination pagination-lg">
                                     <li> <a href="#"> <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
                                     <li> <a href="#">1</a> </li>
                                     <li class="active"> <a href="#">2</a> </li>
                                     <li> <a href="#">3</a> </li>
                                     <li> <a href="#">4</a> </li>
                                     <li><a href="#"> <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-                                </ul>
+                                </ul> --}}
                             </div>
                             <!-- Pagination End -->
                         </div>

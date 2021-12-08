@@ -100,16 +100,17 @@ class ClienteController extends Controller
 
     // DESARROLLO LOCAL
     public function upload_image($request, $anuncio){
-        if($request->hasFile('image')){
+      
             $file = $request->file('image');
             $name = time().'_'.$file->getClientOriginalName();
             $ruta=public_path().'/image';
             $file->move($ruta, $name);
             $urlimage = '/image/'.$name;
-        }
+        
         $anuncio->images()->create([
             'url'=>$urlimage
         ]);
+        
     }
     // EN PRODUCCION
     // public function upload_image($request, $anuncio){
@@ -147,7 +148,10 @@ class ClienteController extends Controller
             "telefono"=>$datosAnuncio['telefono'],
         ]);
         //relacionamos la nueva imagen que añadio
-        $this->upload_image($request, $anuncio);
+        if($request->hasFile('image')){
+            $this->upload_image($request, $anuncio);
+        }
+        
 
         return back()->with('mensaje','Su anuncio se actualizo con exito!');
       
@@ -212,14 +216,14 @@ class ClienteController extends Controller
         }
         $datosAnuncio = request()->except('_token');
         $campos=[
-            'titulo'=>'required|string|max:20',
-            'descripcion'=>'required|string|max:200',
+            'titulo'=>'required|string|max:100',
+            'descripcion'=>'required|string|max:250',
             'categoria_id'=>'required',
             'ciudad'=>'required|String|max:100',
-            'direccion'=>'required|String|max:15',
+            'direccion'=>'required|String|max:40',
             // 'foto'=>'required|max:10000|mimes:jpeg,png,jpg',
             'edad'=>'required|numeric|min:18',
-            'telefono'=>'required|string|max:20',
+            'telefono'=>'required|string|max:10',
             'paquete_id'=>'required'
         ];
         $mensaje= [
@@ -276,6 +280,25 @@ class ClienteController extends Controller
 
     public function editarMiPerfil(Request $request)
     {
+        $campos=[
+           
+            'dni'=>'required|string|min:10',
+            'nombre'=>'required|min:3',
+            'telefono'=>'required|regex:/(01)[0-9]{9}/',
+            'foto'=>'mimes:jpeg,jpg,png,gif|required|max:10000'
+        ];
+        $advertencia= [
+            'required'=>'El :attribute es requerido',
+            'nombre.min'=>'El nombre debe tener un mínimo de 3 caracteres',
+            'telefono.min'=>'El telefono debe tener 10 dígitos',
+            'min'=>'El :attribute no debe tener menos de :min caracteres',
+            'telefono.required'=>'El teléfono es requerido',
+            'dni.required'=>'El dni es requerido',
+            'foto.required'=>'La foto es requerida',
+         
+        ];
+        $this->validate($request, $campos, $advertencia);
+
         $perfil = Perfil::where('user_id', Auth::id())->first();
         $datosCuenta = request()->except('_token');
         if ($request->hasFile('foto')) {
@@ -297,7 +320,7 @@ class ClienteController extends Controller
     {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
-        $anuncios = Anuncio::where('user_id', $user_id)->get();
+        $anuncios = Anuncio::where('user_id', $user_id)->paginate(3);
 
         return view('pages.misAnuncios', compact('anuncios', 'user'));
     }

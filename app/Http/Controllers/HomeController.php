@@ -12,12 +12,13 @@ use App\Models\UsersPhoneNumber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Carbon\Carbon;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MensajeRecibido;
+use App\Models\Paquete;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -32,7 +33,23 @@ class HomeController extends Controller
     public function index()
     {
         // $categorias = Categoria::all(); Ahora se cargan desde AppServiceProvider para toda la app
-        $anuncios = Anuncio::Paginate(3);
+        $anuncios = Anuncio::all();
+        // dd($anuncios);
+        // $anuncio = Anuncio::findOrFail(2)->get();
+        // $ahora = Carbon::now();
+        // foreach($anuncios as $anuncio){
+        //     $idpaquete = $anuncio->paquete_id;
+        //     $paquete = Paquete::findOrFail($idpaquete)->first();
+        //     $tiempopaquete = $paquete->periodo_horas;
+        //     // dd($tiempopaquete);
+        //     // dd($anuncio->paquete->periodo_horas);
+        //     dd($anuncio->created_at);
+        //     if(Carbon::now() == $anuncio->created_at->addHour($tiempopaquete))
+        //     return "hello world";
+        // }
+        $data = DB::table('anuncios')->selectRaw('TIME(created_at) AS Fecha')->get();
+        // dd($data);
+        // dd($ahora);
         return view('pages.index'); // los anuncios igual se cargan desde el provider app
     }
 
@@ -77,9 +94,26 @@ class HomeController extends Controller
 
     protected function postValidarCuenta(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'telefono' => 'required|numeric'
-        // ]);
+        $campos=[
+            'password'=>'required|string|min:8',
+            'email'=>'required|unique:users|email|min:8',
+            'name'=>'required|min:3'
+        ];
+        $advertencia= [
+            'required'=>'El :attribute es requerido',
+            'name.min'=>'El nombre debe tener un mínimo de 3 caracteres',
+            'password.min'=>'La contraseña debe tener un mínimo de 8 caracteres',
+            'min'=>'El :attribute no debe tener menos de :min caracteres',
+            'password.required'=>'La contraseña es requerida',
+            'email.required'=>'El correo es necesario',
+            'name.required'=>'El nombre es requerido y debe tener mas de 3 caracteres',
+         
+        ];
+        $this->validate($request, $campos, $advertencia);
+
+            if($request['password'] != $request['password_confirmation'])
+            return back()->with('advertencia','Asegurese de confirmar correctamente su contraseña');
+
         $opValidar = $request['opcionValidar'];
         //     $registro = new RegisterController();
         // $usuarioCreado = $registro->create($data);

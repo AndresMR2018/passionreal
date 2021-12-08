@@ -31,7 +31,8 @@
                         <td>{{ $orden->subtotal }}</td>
                         <td>{{ $orden->user_id }}</td>
                         <td>
-                            <li class="fa fa-eye"><a href="{{url('/datos-cliente/' . $orden->user_id)}}"></a></li>
+                            <a href="{{url('/datos-cliente/' . $orden->user_id)}}" title="Ver más"><li class="fa fa-eye"></li></a>
+                            
                         </td>
                         {{-- <td>
                             <a href="{{ url('admin/orden/' . $orden->id . '/edit') }}" id="botoncol"

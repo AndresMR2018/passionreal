@@ -216,7 +216,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Fotos para tu anuncio <small>Por favor agrega imagenes para tu anuncio.</small></label>
-                                        <input class="dropify" type="file" name="images[]" id="images" multiple>
+                                        <input class="dropify" type="file" name="images[]" id="images" multiple required>
                                     </div>
 
                                 </div>

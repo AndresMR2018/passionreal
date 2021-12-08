@@ -47,7 +47,6 @@
                              </ul>
                           </div>
                        </div>
-                      
                     </div>
                  </div>
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Iniciar sesión</button>
