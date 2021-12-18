@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <![endif]-->
+    <meta name="description" content="">
+    <meta name="author" content="ScriptsBundle">
+    <title>Pasionreal</title>
+    <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
+    <link rel="icon" href="images/logo/logoPassionReal.jpeg" type="image/x-icon" />
+    <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
+    {{-- {!! asset('css/producto/productosInventario.css') !!} no usar --}}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <!-- =-=-=-=-=-=-= Template CSS Style =-=-=-=-=-=-= -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- =-=-=-=-=-=-= Font Awesome =-=-=-=-=-=-= -->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" type="text/css">
+    <!-- =-=-=-=-=-=-= Flat Icon =-=-=-=-=-=-= -->
+    <link href="{{ asset('css/flaticon.css') }}" rel="stylesheet">
+    <!-- =-=-=-=-=-=-= Et Line Fonts =-=-=-=-=-=-= -->
+    <link rel="stylesheet" href="{{ asset('css/et-line-fonts.css') }}" type="text/css">
+    <!-- =-=-=-=-=-=-= Menu Drop Down =-=-=-=-=-=-= -->
+    <link rel="stylesheet" href="{{ asset('css/forest-menu.css') }}" type="text/css">
+    <!-- =-=-=-=-=-=-= Animation =-=-=-=-=-=-= -->
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" type="text/css">
+    <!-- =-=-=-=-=-=-= Select Options =-=-=-=-=-=-= -->
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+    <!-- =-=-=-=-=-=-= noUiSlider =-=-=-=-=-=-= -->
+    <link href="{{ asset('css/nouislider.min.css') }}" rel="stylesheet">
+    <!-- =-=-=-=-=-=-= Listing Slider =-=-=-=-=-=-= -->
+    <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
+    <!-- =-=-=-=-=-=-= Owl carousel =-=-=-=-=-=-= -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.css') }}">
+    <!-- =-=-=-=-=-=-= Check boxes =-=-=-=-=-=-= -->
+    <link href="skins/minimal/minimal.css" rel="stylesheet">
+    <!-- =-=-=-=-=-=-= Responsive Media =-=-=-=-=-=-= -->
+    <link href="{{ asset('css/responsive-media.css') }}" rel="stylesheet">
+    <!-- =-=-=-=-=-=-= Template Color =-=-=-=-=-=-= -->
+    <link rel="stylesheet" id="color" href="{{ asset('css/colors/defualt.css') }}">
+    <!-- =-=-=-=-=-=-= For Style Switcher =-=-=-=-=-=-= -->
+    <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
+    <!-- =-=-=-=-=-=-= Check boxes =-=-=-=-=-=-= -->
+    <link href="skins/minimal/minimal.css" rel="stylesheet">
+    <!-- =-=-=-=-=-=-= For This Page Only =-=-=-=-=-=-= -->
+    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+    <link href="{{ asset('css/jquery.tagsinput.min.css') }}" rel="stylesheet">
+    <!-- JavaScripts -->
+    <script src="js/modernizr.js"></script>
+    <script src="https://kit.fontawesome.com/a022389a13.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
+        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
+        integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/galeria.css') }}">
+
+    {{-- CSS DE DASHBOARD --}}
+    {{-- <link rel="stylesheet" href="{{asset('dashboard/vendors/iconfonts/font-awesome/css/all.min.css')}}">
+        <link rel="stylesheet" href="{{asset('dashboard/vendors/css/vendor.bundle.base.css')}}">
+        <link rel="stylesheet" href="{{asset('dashboard/vendors/css/vendor.bundle.addons.css')}}">
+        <link rel="stylesheet" href="{{asset('dasboard/vendors/lightgallery/css/lightgallery.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('dashboard/css/style.css')}}"> --}}
+</head>
+
+<body>
+
+
+    <!-- =-=-=-=-=-=-= Light Header =-=-=-=-=-=-= -->
+    @include('templates.header2')
+    <!-- Navigation Menu End -->
+    <!-- =-=-=-=-=-=-= Light Header End  =-=-=-=-=-=-= -->
+    <!-- =-=-=-=-=-=-= Transparent Breadcrumb =-=-=-=-=-=-= -->
+    <div class="page-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="header-page">
+                        <h1>Editar anuncio</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Small Breadcrumb -->
+    <div class="small-breadcrumb">
+        <div class="container">
+            <div class=" breadcrumb-link">
+                <ul>
+                    <li><a href="{{ url('/') }}">Inicio</a></li>
+                    <li><a href="{{ url('/editar-anuncio') }}">Editar anuncio</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Small Breadcrumb -->
+    <!-- =-=-=-=-=-=-= Transparent Breadcrumb End =-=-=-=-=-=-= -->
+    <!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
+    <div class="main-content-area clearfix">
+        <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
+        <section class="section-padding  gray ">
+            <!-- Main Container -->
+            <div class="container">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- end post-padding -->
+                        <div class="post-ad-form extra-padding postdetails">
+                            <div class="heading-panel">
+                                <h3 class="main-title text-left">
+                                    Edita tu anuncio
+                                </h3>
+                            </div>
+
+                            @if (Session::has('mensaje'))
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    {{ Session::get('mensaje') }}
+                                    <button type="button" class="close" data-dismiss="alert" role="alert">
+                                        <span aria-button="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form class="submit-form" action="{{ route('cliente.postEditarAnuncio') }}"
+                                method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="text" value="{{ $anuncio->id }}" name="anuncio_id" style="display:none">
+
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                        <label class="control-label">Titulo para el anuncio <small>Ingresar un título
+                                                para tu anuncio</small></label>
+                                        <input class="form-control" name="titulo"
+                                            value="{{ old('titulo', $anuncio->titulo) }}"
+                                            placeholder="Ponle un titulo llamativo a tu anuncio" type="text">
+                                    </div>
+                                </div>
+                                <!-- Ad Description  -->
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-xs-12  col-sm-12">
+                                        <label class="control-label">Descripción para el anuncio <small>Ingresar una
+                                                descripción para tu anuncio </small></label>
+                                        <textarea rows="4" class="form-control"
+                                            name="descripcion">{{ old('descripcion', $anuncio->descripcion) }}</textarea>
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                                <div class="row">
+                                    <!-- Category  -->
+                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                        <label class="control-label">Categoría <small>Selecciona la categoría para tu
+                                                anuncio</small></label>
+                                        <select class="category form-control" name="categoria_id">
+                                            <option label="Select Option"></option>
+                                            @foreach ($categorias as $categoria)
+                                                <option value="{{ $categoria->id }}"
+                                                    {{ old('categoria_id', $anuncio->categoria_id) == $categoria->id ? 'selected' : '' }}>
+                                                    {{ $categoria->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <!-- Ciudad  -->
+                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                        <label class="control-label">Ciudad <small>Selecciona una ciudad para tu
+                                                anuncio</small></label>
+                                        <select class="category form-control" name="ciudad">
+                                            <option label="Select Option"></option>
+                                            <option value="Quito">Quito</option>
+                                            <option value="Esmeraldas">Esmeraldas</option>
+                                            <option value="Riobamba">Riobamba</option>
+                                            <option value="Cuenca">Cuenca</option>
+                                            <option value="Guayaquil">Guayaquil</option>
+                                            <option value="Ambato">Ambato</option>
+                                            <option value="Ibarra">Ibarra</option>
+                                            <option value="Latacunga">Latacunga</option>
+                                            <option value="Loja">Loja</option>
+                                            <option value="Machala">Machala</option>
+                                            <option value="Salinas">Salinas</option>
+                                            <option value="Portoviejo">Portoviejo</option>
+                                            <option value="Durán">Durán</option>
+                                            <option value="Manta">Manta</option>
+                                            <option value="Sangolqui">Sangolqui</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                        <label class="control-label">Zona/distrito/barrio </label>
+                                        <input class="form-control" name="zona" value="">
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+
+                                        <label class="control-label">Dirección </label>
+                                        <input class="form-control" name="direccion" id="direccion"
+                                            value="{{ old('direccion', $anuncio->direccion) }}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                        <label class="control-label">Agregar nueva foto para tu anuncio <label>
+                                                <input type="file" name="image" id="image">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- end row -->
+                                    <!-- Image Upload  -->
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                            <label class="control-label">Fotos para tu anuncio <small>Por favor agrega
+                                                    imágenes para tu anuncio.</small></label>
+
+                                            <div class="row grid-margin">
+                                                <div class="col-lg-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">Imágenes de tu anuncio</h4>
+
+                                                            <div id="lightgallery" class="galeria">
+
+                                                                @foreach ($anuncio->images as $imagen)
+                                                                    <div class="opciones">
+                                                                        <a
+                                                                            href="{{ url('/retirar-imagen/' . $imagen->id) }}"><i
+                                                                                title="Retirar imagen"
+                                                                                class="fas fa-calendar-times"></i></a>
+
+                                                                    </div>
+                                                                    <a><img src="{{ $imagen->url }}"
+                                                                            alt="image small"></a>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- end row -->
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                            <label class="control-label">Tu edad</label>
+                                            <input class="form-control" value="{{ old('edad', $anuncio->edad) }}"
+                                                name="edad" placeholder="" type="text">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                            <label class="control-label">Tu teléfono<small></small></label>
+                                            <input class="form-control"
+                                                value="{{ old('telefono', $anuncio->telefono) }}" name="telefono"
+                                                placeholder="" type="tel">
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                            <label class="control-label">Paquete <small>Costo por activación de paquete
+                                                    (1 crédito)</small></label>
+                                            <select class="category form-control" name="paquete_id">
+                                                <option label="Select Option"></option>
+                                                @foreach ($paquetes as $paquete)
+                                                    <option value="{{ $paquete->id }}"
+                                                        {{ old('paquete_id', $anuncio->paquete_id) == $paquete->id ? 'selected' : '' }}>
+                                                        Reactivación cada {{ $paquete->periodo_horas }} horas</option>
+
+                                                @endforeach
+                                                {{-- <option value="{{$categoria->id}}" {{ old('categoria_id', $anuncio->categoria_id) == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre}}</option> --}}
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- end row -->
+                                    <button class="btn btn-theme pull-right">Guardar cambios</button>
+                            </form>
+                        </div>
+                        <!-- end post-ad-form-->
+                    </div>
+                    <!-- end col -->
+
+
+
+
+                </div>
+                <!-- Row End -->
+
+                <div class="row">
+                 
+              
+               
+                    <!-- Minimal Category -->
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                       <a href="#">
+                          <div class="minimal-category">
+                             <div class="minimal-img">
+                                <img alt=""  class="img-responsive" src="{{asset('images/minimal/16.jpg')}}">
+                             </div>
+                             <div class="minimal-overlay"></div>
+                             <div class="description">
+                                <span>Health & Fitness</span>
+                                <div class="ads-count">3,100 Ads</div>
+                             </div>
+                          </div>
+                       </a>
+                    </div>
+                 </div>
+
+            </div>
+            <!-- Main Container End -->
+
+
+
+        </section>
+
+        
+        <!-- =-=-=-=-=-=-= Ads Archives End =-=-=-=-=-=-= -->
+        <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
+        @include('templates.footer')
+        <!-- =-=-=-=-=-=-= FOOTER END =-=-=-=-=-=-= -->
+    </div>
+    <!-- Main Content Area End -->
+    <!-- Post Ad Sticky -->
+    <a href="#" class="sticky-post-button hidden-xs">
+        <span class="sell-icons">
+            <i class="flaticon-photo"></i>
+        </span>
+        <h4>Publicar</h4>
+    </a>
+    <!-- Back To Top -->
+    <a href="#0" class="cd-top">Top</a>
+    <!-- Back To Top -->
+
+
+    <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
+    {{-- {{!! HTML::sript('js/bootstrap.min.js') !!}} --}}
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap Core Css  -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Jquery Easing -->
+    <script src="js/easing.js"></script>
+    <!-- Menu Hover  -->
+    <script src="js/forest-megamenu.js"></script>
+    <!-- Jquery Appear Plugin -->
+    <script src="js/jquery.appear.min.js"></script>
+    <!-- Numbers Animation   -->
+    <script src="js/jquery.countTo.js"></script>
+    <!-- Jquery Smooth Scroll  -->
+    <script src="js/jquery.smoothscroll.js"></script>
+    <!-- Jquery Select Options  -->
+    <script src="js/select2.min.js"></script>
+    <!-- noUiSlider -->
+    <script src="js/nouislider.all.min.js"></script>
+    <!-- Carousel Slider  -->
+    <script src="js/carousel.min.js"></script>
+    <script src="js/slide.js"></script>
+    <!-- Image Loaded  -->
+    <script src="js/imagesloaded.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <!-- CheckBoxes  -->
+    <script src="js/icheck.min.js"></script>
+    <!-- Jquery Migration  -->
+    <script src="js/jquery-migrate.min.js"></script>
+    <!-- Sticky Bar  -->
+    <script src="js/theia-sticky-sidebar.js"></script>
+    <!-- Style Switcher -->
+    <script src="js/color-switcher.js"></script>
+    <!-- Template Core JS -->
+    <script src="js/custom.js"></script>
+    <!-- For this Page Only -->
+    <!-- Ckeditor  -->
+    <script src="js/ckeditor/ckeditor.js"></script>
+    <!-- Ad Tags  -->
+    <script src="js/jquery.tagsinput.min.js"></script>
+
+
+    <!-- JS DASHBOARD -->
+    {{-- <script src="{{asset('dashboard/vendors/js/vendor.bundle.base.js')}}"></script>
+<script src="{{asset('dashboard/vendors/js/vendor.bundle.addons.js')}}"></script>
+<!-- endinject -->
+<!-- plugin js for this page -->
+<script src="{{asset('dashboard/vendors/lightgallery/js/lightgallery-all.min.js')}}"></script>
+<!-- end plugin js for this page -->
+<!-- inject:js -->
+<script src="{{asset('dashboard/js/off-canvas.js')}}"></script>
+<script src="{{asset('dashboard/js/hoverable-collapse.js')}}"></script>
+<script src="{{asset('dashboard/js/misc.js')}}"></script>
+<script src="{{asset('dashboard/js/settings.js')}}"></script>
+<script src="{{asset('dashboard/js/todolist.js')}}"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="{{asset('dashboard/js/light-gallery.js')}}"></script> --}}
+
+
+    <!-- DROPZONE JS  -->
+    <script src="js/dropzone.js"></script>
+    <script src="js/form-dropzone.js"></script>
+
+
+
+    <script type="text/javascript">
+        "use strict";
+
+
+
+        /*--------- Textarea Ck Editor --------*/
+        CKEDITOR.replace('editor1');
+
+        /*--------- Ad Tags --------*/
+        $('#tags').tagsInput({
+            'width': '100%'
+        });
+
+        /*--------- create remove function in dropzone --------*/
+        Dropzone.autoDiscover = false;
+        var acceptedFileTypes = "image/*"; //dropzone requires this param be a comma separated list
+        var fileList = new Array;
+        var i = 0;
+        $("#dropzone").dropzone({
+            addRemoveLinks: true,
+            maxFiles: 5, //change limit as per your requirements
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            dictMaxFilesExceeded: "Maximum upload limit reached",
+            acceptedFiles: acceptedFileTypes,
+            url: "uploads",
+            dictInvalidFileType: "upload only JPG/PNG",
+            init: function() {
+                // Hack: Add the dropzone class to the element
+                $(this.element).addClass("dropzone");
+            }
+        });
+        (jQuery);
+    </script>
+
+    
+    <!-- JS -->
+</body>
+
+</html>
