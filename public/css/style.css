@@ -1,88 +1,3 @@
-/*
-Template: AdForest Largest Classified Portal
-Author: ScriptsBundle
-Version: 3.0
-Designed and Development by: ScriptsBundle
-*/
-/*
-====================================
-[ CSS TABLE CONTENT ]
-------------------------------------
-    1.0 -  General Style
-	2.0 -  Helper Classes
-    3.0 -  Typography
-	4.0 -  Pre Loader
-	5.0 -  Style Switcher
-    6.0 -  Heading Styles
-	7.0 -  Top Bar
-	8.0 -  Main Header
-    9.0 -  Transparent Header
-    10.0 -  Header Style 2
-	11.0 -  Home With Category Tabs
-    12.0 -  Home With Main Search
-	13.0 -  Home With Static Banner
-	14.0 -  Home With Map
-	15.0 -  Home With Hero Section
-	16.0 -  Home With Hero Section & Tabs
-    17.0 -  Home With Category Slider
-	18.0 -  Home With Background Rotator Slider
-    19.0 -  Grid Listing 1
-	20.0 -  Grid Listing 2
-	21.0 -  Listing View 1
-	22.0 -  Listing View Switch
-	23.0 -  Listing View 3 
-	24.0 -  Listing View 4
-	25.0 -  Single Ad Details
-	26.0 -  Listing Sidebar & Blog Sidebar
-    27.0 -  Single Blog Post
-	28.0 -  Featured Sliders
-    29.0 -  Featured Sliders 2
-    30.0 -  Price Range Slider
-    31.0 -  Categories
-    32.0 -  Minimal Categories
-    33.0 -  Fancy Categories
-    34.0 -  Category Grid 4
-    35.0 -  Category Grid 5 
-    36.0 -  Breadcrumbs
-    37.0 -  Carousel Slider
-	38.0 -  Parallex Overlays
-	39.0 -  Countries Ads Section
-	40.0 -  Template Common Styling
-	41.0 -  Bootstrap Clearfix
-	42.0 -  Backgrounds
-	43.0 -  Login & Register Page
-	44.0 -  Ads Tabs
-	45.0 -  Site Map
-	46.0 -  Comming Soon
-	47.0 -  404 Page
-	48.0 -  Sidebar Category
-	49.0 -  Post Ad
-	50.0 -  Search Layout
-	51.0 -  Ad Location Grid
-	52.0 -  Theme Buttons & Panels
-	53.0 -  Page Components
-	53.0 -  Scroll Back To Top
-	55.0 -  Sticky Post Ad Button
-	56.0 -  Happy Clients
-	57.0 -  Funfacts
-	58.0 -  App Download Section 2
-	59.0 -  App Download Section 3
-	60.0 -  Overview Modal
-	61.0 -  Modal Popup
-	62.0 -  How It Works
-	63.0 -  Pagination
-	64.0 -  Profile & Dashboard
-	65.0 -  Message Panel
-	66.0 -  Pricing
-	67.0 -  Pricing Style 1
-	68.0 -  Footer
-	69.0 -  Minimal Footer 
-	70.0 -  Minimal Footer Version 2
-
--------------------------------------
-[ END CSS TABLE CONTENT ]
-=====================================
-*/
 
 /* =-=-=-=-=-=-= Google Fonts  =-=-=-=-=-=-= */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic,900italic,900,300,300italic);
@@ -1132,7 +1047,7 @@ ul {
 	outline: none;
 }
 .search-container button {
-	background-color: #505050;
+	background-color: #f20c93;
 	border: medium none;
 	box-sizing: border-box;
 	color: #fff;
@@ -1144,7 +1059,7 @@ ul {
 	width: 100%;
 }
 .search-container button::before {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(220,14,151, 0.1);
 	content: "";
 	display: inline-block;
 	height: 100%;
@@ -1791,7 +1706,7 @@ ul.category-list-style li a span {
 	width: 100%;
 }
 .category-grid-box .category-grid-img .ad-status {
-	background-color: rgba(245, 137, 54, 0.8);
+	background-color: rgba(242,12,147,0.8);
 	color: #fff;
 	font-size: 12px;
 	font-weight: 600;
@@ -2008,7 +1923,7 @@ ul.category-list-style li a span {
 	transform: scale(1);
 }
 .ad-listing .ad-status {
-	background-color: rgba(245, 137, 54, 0.8);
+	background-color: rgba(242,12,147,0.8);
 	color: #fff;
 	font-size: 12px;
 	font-weight: 600;
@@ -8443,4 +8358,23 @@ ul.listingViewIcon li.shortByListingLi ul li a {
     border-top: 4px solid #b63339;
     position: realtive;
     width: 100%;
+}
+
+
+.galeria{
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+}
+
+.card .card-title{
+    text-align: center;
+}
+
+.galeria a{
+    display:flex; 
+     flex-wrap: wrap;
+justify-content: space-around;
+margin:5px 10px;
+
 }

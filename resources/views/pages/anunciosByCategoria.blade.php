@@ -36,32 +36,27 @@
                     @foreach ($anunciosByCategoria as $anuncio)
 
 
-                        <!-- Minimal Category -->
-                        <div class="col-md-3 col-sm-4 col-xs-12">
-                            <a href="#">
-                                <div class="minimal-category">
-                                    <div class="minimal-img">
-                                        <img alt="imagen de categoria" class="img-responsive"
-                                            src="{{ $anuncio->images->pluck('url')[0] }}">
-                                    </div>
-                                    <div class="minimal-overlay"></div>
-                                    <div class="description">
-                                        <span>{{ $anuncio->titulo }}</span>
-                                        {{-- <div class="ads-count">2,768 Ads</div> --}}
-                                    </div>
+                    <!-- Minimal Category -->
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <a href="#">
+                            <div class="minimal-category">
+                                <div class="minimal-img">
+                                    <img alt="imagen de categoria" class="img-responsive"
+                                        src="{{ $anuncio->images->pluck('url')[0] }}">
                                 </div>
-                            </a>
-                        </div>
-                        <!-- Minimal Category -->
+                                <div class="minimal-overlay"></div>
+                                <div class="description">
+                                    <span>{{ $anuncio->titulo }}</span>
+                                    {{-- <div class="ads-count">2,768 Ads</div> --}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Minimal Category -->
                     @endforeach
 
                 </div>
-                {{-- <div class="text-center">
-                    <div class="load-more-btn margin-top-30">
-                        <button class="btn btn-theme" id="loadMore"> Load More <i class="fa fa-refresh"></i>
-                        </button>
-                    </div>
-                </div> --}}
+
                 <!-- Row End -->
             </div>
             <!-- Main Container End -->
@@ -106,56 +101,8 @@
             </div>
         </div>
     </div>
-    <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
-    <script src={{ asset('js/jquery.min.js') }}></script>
-    <!-- Bootstrap Core Css  -->
-    <script src={{ asset('js/bootstrap.min.js') }}></script>
-    <!-- Jquery Easing -->
-    <script src={{ asset('js/easing.js') }}></script>
-    <!-- Menu Hover  -->
-    <script src={{ asset('js/forest-megamenu.js') }}></script>
-    <!-- Jquery Appear Plugin -->
-    <script src={{ asset('js/jquery.appear.min.js?') }}></script>
-    <!-- Numbers Animation   -->
-    <script src={{ asset('js/jquery.countTo.js') }}></script>
-    <!-- Jquery Smooth Scroll  -->
-    <script src={{ asset('js/jquery.smoothscroll.js') }}></script>
-    <!-- Jquery Select Options  -->
-    <script src={{ asset('js/select2.min.js') }}></script>
-    <!-- noUiSlider -->
-    <script src="{{ asset('js/nouislider.all.min.js') }}"></script>
-    <!-- Carousel Slider  -->
-    <script src="{{ asset('js/carousel.min.js') }}"></script>
-    <script src="{{ asset('js/slide.js') }}"></script>
-    <!-- Image Loaded  -->
-    <script src="{{ asset('js/imagesloaded.js') }}"></script>
-    <script src="{{ asset('js/isotope.min.js') }}"></script>
-    <!-- CheckBoxes  -->
-    <script src="{{ asset('js/icheck.min.js') }}"></script>
-    <!-- Jquery Migration  -->
-    <script src="{{ asset('js/jquery-migrate.min.js') }}"></script>
-    <!-- Sticky Bar  -->
-    <script src="{{ asset('js/theia-sticky-sidebar.js') }}"></script>
-    <!-- Style Switcher -->
-    <script src="{{ asset('js/color-switcher.js') }}"></script>
-    <!-- Template Core JS -->
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script type="text/javascript">
-        (function($) {
-            "use strict";
-            $(".minimal-category").slice(0, 12).show();
-            $("#loadMore").on('click', function(e) {
-                e.preventDefault();
-                $(".minimal-category:hidden").slice(0, 4).slideDown();
-                if ($(".minimal-category:hidden").length == 0) {
-                    $("#load").fadeOut('slow');
-                }
-                $('html,body').animate({
-                    scrollTop: $(this).offset().top
-                }, 1500);
-            });
-        })(jQuery);
-    </script>
+    <!-- SCRIPTS -->
+    @include('templates.scripts')
 </body>
 
 </html>

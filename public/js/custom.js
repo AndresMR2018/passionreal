@@ -1,63 +1,14 @@
-/*
-Template: AdForest | Largest Classifieds Portal
-Author: ScriptsBundle
-Version: 3.0
-Designed and Development by: ScriptsBundle
-*/
-/*
-====================================
-[ CSS TABLE CONTENT ]
-------------------------------------
-    1.0 -  Page Preloader
-	2.0 -  Counter FunFacts
-    3.0 -  List Grid Style Switcher
-	4.0 -  Sticky Ads
-	5.0 -  Accordion Panels
-    6.0 -  Accordion Style 2
-	7.0 -  Jquery CheckBoxes
-	8.0 -  Jquery Select Dropdowns
-    9.0 -  Profile Image Upload
-    10.0 - Masonry Grid System
-	11.0 - Featured Carousel 1
-    12.0 - Featured Carousel 2
-	12.0 - Featured Carousel 3
-	13.0 - Category Carousel
-	14.0 - Background Image Rotator Carousel
-	15.0 - Single Ad Slider Carousel
-	16.0 - Single Page SLider With Thumb
-	17.0 - Price Range Slider
-	18.0 - Template MegaMenu
-	19.0 - Back To Top
-	20.0 - Tooltip
-	21.0 - Quick Overview Modal
--------------------------------------
-[ END JQUERY TABLE CONTENT ]
-=====================================
-*/
-(function($) {
+(function ($) {
     "use strict";
 
-    /* ======= Preloader ======= */
-    setTimeout(function() {
-        $('body').addClass('loaded');
-    }, 3000);
-
-    /* ======= Counter FunFacts ======= */
-    var timer = $('.timer');
-    if (timer.length) {
-        timer.appear(function() {
-            timer.countTo();
-        });
-    }
-
     /* ======= List Grid Style Switcher ======= */
-    $('#list').on("click", function(event) {
+    $('#list').on("click", function (event) {
         event.preventDefault();
         $(this).addClass('active');
         $('#grid').removeClass('active');
         $('#products .item').addClass('list-group-items');
     });
-    $('#grid').on("click", function(event) {
+    $('#grid').on("click", function (event) {
         event.preventDefault();
         $(this).addClass('active');
         $('#list').removeClass('active');
@@ -71,7 +22,7 @@ Designed and Development by: ScriptsBundle
     });
 
     /* ======= Accordion Panels ======= */
-    $('.accordion-title a').on('click', function(event) {
+    $('.accordion-title a').on('click', function (event) {
         event.preventDefault();
         if ($(this).parents('li').hasClass('open')) {
             $(this).parents('li').removeClass('open').find('.accordion-content').slideUp(400);
@@ -83,7 +34,7 @@ Designed and Development by: ScriptsBundle
     });
 
     /* ======= Accordion Style 2 ======= */
-    $('#accordion').on('shown.bs.collapse', function() {
+    $('#accordion').on('shown.bs.collapse', function () {
         var offset = $('.panel.panel-default > .panel-collapse.in').offset();
         if (offset) {
             $('html,body').animate({
@@ -107,12 +58,12 @@ Designed and Development by: ScriptsBundle
     });
 
     /* ======= Profile Image Upload ======= */
-    $(document).on('change', '.btn-file :file', function() {
+    $(document).on('change', '.btn-file :file', function () {
         var input = $(this),
             label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.trigger('fileselect', [label]);
     });
-    $('.btn-file :file').on('fileselect', function(event, label) {
+    $('.btn-file :file').on('fileselect', function (event, label) {
         var input = $(this).parents('.input-group').find(':text'),
             log = label;
         if (input.length) {
@@ -123,18 +74,18 @@ Designed and Development by: ScriptsBundle
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 $('#img-upload').attr('src', e.target.result);
             };
             reader.readAsDataURL(input.files[0]);
         }
     }
-    $("#imgInp").change(function() {
+    $("#imgInp").change(function () {
         readURL(this);
     });
 
     /* ======= Masonry Grid System ======= */
-    $('.posts-masonry').imagesLoaded(function() {
+    $('.posts-masonry').imagesLoaded(function () {
         $('.posts-masonry').isotope({
             layoutMode: 'masonry',
             transitionDuration: '0.3s'
@@ -260,8 +211,8 @@ Designed and Development by: ScriptsBundle
             }
         }
     });
-	
-	/* ======= Single Ad Slider Carousel  ======= */
+
+    /* ======= Single Ad Slider Carousel  ======= */
     $('.single-details').owlCarousel({
         loop: true,
         dots: false,
@@ -302,8 +253,8 @@ Designed and Development by: ScriptsBundle
         slideshow: true,
         sync: "#carousel"
     });
-	
-	 /*==========  Price Range Slider  ==========*/
+
+    /*==========  Price Range Slider  ==========*/
     $('#price-slider').noUiSlider({
         connect: true,
         behaviour: 'tap',
@@ -315,14 +266,14 @@ Designed and Development by: ScriptsBundle
             'max': 150000
         }
     });
-		$('#price-slider').Link('lower').to($('#price-min'), null, wNumb({
-			decimals: 0
-		}));
-		$('#price-slider').Link('upper').to($('#price-max'), null, wNumb({
-			decimals: 0
-		}));
-		
-		
+    $('#price-slider').Link('lower').to($('#price-min'), null, wNumb({
+        decimals: 0
+    }));
+    $('#price-slider').Link('upper').to($('#price-max'), null, wNumb({
+        decimals: 0
+    }));
+
+
     /* ======= Template MegaMenu  ======= */
     $('#menu-1').megaMenu({
         // DESKTOP MODE SETTINGS
@@ -352,39 +303,51 @@ Designed and Development by: ScriptsBundle
         }
     });
 
-   
+
 
     /*==========  Back To Top  ==========*/
-    	var offset = 300,
+    var offset = 300,
         offset_opacity = 1200,
         //duration of the top scrolling animation (in ms)
         scroll_top_duration = 700,
         //grab the "back to top" link
         $back_to_top = $('.cd-top');
-		//hide or show the "back to top" link
-		$(window).scroll(function() {
-			($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible'): $back_to_top.removeClass('cd-is-visible cd-fade-out');
-			if ($(this).scrollTop() > offset_opacity) {
-				$back_to_top.addClass('cd-fade-out');
-			}
-		});
-    	//smooth scroll to top
-		$back_to_top.on('click', function(event) {
-	
-			event.preventDefault();
-			$('body,html').animate({
-				scrollTop: 0,
-			}, scroll_top_duration);
-		});
+    //hide or show the "back to top" link
+    $(window).scroll(function () {
+        ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+        if ($(this).scrollTop() > offset_opacity) {
+            $back_to_top.addClass('cd-fade-out');
+        }
+    });
+    //smooth scroll to top
+    $back_to_top.on('click', function (event) {
+
+        event.preventDefault();
+        $('body,html').animate({
+            scrollTop: 0,
+        }, scroll_top_duration);
+    });
 
     /*==========  Tooltip  ==========*/
     $('[data-toggle="tooltip"]').tooltip();
 
     /*==========  Quick Overview Modal  ==========*/
     $(".quick-view-modal").css("display", "block");
-	
-	
-	
+
+    $(".minimal-category").slice(0, 12).show();
+    $("#loadMore").on('click', function (e) {
+        e.preventDefault();
+        $(".minimal-category:hidden").slice(0, 4).slideDown();
+        if ($(".minimal-category:hidden").length == 0) {
+            $("#load").fadeOut('slow');
+        }
+        $('html,body').animate({
+            scrollTop: $(this).offset().top
+        }, 1500);
+    });
+
+
+
 
 
 })(jQuery);

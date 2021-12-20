@@ -127,9 +127,9 @@
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
                     @if(Request::url() === (env('APP_URL').':8000/login'))
-                    <li><a href="{{route('login')}}">{{ __('Inicio de sesión') }}</a></li>
+                    <li><a class="active" href="{{route('login')}}">{{ __('Inicio de sesión') }}</a></li>
                     @else
-                    <li><a href="{{route('register')}}">{{ __('Registro') }}</a></li>
+                    <li><a class="active" href="{{route('register')}}">{{ __('Registro') }}</a></li>
                     @endif
 
                 </ul>
