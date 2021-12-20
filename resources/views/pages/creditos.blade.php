@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', e => {
         item.addEventListener('click', traer);
     });
 });
+</script>
 
     @include('templates.scripts')
 </body>
