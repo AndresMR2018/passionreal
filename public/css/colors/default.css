@@ -18,7 +18,7 @@ a , a:hover {
 	background-color: #f20c93 !important;
 }
 span.app-store-btn:hover, .social-links-two a:hover , .search-section .search-options > li .btn.btn-danger:hover  {
-	border: 1px solid #f58936 !important;
+	border: 1px solid #dc0e97 !important;
 }
 .slide-thumbnail .flex-active-slide img {
 	border-color: #f20c93 !important;
@@ -72,11 +72,11 @@ span.app-store-btn:hover, .social-links-two a:hover , .search-section .search-op
 	background-image: none;
 }
 .btn-theme.disabled, .btn-theme[disabled], fieldset[disabled] .btn-theme, .btn-theme.disabled:hover, .btn-theme[disabled]:hover, fieldset[disabled] .btn-theme:hover, .btn-theme.disabled:focus, .btn-theme[disabled]:focus, fieldset[disabled] .btn-theme:focus, .btn-theme.disabled:active, .btn-theme[disabled]:active, fieldset[disabled] .btn-theme:active, .btn-theme.disabled.active, .btn-theme[disabled].active, fieldset[disabled] .btn-theme.active {
-	background-color: #f58936;
-	border-color: #f6944a;
+	background-color: #dc0e97;
+	border-color: #dc0e97;
 }
 .btn-theme .badge {
-	color: #f58936;
+	color: #dc0e97;
 	background-color: #ffffff;
 }
 
@@ -85,14 +85,14 @@ span.app-store-btn:hover, .social-links-two a:hover , .search-section .search-op
 	outline: 0;
 }
 .country-box:hover .country-description {
-	background-color: rgba(245, 137, 54, 0.86);
+	background-color: rgba(220, 14, 151, 0.86);
 }
 .profile-tabs .nav-tabs {
-	border-color: -moz-use-text-color -moz-use-text-color #f58936 ;
+	border-color: -moz-use-text-color -moz-use-text-color #dc0e97 ;
 }
 .user-profile ul li.active a::before {
-	border-left: 9px solid #f58936;
+	border-left: 9px solid #dc0e97;
 }
 .user-profile ul li.active a {
-	border-left: 3px solid #f58936;
+	border-left: 3px solid #dc0e97;
 }

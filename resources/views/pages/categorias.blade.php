@@ -58,13 +58,7 @@
                     @endforeach
 
                 </div>
-                {{-- <div class="text-center">
-                    <div class="load-more-btn margin-top-30">
-                        <button class="btn btn-theme" id="loadMore"> Load More <i class="fa fa-refresh"></i>
-                        </button>
-                    </div>
-                </div> --}}
-                <!-- Row End -->
+
             </div>
             <!-- Main Container End -->
         </section>
