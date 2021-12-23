@@ -12,6 +12,18 @@
 </div>
 @endif
 
+@if(count($errors)>0)
+<div class="alert alert-danger" role="alert">
+<ul>
+@foreach($errors->all() as $error)
+<li>
+{{$error}}
+</li>
+@endforeach
+</ul>
+</div>
+@endif
+
 
       <div class="menu__datos">
 <div class="botones">
@@ -37,9 +49,12 @@
         <tr>
             <td>{{$c->id}}</td>
             <td>{{$c->nombre}}</td>
+            
             <td>
-                <img class="img-thumbnail img-fluid" width="100px" src="{{$c->foto}}" alt="foto de categoria ">
-                </td>
+         
+                <img  width="100px" src="{{$c->image->url}}" alt="foto de categoria ">
+          
+            </td>
             
             <td>
             <a href="{{url('admin/categoria/'.$c->id.'/edit')}}" id="botoncol" class="btn btn-warning mb-2 ">Editar</a>
@@ -54,6 +69,6 @@
         @endforeach
     </tbody>
 </table>
-{!!$categorias->links() !!}
+
 </div>
 @endsection

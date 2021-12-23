@@ -18,7 +18,12 @@ class ClienteMiddleware
     {
          //si esta iniciado sesion y tiene el rol de cliente entonces de paso a la ruta que busca
          if(auth()->check() && (auth()->user()->hasRole('Client') || auth()->user()->hasRole('Admin')) )
-            return $next($request);
+          {  
+              if(auth()->check() && auth()->user()->estado_cuenta=="baneada")
+                return redirect()->route('home.cuentaBaneada');
+           
+         return $next($request);
+        } else
         
             //sino redirigir a login
         return redirect()->route('login');

@@ -34,10 +34,10 @@
                         <!-- Sidebar Widgets -->
                         <div class="user-profile">
                             <a>
-                                @if(!($perfil->foto))
+                                @if(!isset($perfil->image->url))
                                 <img src="{{asset('images/user_default.png')}}" alt="foto">
                                 @else
-                                <img src="{{asset('storage/'.$perfil->foto)}}" alt="foto">
+                                <img src="{{$perfil->image->url}}" alt="foto">
                                 @endif
                             </a>
                             <div class="profile-detail">

@@ -22,8 +22,8 @@
 </div>
 <div class="form-group">
     <!-- <label for="Foto">Foto</label> -->
-    @if(isset($categoria->Foto))
-    <img class="img-thumbnail img-fluid" width="100px" src="{{asset('storage').'/'.$categoria->foto}}"  alt=" ">
+    @if(isset($categoria->image->url))
+    <img class="img-thumbnail img-fluid" width="100px" src="{{$categoria->image->url}}"  alt=" ">
     @endif
     <input type="file" name="foto" id="Foto" >
     <img id="FotoCargada" class="img-thumbnail img-fluid" style="max-width: 100px;">
@@ -33,5 +33,5 @@
 <input type="submit" class="btn btn-success" value="{{$modo}} categoria">
 <a href="{{url('admin/categoria/')}}" class="btn btn-primary">Regresar</a>
 
-{{-- <script src="{{asset('assets/js/imagenes/showImgLoaded.js')}}"></script> --}}
+<script src="{{asset('/js/showImgLoaded.js')}}"></script>
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Image;
 
 class Perfil extends Model
 {
@@ -11,8 +12,11 @@ class Perfil extends Model
     protected $fillable = [
         'nombre',
         'telefono',
-        'foto',
         'dni',
         'creditos'
     ];
+
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

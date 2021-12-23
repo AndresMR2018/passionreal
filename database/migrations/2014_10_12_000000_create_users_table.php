@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('cta_validada')->default('No');
+            $table->string('estado_cuenta')->default('habilitada');
             $table->string('credito_gratis')->default('0');// 0 -> 10 cred gratis 1-> 10 creditos no disponibles
             $table->rememberToken();
             $table->timestamps();

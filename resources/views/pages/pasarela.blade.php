@@ -55,7 +55,7 @@
                                     <div class="author-desc">
                                         <div class="author-title">
 
-                                            <strong>{{$creditos}} Créditos</strong>
+                                            <strong>{{$creditosx}} Créditos</strong>
                                             <ul class="list-inline pull-right">
                                                 <li><a href="#">08-12-2021</a>
                                                 </li>
@@ -70,7 +70,7 @@
                                 <!-- Title  -->
                                 @csrf
                                 <input name="idcredito" value="{{$idcredito}}" style="display:none;">
-                                <input name="creditos" value="{{$creditos}}" style="display:none;">
+                                <input name="creditos" value="{{$creditosx}}" style="display:none;">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Nombre completo <small>Ingresa tu nombre
@@ -129,13 +129,13 @@
                                     <h4 class="panel-title text-center"><a>Resumen </a></h4>
                                 </div>
                                 <div class="widget-heading">
-                                    <h4 class="panel-title"><a>N° créditos: {{ $creditos }} </a></h4>
+                                    <h4 class="panel-title"><a>N° créditos: {{ $creditosx }}</a></h4>
                                 </div>
                                 <div class="widget-heading">
-                                    <h4 class="panel-title"><a>Subtotal: ${{ $creditos * 0.2 }} </a></h4>
+                                    <h4 class="panel-title"><a>Subtotal: ${{ $creditosx * 0.2 }} </a></h4>
                                 </div>
                                 <div class="widget-heading">
-                                    <h4 class="panel-title"><a>Total: ${{ $creditos * 0.2 }} </a></h4>
+                                    <h4 class="panel-title"><a>Total: ${{ $creditosx * 0.2 }} </a></h4>
                                 </div>
                             </div>
 

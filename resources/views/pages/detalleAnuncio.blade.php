@@ -218,21 +218,22 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                            class="sr-only">Close</span></button>
+                            class="sr-only">Cerrar</span></button>
                     <h3 class="modal-title">Porqué razón quieres reportar este anuncio?</h3>
                 </div>
                 <div class="modal-body">
                     <!-- content goes here -->
-                    <form>
+                    <form action="{{route('cliente.reportar')}}" method="POST">
+                        @csrf
                         <div class="skin-minimal">
                             <div class="form-group col-md-6 col-sm-6">
                                 <ul class="list">
                                     <li>
-                                        <input type="radio" id="spam" name="minimal-radio">
+                                        <input type="radio" id="spam"  value="1" name="minimal-radio">
                                         <label for="spam">Spam</label>
                                     </li>
                                     <li>
-                                        <input type="radio" id="duplicated" name="minimal-radio">
+                                        <input type="radio" id="duplicated" value="2" name="minimal-radio">
                                         <label for="duplicated">No asiste a los encuentros</label>
                                     </li>
                                 </ul>
@@ -240,8 +241,9 @@
                             <div class="form-group col-md-6 col-sm-6">
                                 <ul class="list">
                                     <li>
-                                        <input type="radio" id="spam" name="minimal-radio">
+                                        <input type="radio" id="spam" value="3" name="minimal-radio">
                                         <label for="spam">Duplicación de identidad</label>
+                                        
                                     </li>
                                 </ul>
                             </div>
@@ -249,11 +251,11 @@
                         </div>
                         <div class="form-group  col-md-12 col-sm-12">
                             <label>Agrega un comentario</label>
-                            <textarea placeholder="El contenido del anuncio me pertenece..." rows="3"
+                            <textarea name="comentario" placeholder="El contenido del anuncio me pertenece..." rows="3"
                                 class="form-control">El contenido del anuncio me pertenece...</textarea>
-                        </div>
-                        <div class="col-md-12 col-sm-12"> <img src="{{ URL::asset('images/captcha.gif') }}" alt=""
-                                class="img-responsive"> </div>
+                        <input name="anuncio_id" type="text" value="{{$anuncio->id}}" style="display:none">
+                            </div>
+                        
                         <div class="clearfix"></div>
                         <div class="col-md-12 col-sm-12 margin-bottom-20 margin-top-20">
                             <button type="submit" class="btn btn-theme btn-block">Enviar</button>

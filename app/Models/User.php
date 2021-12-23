@@ -16,11 +16,12 @@ class User extends Authenticatable
     use  Notifiable;
     use HasRoles;
 
-    protected $fillable = [
+    public $fillable = [
         'name',
         'email',
         'password',
-        'cta_validada'
+        'cta_validada',
+        'estado_cuenta'
     ];
 
     /**
@@ -53,5 +54,9 @@ class User extends Authenticatable
 
     public function anuncios(){
         return $this->hasMany(Anuncio::class);
+    }
+
+    public function reportes(){
+        return $this->hasMany(Reporte::class);
     }
 }

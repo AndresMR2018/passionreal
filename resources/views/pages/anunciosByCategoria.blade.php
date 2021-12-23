@@ -38,7 +38,7 @@
 
                     <!-- Minimal Category -->
                     <div class="col-md-3 col-sm-4 col-xs-12">
-                        <a href="#">
+                        <a href="{{route('home.detalle',$anuncio->id) }}">
                             <div class="minimal-category">
                                 <div class="minimal-img">
                                     <img alt="imagen de categoria" class="img-responsive"

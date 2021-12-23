@@ -90,14 +90,14 @@
                                                         <h4>€ {{$credito->valor}} c/crédito </h4>
                                                         @endif --}}
                                                         <a id="0" {{-- id="{{$credito->id}}" --}}
-                                                            class="btn btn-theme btn-sm btn-block">Seleccionar</a>
+                                                            class="btn btn-theme btn-sm btn-block selection">Seleccionar</a>
                                                     </div>
                                                 </div>
 
                                                 <!-- end col -->
                                             </div>
                                             @else
-                                            <h2>No hay cupos gratis disponibles</h2>
+                                            <h5>No hay cupos gratis disponibles</h5>
                                             @endif
                                             <!-- end row -->
                                         </div>
@@ -151,7 +151,35 @@ document.addEventListener('DOMContentLoaded', e => {
     document.querySelectorAll('.pricing-list-price a').forEach(item => {
         item.addEventListener('click', traer);
     });
+
+    document.querySelector('.selection').addEventListener('click',click);
+
 });
+
+function click(e){
+    console.log('seleccionar pushed');
+    console.log(e.currentTarget.textContent);
+    $texto = e.currentTarget.textContent;
+    if($texto=="Seleccionar"){
+        $text = document.getElementById('0');
+    $text.textContent = "Seleccionado";
+    var idcredito = document.getElementById('idcredito');
+    idcredito.value = "0";
+    $creditos = document.getElementById('creditos');
+    $creditos.value = 10;
+    console.log(idcredito.value);
+    }else
+    {
+        $text = document.getElementById('0');
+    $text.textContent = "Seleccionar";
+    var idcredito = document.getElementById('idcredito');
+    idcredito.value = "-1";
+    console.log(idcredito.value);
+    }
+
+     
+    
+}
 </script>
 
     @include('templates.scripts')

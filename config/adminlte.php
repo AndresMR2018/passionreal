@@ -256,7 +256,7 @@ return [
         ['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
             'text' => 'perfil',
-            'url'  => 'admin/settings',
+            'url'  => '/mi-cuenta',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -274,6 +274,21 @@ return [
                 [
                     'text' => ' Ver solicitudes',
                     'url'  => 'admin/solicitud',
+                ],
+
+
+            ]
+
+        ],
+
+        [
+            'text'    => 'Reportes',
+            'icon'    => 'fas fa-fw fa-list-alt',
+            'submenu' => [
+
+                [
+                    'text' => ' Ver reportes',
+                    'url'  => 'admin/reportes',
                 ],
 
 

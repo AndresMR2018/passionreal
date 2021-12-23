@@ -25,11 +25,7 @@
     <!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
     <div class="main-content-area clearfix">
         <!-- =-=-=-=-=-=-= Popular Categories =-=-=-=-=-=-= -->
-        <section class="custom-padding gray">
-            <!-- Main Container -->
-            {{-- @include('components.categories') --}}
-            <!-- Main Container End -->
-        </section>
+    
         <!-- =-=-=-=-=-=-= Popular Categories End =-=-=-=-=-=-= -->
         <!-- =-=-=-=-=-=-= Featured Ads =-=-=-=-=-=-= -->
         {{-- @include('components.anuncios_destacados') --}}

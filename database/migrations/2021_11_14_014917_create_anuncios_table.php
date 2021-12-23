@@ -16,10 +16,10 @@ class CreateAnunciosTable extends Migration
         Schema::create('anuncios', function (Blueprint $table) {
             $table->id();
             $table->string('ciudad')->nullable();
-            $table->string('direccion')->nullable();
+            $table->text('direccion')->nullable();
             $table->string('edad')->nullable();
             $table->string('titulo')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->longtext('descripcion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('zona')->nullable();
             // $table->string('foto')->nullable();

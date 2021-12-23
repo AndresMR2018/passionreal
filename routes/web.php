@@ -14,6 +14,7 @@ use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\ReporteController;
 use App\Mail\MensajeRecibido;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -30,15 +31,15 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 Auth::routes();
 
 //VISTAS DE VISITANTE
-Route::get('/', [HomeController::class, 'index'])->name('home.inicio');
-Route::post('/post-validar-cuenta', [HomeController::class, 'postValidarCuenta'])->name('home.postValidarCuenta');
-Route::get('/validar-cuenta',[HomeController::class,'getValidarCuenta'])->name('home.getValidarCuenta');
-Route::post('/validacion-cuenta',[HomeController::class,'validacionCuenta'])->name('home.validacionCuenta');
-Route::get('/detalle/{id}', [HomeController::class, 'detalleAnuncio'])->name('home.detalle');
-Route::get('/categoria/{id}', [HomeController::class, 'findByCategoria'])->name('home.find_by_categoria');
-Route::get('/categorias',[HomeController::class, 'findAllCategorias'])->name('home.findAllCategorias');
-Route::get('/buscar',[HomeController::class, 'filtrado'])->name('home.filtrado');
-
+Route::get('/', [HomeController::class, 'index'])->middleware('visitante')->name('home.inicio');
+Route::post('/post-validar-cuenta', [HomeController::class, 'postValidarCuenta'])->middleware('visitante')->name('home.postValidarCuenta');
+Route::get('/validar-cuenta',[HomeController::class,'getValidarCuenta'])->middleware('visitante')->name('home.getValidarCuenta');
+Route::post('/validacion-cuenta',[HomeController::class,'validacionCuenta'])->middleware('visitante')->name('home.validacionCuenta');
+Route::get('/detalle/{id}', [HomeController::class, 'detalleAnuncio'])->middleware('visitante')->name('home.detalle');
+Route::get('/categoria/{id}', [HomeController::class, 'findByCategoria'])->middleware('visitante')->name('home.find_by_categoria');
+Route::get('/categorias',[HomeController::class, 'findAllCategorias'])->middleware('visitante')->name('home.findAllCategorias');
+Route::get('/buscar',[HomeController::class, 'filtrado'])->middleware('visitante')->name('home.filtrado');
+Route::get('/cuenta-baneada',[HomeController::class, 'cuentaBaneada'])->name('home.cuentaBaneada');
 //PERSONAS REGISTRADAS
 Route::get('/creditos', [ClienteController::class, 'creditos'])->middleware('cliente')->name('cliente.creditos');
 Route::get('/mi-cuenta', [ClienteController::class, 'miCuenta'])->middleware('cliente')->name('cliente.miCuenta');
@@ -56,6 +57,7 @@ Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->middl
 Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
 Route::get('/datos-cliente/{id}',[OrdenController::class, 'show'])->middleware('cliente');
 Route::post('/pasarela',[ClienteController::class,'getPasarela'])->middleware('cliente')->name('cliente.pasarela');
+Route::post('/reportar',[ClienteController::class,'reportar'])->middleware('cliente')->name('cliente.reportar');
 // Route::get('/contactanos',function(){
 //       $correo = new MensajeRecibido; 
 //       Mail::to('gamr130898@gmail.com')->send($correo);
@@ -94,4 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::resource('roles', RoleController::class);
     Route::resource('orden',OrdenController::class);
     Route::resource('solicitud',SolicitudController::class);
+    Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');
+    Route::get('/reportar/{id}',[AdminController::class,'banearCuenta'])->name('reportar');
+    Route::get('/usuario-reportado/{id}',[AdminController::class,'verUsuarioReportado'])->name('admin.usuarioReportado');
 });

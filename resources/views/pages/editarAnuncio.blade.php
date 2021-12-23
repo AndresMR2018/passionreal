@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    @include('templates.head')
+@include('templates.head')
 
 <body>
 
@@ -53,27 +53,27 @@
                             </div>
 
                             @if (Session::has('mensaje'))
-                            <div class="alert alert-success alert-dismissible" role="alert">
-                                {{ Session::get('mensaje') }}
-                                <button type="button" class="close" data-dismiss="alert" role="alert">
-                                    <span aria-button="true">&times;</span>
-                                </button>
-                            </div>
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    {{ Session::get('mensaje') }}
+                                    <button type="button" class="close" data-dismiss="alert" role="alert">
+                                        <span aria-button="true">&times;</span>
+                                    </button>
+                                </div>
                             @endif
                             @if (count($errors) > 0)
-                            <div class="alert alert-danger" role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>
-                                        {{ $error }}
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             @endif
 
-                            <form class="submit-form" action="{{ route('cliente.postEditarAnuncio') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form class="submit-form" action="{{ route('cliente.postEditarAnuncio') }}"
+                                method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="text" value="{{ $anuncio->id }}" name="anuncio_id" style="display:none">
 
@@ -104,9 +104,9 @@
                                         <select class="category form-control" name="categoria_id">
                                             <option label="Select Option"></option>
                                             @foreach ($categorias as $categoria)
-                                            <option value="{{ $categoria->id }}" {{ old('categoria_id', $anuncio->
-                                                categoria_id) == $categoria->id ? 'selected' : '' }}>
-                                                {{ $categoria->nombre }}</option>
+                                                <option value="{{ $categoria->id }}"
+                                                    {{                                                     old('categoria_id', $anuncio->categoria_id) == $categoria->id ? 'selected' : '' }}>
+                                                    {{ $categoria->nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -150,45 +150,45 @@
 
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                        <label class="control-label">Agregar nueva foto para tu anuncio <label>
-                                                <input type="file" name="image" id="image">
+                                           <div class="form-control">
+                                            <label class="control-label">Agregar nueva foto para tu anuncio <label>
+                                     
+                                                <input type="file" name="image" id="image">  
+                                            </div>    
+                                            
                                     </div>
                                 </div>
 
-                                <div class="row">
+                              
                                     <!-- end row -->
                                     <!-- Image Upload  -->
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                            <label class="control-label">Fotos para tu anuncio <small>Por favor agrega
-                                                    imágenes para tu anuncio.</small></label>
+                                    <label class="control-label">Imágenes de tu anuncio<small>Puedes retirar o añadir más</small></label>
+<div class="row">
+    @foreach ($anuncio->images as $imagen)
+    <div class="col-md-3 col-sm-4 col-xs-12">
+        
+        <div class="opciones">
+            <a
+                href="{{ url('/retirar-imagen/' . $imagen->id) }}"><i
+                    title="Retirar imagen"
+                    class="fas fa-calendar-times"></i></a>
 
-                                            <div class="row grid-margin">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Imágenes de tu anuncio</h4>
+        </div>
+            <div class="minimal-category">
+                
+                <div class="minimal-img">
+                   
+                    <img alt="imagen de anuncio" class="img-responsive" src="{{ $imagen->url }}">
+                </div>
+                <div class="minimal-overlay"></div>
+                
+            </div>
+       
+    </div>
+    @endforeach
+</div>
 
-                                                            <div id="lightgallery" class="galeria">
-
-                                                                @foreach ($anuncio->images as $imagen)
-                                                                <div class="opciones">
-                                                                    <a
-                                                                        href="{{ url('/retirar-imagen/' . $imagen->id) }}"><i
-                                                                            title="Retirar imagen"
-                                                                            class="fas fa-calendar-times"></i></a>
-
-                                                                </div>
-                                                                <a><img src="{{ $imagen->url }}" alt="image small"></a>
-                                                                @endforeach
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                   
 
                                     <!-- end row -->
                                     <div class="row">
@@ -213,9 +213,10 @@
                                             <select class="category form-control" name="paquete_id">
                                                 <option label="Select Option"></option>
                                                 @foreach ($paquetes as $paquete)
-                                                <option value="{{ $paquete->id }}" {{ old('paquete_id', $anuncio->
-                                                    paquete_id) == $paquete->id ? 'selected' : '' }}>
-                                                    Reactivación cada {{ $paquete->periodo_horas }} horas</option>
+                                                    <option value="{{ $paquete->id }}"
+                                                        {{                                                         old('paquete_id', $anuncio->paquete_id) == $paquete->id ? 'selected' : '' }}>
+                                                        Reactivación cada {{ $paquete->periodo_horas }} horas
+                                                    </option>
 
                                                 @endforeach
                                                 {{-- <option value="{{$categoria->id}}" {{ old('categoria_id',
@@ -225,7 +226,7 @@
                                         </div>
                                     </div>
 
-
+                                
 
                                     <!-- end row -->
                                     <button class="btn btn-theme pull-right">Guardar cambios</button>
@@ -234,33 +235,12 @@
                         <!-- end post-ad-form-->
                     </div>
                     <!-- end col -->
-
-
-
-
                 </div>
                 <!-- Row End -->
 
-                <div class="row">
+               
 
 
-
-                    <!-- Minimal Category -->
-                    <div class="col-md-3 col-sm-4 col-xs-12">
-                        <a href="#">
-                            <div class="minimal-category">
-                                <div class="minimal-img">
-                                    <img alt="" class="img-responsive" src="{{asset('images/minimal/16.jpg')}}">
-                                </div>
-                                <div class="minimal-overlay"></div>
-                                <div class="description">
-                                    <span>Health & Fitness</span>
-                                    <div class="ads-count">3,100 Ads</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
             </div>
             <!-- Main Container End -->

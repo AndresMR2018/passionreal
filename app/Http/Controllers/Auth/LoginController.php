@@ -30,6 +30,7 @@ class LoginController extends Controller
 
     public function redirectTo(){
         if(auth()->user()->hasRole('Admin')) {
+        
             return route('admin.dashboard');
         } else {
                 return route('home.inicio');

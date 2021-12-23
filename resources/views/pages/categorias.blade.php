@@ -40,8 +40,9 @@
                                 <div class="minimal-img">
 
                                     <img alt="imagen de categoria" class="img-responsive"
-                                        src="{{$anuncio->categoria->foto}}">
-
+                                        src="{{$anuncio->categoria->image->url}}"
+                                        alt="{{$anuncio->categoria->image->url}}">
+                                    
                                 </div>
                                 <div class="minimal-overlay"></div>
                                 <div class="description">

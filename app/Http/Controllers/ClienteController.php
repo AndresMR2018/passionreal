@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\MensajeRecibido;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -24,19 +25,21 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreClienteRequest;
 use App\Resolvers\PaymentPlatformResolver;
 use App\Http\Requests\UpdateClienteRequest;
+use App\Models\Reporte;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ClienteController extends Controller
 {
 
 
- protected $paymentPlatformResolver;
+    protected $paymentPlatformResolver;
     public function __construct(PaymentPlatformResolver $paymentPlatformResolver)
     {
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
-    public function validarCuenta(){
-        $codigo = mt_rand(1000000000,9999999999);
+    public function validarCuenta()
+    {
+        $codigo = mt_rand(1000000000, 9999999999);
         Mail::to('gamr130898@gmail.com')->send(new MensajeRecibido($codigo));
         // $codigo = mt_rand(1000000000,9999999999);
         // Mail::send('emails.mensajeRecibido',$codigo,function($smj){
@@ -105,149 +108,169 @@ class ClienteController extends Controller
         return view('pages.publicarAnuncio', compact('categorias', 'paquetes', 'user_id'));
     }
 
-    // EN PRODUCCION
-    public function upload_image($request, $anuncio){
-       
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $extension = $request->file('image')->extension();
-            if($extension=="png" || $extension=="jpg" || $extension=="jpeg"){
-                    $url = Cloudinary::upload($file->getRealPath(),['folder'=>'testing'])->getSecurePath();
-                    $anuncio->images()->create([
-            'url'=>$url
-        ]);
-            }else{
-                $url = Cloudinary::uploadVideo($file->getRealPath(),['folder'=>'testing'])->getSecurePath();
-                $anuncio->images()->create([
-            'url'=>$url
-        ]);
-            }
-        }
-        
-    }
+// LOCAL
+public function upload_image($request, $anuncio){
+      
+    $file = $request->file('image');
+    $name = time().'_'.$file->getClientOriginalName();
+    $ruta=public_path().'/imgs/anuncios/';
+    $file->move($ruta, $name);
+    $urlimage = '/imgs/anuncios/'.$name;
+$anuncio->images()->create([
+    'url'=>$urlimage
+]);
 
-    public function postEditarAnuncio(Request $request){
+}
+
+    // EN PRODUCCION
+    // public function upload_image($request, $anuncio)
+    // {
+
+    //     if ($request->hasFile('image')) {
+    //         $file = $request->file('image');
+    //         $extension = $request->file('image')->extension();
+    //         if ($extension == "png" || $extension == "jpg" || $extension == "jpeg") {
+    //             $url = Cloudinary::upload($file->getRealPath(), ['folder' => 'testing'])->getSecurePath();
+    //             $anuncio->images()->create([
+    //                 'url' => $url
+    //             ]);
+    //         } else {
+    //             $url = Cloudinary::uploadVideo($file->getRealPath(), ['folder' => 'testing'])->getSecurePath();
+    //             $anuncio->images()->create([
+    //                 'url' => $url
+    //             ]);
+    //         }
+    //     }
+    // }
+
+    public function postEditarAnuncio(Request $request)
+    {
 
         $anuncio = Anuncio::findOrFail($request->get('anuncio_id'));
-        $datosAnuncio = request()->except(['_token','anuncio_id']);
+        $datosAnuncio = request()->except(['_token', 'anuncio_id']);
         $anuncio->update([
-            "categoria_id"=>$datosAnuncio['categoria_id'],
-            "paquete_id"=>$datosAnuncio['paquete_id'],
-            "titulo"=>$datosAnuncio['titulo'],
-            "descripcion"=>$datosAnuncio['descripcion'],
-            "ciudad"=>$datosAnuncio['ciudad'],
-            "direccion"=>$datosAnuncio['direccion'],
-            "edad"=>$datosAnuncio['edad'],
-            "telefono"=>$datosAnuncio['telefono'],
+            "categoria_id" => $datosAnuncio['categoria_id'],
+            "paquete_id" => $datosAnuncio['paquete_id'],
+            "titulo" => $datosAnuncio['titulo'],
+            "descripcion" => $datosAnuncio['descripcion'],
+            "ciudad" => $datosAnuncio['ciudad'],
+            "direccion" => $datosAnuncio['direccion'],
+            "edad" => $datosAnuncio['edad'],
+            "telefono" => $datosAnuncio['telefono'],
         ]);
         //relacionamos la nueva imagen que añadio
         $this->upload_image($request, $anuncio);
 
-        return back()->with('mensaje','Su anuncio se actualizo con exito!');
-      
+        return back()->with('mensaje', 'Su anuncio se actualizo con exito!');
     }
-    
-    public function editarAnuncio($id){
+
+    public function editarAnuncio($id)
+    {
         $anuncio = Anuncio::findOrFail($id);
         $categorias = Categoria::all();
         $paquetes = Paquete::all();
-        return view('pages.editarAnuncio', compact('anuncio','categorias','paquetes'));
+        return view('pages.editarAnuncio', compact('anuncio', 'categorias', 'paquetes'));
     }
 
- 
 
+
+    public function upload_file($request, $producto)
+    {
+        $urlimages = [];
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $nombre = time() . $image->getClientOriginalName();
+                $ruta = public_path() . '/imgs/anuncios/';
+                $image->move($ruta, $nombre);
+                $urlimages[]['url'] = '/imgs/anuncios/' . $nombre;
+            }
+        }
+        $producto->images()->createMany($urlimages);
+    }
+    /// PRODUCCION 
     // public function upload_file($request , $producto){
+
     //     $urlimages = [];
     //     if($request->hasFile('images')){
     //         $images = $request->file('images');
     //         foreach($images as $image){
-    //         $nombre = time().$image->getClientOriginalName();
-    //         $ruta = public_path().'/image';
-    //         $image->move($ruta,$nombre);
-    //         $urlimages[]['url']='/image/'.$nombre;
+    //         $originalName =$image-> getClientOriginalName();
+    //             if(Str::endsWith($originalName, 'mp4')){
+    //             $url = Cloudinary::uploadVideo($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
+    //         $urlimages[]['url']=$url;
+    //             }else{
+    //                  $url = Cloudinary::upload($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
+    //         $urlimages[]['url']=$url;
+    //             }
     //         }
+    //          $producto->images()->createMany($urlimages);
     //     }
-    //     $producto->images()->createMany($urlimages);
     // }
-/// PRODUCCION 
-public function upload_file($request , $producto){
-        
-    $urlimages = [];
-    if($request->hasFile('images')){
-        $images = $request->file('images');
-        foreach($images as $image){
-        $originalName =$image-> getClientOriginalName();
-            if(Str::endsWith($originalName, 'mp4')){
-            $url = Cloudinary::uploadVideo($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
-        $urlimages[]['url']=$url;
-            }else{
-                 $url = Cloudinary::upload($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
-        $urlimages[]['url']=$url;
-            }
-        }
-         $producto->images()->createMany($urlimages);
-    }
-}
 
-    public function retirarImagen($id){
+    public function retirarImagen($id)
+    {
+       $imagen =  Image::findOrFail($id);
+        $url = $imagen->url;
+        $str = substr($url, 1);//quitamos un caracter a la cadena de ruta para eliminar la img
+        File::delete($str);//eliminamos la img fisica de nuestro servidor
+       
         Image::destroy($id);
-        return back()->with('mensaje','Imagen eliminada de su galería');
+        return back()->with('mensaje', 'Imagen eliminada de su galería');
     }
 
     public function guardarAnuncio(Request $request)
     {
         $creditos_perfil = auth()->user()->perfil->creditos;
-        if($creditos_perfil-1 <0 ){
-            return back()->with('mensaje','Ups! al parecer se han agotado tus créditos');
+        if ($creditos_perfil - 1 < 0) {
+            return back()->with('mensaje', 'Ups! al parecer no cuentas con créditos disponibles para publicar tu anuncio.');
         }
         $datosAnuncio = request()->except('_token');
-        $campos=[
-            'titulo'=>'required|string|max:100',
-            'descripcion'=>'required|string|max:250',
-            'categoria_id'=>'required',
-            'ciudad'=>'required|String|max:100',
-            'direccion'=>'required|String|max:40',
-            // 'foto'=>'required|max:10000|mimes:jpeg,png,jpg',
-            'edad'=>'required|numeric|min:18',
-            'telefono'=>'required|string|max:10',
-            'paquete_id'=>'required'
+        $campos = [
+            'titulo' => 'required|string|max:100',
+            'descripcion' => 'required|string|max:250',
+            'categoria_id' => 'required',
+            'ciudad' => 'required|String|max:100',
+            'direccion' => 'required|String|max:40',
+            'edad' => 'required|numeric|min:18',
+            'telefono' => 'required|string|max:10',
+            'paquete_id' => 'required'
         ];
-        $mensaje= [
-            'required'=>'El :attribute es requerido',
-            // 'foto.required'=>'La foto es requerida',
-            'categoria_id.required'=>'La categoría es requerida',
-            'ciudad.required'=>'La ciudad es requerida',
-            'edad.required'=>'La edad es requerida',
-            'direccion.required'=>'La dirección es requerida',
-            'descripcion.required'=>'La descripción es requerida',
+        $mensaje = [
+            'required' => 'El :attribute es requerido',
+            'categoria_id.required' => 'La categoría es requerida',
+            'ciudad.required' => 'La ciudad es requerida',
+            'edad.required' => 'La edad es requerida',
+            'direccion.required' => 'La dirección es requerida',
+            'descripcion.required' => 'La descripción es requerida',
         ];
         $this->validate($request, $campos, $mensaje);
-       $anuncio =  Anuncio::create([
+        $anuncio =  Anuncio::create([
             "ciudad" => $request->get('ciudad'),
             "telefono" => $request->get('telefono'),
             "edad" => $request->get('edad'),
             "direccion" => $request->get('direccion'),
-            // "foto" =>  $datosAnuncio['foto'],
             "descripcion" => $request->get('descripcion'),
             "titulo" => $request->get('titulo'),
             "paquete_id" => $request->get('paquete_id'),
             "categoria_id" => $request->get('categoria_id'),
             "user_id" => Auth::id(),
         ]);
-        $this->upload_file($request,$anuncio);
+        $this->upload_file($request, $anuncio);
 
-        $creditos_perfil = $creditos_perfil-1;
-        auth()->user()->perfil->update(['creditos'=>$creditos_perfil]);
+        $creditos_perfil = $creditos_perfil - 1;
+        auth()->user()->perfil->update(['creditos' => $creditos_perfil]);
         return back()->with('mensaje', 'Anuncio publicado!');
     }
 
 
-    public function eliminarAnuncio($id){
+    public function eliminarAnuncio($id)
+    {
         Anuncio::destroy($id);
-        return back()->with('mensaje','Anuncio eliminado');
+        return back()->with('mensaje', 'Anuncio eliminado');
     }
 
-   
+
 
     public function miCuenta()
     {
@@ -255,45 +278,57 @@ public function upload_file($request , $producto){
         $user = User::findOrFail($user_id);
         $perfil = Perfil::where('user_id', $user_id)->first();
         // dd($perfil);
-        return view('pages.miCuenta', compact('user', 'perfil'));
+        return view('pages.miCuenta', ["user" => $user, "perfil" => $perfil]);
     }
 
     public function editarMiPerfil(Request $request)
     {
-        $campos=[
-           
-            'dni'=>'required|string|min:10',
-            'nombre'=>'required|min:3',
-            'telefono'=>'required',
-            'foto'=>'mimes:jpeg,jpg,png,gif|required|max:10000'
+        $campos = [
+            'dni' => 'required|string|min:10',
+            'nombre' => 'required|min:3',
+            'telefono' => 'required',
+            'foto' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
         ];
-        $advertencia= [
-            'required'=>'El :attribute es requerido',
-            'nombre.min'=>'El nombre debe tener un mínimo de 3 caracteres',
+        $advertencia = [
+            'required' => 'El :attribute es requerido',
+            'nombre.min' => 'El nombre debe tener un mínimo de 3 caracteres',
             // 'telefono.min'=>'El telefono debe tener 10 dígitos',
-            'min'=>'El :attribute no debe tener menos de :min caracteres',
-            'telefono.required'=>'El teléfono es requerido',
-            'dni.required'=>'El dni es requerido',
-            'foto.required'=>'La foto es requerida',
-         
+            'min' => 'El :attribute no debe tener menos de :min caracteres',
+            'telefono.required' => 'El teléfono es requerido',
+            'dni.required' => 'El dni es requerido',
+            'foto.required' => 'La foto es requerida',
         ];
-        $this->validate($request, $campos, $advertencia);
 
+        $this->validate($request, $campos, $advertencia);
         $perfil = Perfil::where('user_id', Auth::id())->first();
-        $datosCuenta = request()->except('_token');
-        if ($request->hasFile('foto')) {
-            $datosCuenta['foto'] = $request->file('foto')->store('uploads', 'public');
-        }
-        // dd($datosCuenta);
-        // dd($datosCuenta);
+
         $perfil->update([
             "dni" => $request['dni'],
             "telefono" => $request['telefono'],
             "nombre" => $request['nombre'],
-            "foto" => $datosCuenta['foto'],
         ]);
+        if ($request->hasFile('foto'))
+            $this->upload_perfil($request, $perfil);
 
         return back()->with('mensaje', 'Perfil actualizado!');
+    }
+    public function upload_perfil($request, $perfil)
+    {
+        if (!(is_null($perfil->image))) {
+            $idimg = $perfil->image->id;
+            $url = $perfil->image->url;
+            $str = substr($url, 1);//quitamos un caracter a la cadena de ruta para eliminar la img
+            File::delete($str);//eliminamos la img fisica de nuestro servidor
+            Image::destroy($idimg);
+        }
+        $file = request()->file('foto');
+        $name = time() . '_' . $file->getClientOriginalName();
+        $ruta = public_path() . '/imgs/perfil';
+        $file->move($ruta, $name);
+        $urlimage = '/imgs/perfil/' . $name;
+        $perfil->image()->create([
+            'url' => $urlimage
+        ]);
     }
 
     public function misAnuncios()
@@ -305,54 +340,67 @@ public function upload_file($request , $producto){
         return view('pages.misAnuncios', compact('anuncios', 'user'));
     }
 
-    public function comprarCredito(Request $request){
-        if($request['idcredito']=="0"){
+    public function comprarCredito(Request $request)
+    {
+        if ($request['idcredito'] == "0") {
             $user_id = Auth::id();
             $user = User::findOrFail($user_id);
             // dd($user);
             $user = DB::table('users')
-            ->where('id', $user_id)
-            ->update(['credito_gratis' => '1']);
+                ->where('id', $user_id)
+                ->update(['credito_gratis' => '1']);
             $cantidad_creditos = 10;
             $user = auth()->user();
             $creditos_actuales = auth()->user()->perfil->creditos;
             $user->perfil->update([
-                "creditos"=>$creditos_actuales+$cantidad_creditos,
+                "creditos" => $creditos_actuales + $cantidad_creditos,
             ]);
-            return back()->with('mensaje','Tus '.$cantidad_creditos.' creditos han sido recargados');
-        }else{
-            
-            $cantidad_creditos=$request['creditos'];
+            return redirect()->route('home.inicio')->with('mensaje', 'Tus ' . $cantidad_creditos . ' creditos han sido recargados');
+        } else {
+
+            $cantidad_creditos = $request['creditos'];
             $user = auth()->user();
             $creditos_actuales = auth()->user()->perfil->creditos;
             $user->perfil->update([
-                "creditos"=>$creditos_actuales+$cantidad_creditos,
+                "creditos" => $creditos_actuales + $cantidad_creditos,
             ]);
             Orden::create([
-                "subtotal"=>$request["creditos"]*0.2,
-                "telefono"=>$request["telefono"],
-                "dni"=>$request["dni"],
-                "nombre-completo"=>$request["nombre-completo"],
-                "fecha_orden"=>Carbon::now(),
-                "user_id"=>Auth::id(),
-                ]);
-    //         $paymentPlatform = $this->paymentPlatformResolver->resolveService("paypal");
-    //          session()->put('paymentPlatformId',"paypal");
-    // return $paymentPlatform->handlePayment($request);
-    
-    return redirect()->route('cliente.creditos')->with('mensaje','Tus '.$cantidad_creditos.' creditos han sido recargados');
+                "subtotal" => $request["creditos"] * 0.2,
+                "telefono" => $request["telefono"],
+                "dni" => $request["dni"],
+                "nombre-completo" => $request["nombre-completo"],
+                "fecha_orden" => Carbon::now(),
+                "user_id" => Auth::id(),
+            ]);
+            //         $paymentPlatform = $this->paymentPlatformResolver->resolveService("paypal");
+            //          session()->put('paymentPlatformId',"paypal");
+            // return $paymentPlatform->handlePayment($request);
+
+            return redirect()->route('cliente.creditos')->with('mensaje', 'Tus ' . $cantidad_creditos . ' creditos han sido recargados');
         }
     }
 
-    public function getPasarela(Request $request){
+    public function getPasarela(Request $request)
+    {
+        // dd($request);
         $idcredito = $request["idcredito"];
-        if($idcredito == 0){
-            $creditos = 10;
-        }
-        if(!$idcredito){
-            $creditos = $request->get('creditos');
-        }
-        return view('pages.pasarela', compact('creditos','idcredito'));
+
+        $creditosx = $request["creditos"];
+
+        return view('pages.pasarela', compact('creditosx', 'idcredito'));
     }
 
+    public function reportar(Request $request)
+    {
+        $request = $request->except('_token');
+        $motivo = $request["minimal-radio"];
+        $anuncio = Anuncio::find($request["anuncio_id"]);
+        $user = $anuncio->user;
+        Reporte::create([
+            "motivo" => $motivo,
+            "comentario" => $request["comentario"],
+            "user_id" => $user->id
+        ]);
+        return redirect()->route('home.inicio')->with('mensaje', 'Su reporte ha sido realizado');
+    }
 }

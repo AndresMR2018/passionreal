@@ -48,7 +48,7 @@ class OrdenController extends Controller
      */
     public function show($id)
     {
-        $cliente = User::findOrFail($id)->first();
+        $cliente = User::findOrFail($id);
         return view('admin.ordenes.show',compact('cliente'));
     }
 
