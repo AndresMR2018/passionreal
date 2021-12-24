@@ -55,6 +55,7 @@
                                 <li class="active"><a href="{{route('cliente.misAnuncios')}}">Mis anuncios <span
                                             class="badge">{{count($anuncios)}}</span></a>
                                 </li>
+                                <li><a href="{{route('cliente.misOrdenes')}}">Mis ordenes</a></li>
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

@@ -43,17 +43,18 @@ class ReactivacionAnuncios extends Command
     {
         // dd($anuncios);
         
-       
-
-        $anuncios=Anuncio::orderBy('updated_at','desc')->paginate(5);
+       $Hora = Carbon::now();
+        if($Hora->toTimeString()>'23:59:59' && $Hora->toTimeString()<'09:00:00'){
+        $anuncios=Anuncio::orderBy('updated_at','desc');
         foreach($anuncios as $anuncio){
             $now = Carbon::now()->format('Y-m-d H:i:s.0');
-            if($now >= $anuncio->updated_at->addMinutes(2)->format('Y-m-d H:i:s.0')){
+            $user = User::findOrFail($anuncio->user_id)->first();
+            if($now >= $anuncio->updated_at->addMinutes(2)->format('Y-m-d H:i:s.0') && $user->perfil->creditos - 1 !=-1){
                 sleep(1);
-                $texto = "[".date("Y-m-d H:i:s")."]: Se hizo una reactivacion";
-                Storage::append("archivo.txt",$texto);
+                // $texto = "[".date("Y-m-d H:i:s")."]: Se hizo una reactivacion";
+                // Storage::append("archivo.txt",$texto);
                 $anuncio->update([
-                    "updated_at" => $this->$anuncio->updated_at->addMinutes(10)
+                    "updated_at" => $anuncio->touch()
                 ]);
                 $user = User::findOrFail($anuncio->user_id)->first();
                 $creditosPerfil = $user->perfil->creditos;
@@ -63,6 +64,6 @@ class ReactivacionAnuncios extends Command
                 ]);
             }
         }
-        // view()->share(['anuncios'=>$anuncios]);
+    }//fin if horas
     }
 }

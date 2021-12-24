@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Perfil;
 use App\Models\Solicitud;
+use App\Models\Orden;
 
 class User extends Authenticatable
 {
@@ -58,5 +59,9 @@ class User extends Authenticatable
 
     public function reportes(){
         return $this->hasMany(Reporte::class);
+    }
+
+    public function ordenes(){
+        return $this->hasMany(Orden::class);
     }
 }

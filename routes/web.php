@@ -50,6 +50,7 @@ Route::get('/mi-cuenta', [ClienteController::class, 'miCuenta'])->middleware('cl
 Route::get('/publicar-anuncio', [ClienteController::class, 'crearAnuncio'])->middleware('cliente')->name('cliente.crearAnuncio');
 Route::post('/publicar-anuncio', [ClienteController::class, 'guardarAnuncio'])->middleware('cliente')->name('cliente.guardarAnuncio');
 Route::get('/mis-anuncios', [ClienteController::class, 'misAnuncios'])->middleware('cliente')->name('cliente.misAnuncios');
+Route::get('/mis-ordenes',[ClienteController::class,'misOrdenes'])->middleware('cliente')->name('cliente.misOrdenes');
 Route::post('/editar-perfil',[ClienteController::class,'editarMiPerfil'])->middleware('cliente')->name('cliente.editarMiPerfil');
 Route::get('/editar-anuncio/{id}',[ClienteController::class,'editarAnuncio'])->middleware('cliente')->name('cliente.editarAnuncio');
 Route::post('/editar-anuncio',[ClienteController::class,'postEditarAnuncio'])->middleware('cliente')->name('cliente.postEditarAnuncio');
@@ -62,6 +63,7 @@ Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
 Route::get('/datos-cliente/{id}',[OrdenController::class, 'show'])->middleware('cliente');
 Route::post('/pasarela',[ClienteController::class,'getPasarela'])->middleware('cliente')->name('cliente.pasarela');
 Route::post('/reportar',[ClienteController::class,'reportar'])->middleware('cliente')->name('cliente.reportar');
+Route::get('/pdf-orden/{id}',[AdminController::class,'pdfOrden'])->name('admin.pdfOrden');
 // Route::get('/contactanos',function(){
 //       $correo = new MensajeRecibido; 
 //       Mail::to('gamr130898@gmail.com')->send($correo);
@@ -103,5 +105,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');
     Route::get('/reportar/{id}',[AdminController::class,'banearCuenta'])->name('reportar');
     Route::get('/usuario-reportado/{id}',[AdminController::class,'verUsuarioReportado'])->name('admin.usuarioReportado');
-    Route::get('/pdf-orden/{id}',[AdminController::class,'pdfOrden'])->name('admin.pdfOrden');
+    
 });

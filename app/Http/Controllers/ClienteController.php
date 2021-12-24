@@ -228,6 +228,7 @@ $anuncio->images()->create([
         
 
         $anuncio = new Anuncio;
+        $anuncio->titulo = e($request->titulo);
         $anuncio->ciudad = e($request->ciudad);
         $anuncio->telefono = e($request->telefono);
         $anuncio->edad = e($request->edad);
@@ -334,6 +335,15 @@ $anuncio->images()->create([
         return view('pages.misAnuncios', compact('anuncios', 'user'));
     }
 
+    public function misOrdenes()
+    {
+        $user_id = Auth::id();
+        $user = User::findOrFail($user_id);
+        $ordenes = Orden::where('user_id', $user_id)->paginate(3);
+
+        return view('pages.misOrdenes', compact('ordenes', 'user'));
+    }
+
     public function comprarCredito(Request $request)
     {
         if ($request['idcredito'] == "0") {
@@ -358,6 +368,25 @@ $anuncio->images()->create([
             $user->perfil->update([
                 "creditos" => $creditos_actuales + $cantidad_creditos,
             ]);
+          $this->validate($request,
+            [
+                'telefono'=>'required|string|min:10|max:10',
+                'dni'=>'required|string|min:10|max:10',
+                'nombre-completo'=>'required|string|max:60',
+            ],
+            ['telefono.required'=>'El teléfono es requerido',
+             'telefono.min'=>'El teléfono no debe tener menos de 10 digitos',
+             'telefono.max'=>'El teléfono no debe tener mas de 10 digitos',
+             'dni.required'=>'El DNI es requerido',
+             'dni.min'=>'El dni no debe tener menos de 10 digitos',
+             'dni.max'=>'El dni no debe tener mas de 10 digitos',
+             'nombre-completo.required'=>'El nombre completo es requerido',
+             'nombre-completo.max'=>'El nombre completo es muy largo'
+        ]);
+        
+            // $orden = new Orden();
+            // $orden->subtotal = e($request->creditos*0.2);
+            // $orden->telefono = e($request->telefono);
             Orden::create([
                 "subtotal" => $request["creditos"] * 0.2,
                 "telefono" => $request["telefono"],

@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         $categorias = Categoria::all();
         $paquetes = Paquete::all();
-        $anuncios=Anuncio::orderBy('updated_at','desc')->paginate(1);
+        $anuncios=Anuncio::orderBy('updated_at','desc')->paginate(5);
 
  
                 view()->share([

@@ -50,7 +50,7 @@
 
                             <div class="comment-info">
                                 <h3 style="text-align:center; color: black; font-weight:700">Carrito</h4>
-                                    <img class="pull-left hidden-xs img-circle" src="images/icons/coin-money-5.png"
+                                    <img class="pull-left hidden-xs img-circle" src="{{asset('/images/icons/coin-money-5.png')}}"
                                         alt="author">
                                     <div class="author-desc">
                                         <div class="author-title">

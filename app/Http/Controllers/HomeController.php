@@ -16,6 +16,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MensajeResetPassword;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Nette\Utils\Random;
 use Spatie\Permission\Models\Role;
@@ -35,6 +36,10 @@ class HomeController extends Controller
         // Artisan::call('schedule:work');
         // $categorias = Categoria::all(); Ahora se cargan desde AppServiceProvider para toda la app
         //$anuncios = Anuncio::Paginate(3);
+       
+       
+
+        
         return view('pages.index');
     }
 

@@ -60,6 +60,7 @@
                             <ul>
                                 <li class="active"><a href="">Perfil</a></li>
                                 <li><a href="{{route('cliente.misAnuncios')}}">Mis anuncios</a></li>
+                                <li><a href="{{route('cliente.misOrdenes')}}">Mis ordenes</a></li>
                                 {{-- <li><a href="messages.html">Messages</a></li> --}}
                                 <li><a href="{{route('logout')}}">Cerrar sesión</a></li>
                             </ul>

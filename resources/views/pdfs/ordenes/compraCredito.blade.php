@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hi</title>
+    <title>Comprobante de compra</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <style>
         body{
-            background-color: #AEB6BF;
+            background-color: white;
         }
         .page-break {
             page-break-after: always;
@@ -21,12 +21,16 @@
             padding-top:20px;
         }
         .contenido{
-            padding-top:100px;
+            padding-top:150px;
+        }
+        .img{
+            max-width: 200px;
         }
         </style>
 
         <div class="container">
-            <div class="titulo"><h4>Orden de compra</h4></div>
+            <img class="img" src="{{public_path('/images/logo/logoPassionReal.jpeg')}}">
+            <div class="titulo"><a>ORDEN DE COMPRA</a></div>
             <div class="contenido">
               
                 <table class="table table-light">
@@ -34,12 +38,8 @@
                         <tr>
                             <th># Orden</th>
                             <th>Fecha</th>
-                            <th>Teléfono</th>
                             <th>DNI</th>
                             <th>Subtotal</th>
-                            
-                            <th>ID de usuario</th>
-                        
                         </tr>
                     </thead>
         
@@ -47,10 +47,10 @@
                             <tr>
                                 <td>{{ $orden->id }}</td>
                                 <td>{{date('d-m-Y', strtotime($orden->fecha_orden)) }}</td>
-                                <td>{{$orden->telefono}}</td>
+                            
                                 <td>{{$orden->dni}}</td>
                                 <td>{{ $orden->subtotal }}</td>
-                                <td>{{ $orden->user_id }}</td>
+                              
                             </tr>
                     </tbody>
                 </table>

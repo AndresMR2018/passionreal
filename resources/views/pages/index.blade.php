@@ -87,8 +87,8 @@
                                                                 $anuncio->categoria->nombre }}</a></span>
                                                     </div>
                                                     <!-- Ad Title -->
-                                                    <h3><a href="{{ route('home.detalle',$anuncio->id)}}">{{
-                                                            $anuncio->titulo }}</a>
+                                                    <h3><a href="{{ route('home.detalle',$anuncio->id)}}">
+                                                    {{$anuncio->titulo}}</a>
                                                     </h3>
                                                     <!-- Info Icons -->
                                                     <ul class="additional-info pull-right">
