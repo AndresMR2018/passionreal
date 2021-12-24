@@ -40,6 +40,10 @@ Route::get('/categoria/{id}', [HomeController::class, 'findByCategoria'])->middl
 Route::get('/categorias',[HomeController::class, 'findAllCategorias'])->middleware('visitante')->name('home.findAllCategorias');
 Route::get('/buscar',[HomeController::class, 'filtrado'])->middleware('visitante')->name('home.filtrado');
 Route::get('/cuenta-baneada',[HomeController::class, 'cuentaBaneada'])->name('home.cuentaBaneada');
+Route::get('/recuperar/password',[HomeController::class,'getPrevPasswordReset'])->middleware('visitante')->name('home.getPrevPasswordReset');
+Route::post('/recuperar/password',[HomeController::class,'postPasswordReset'])->middleware('visitante')->name('home.postPasswordReset');
+Route::post('/prev-recuperar/password',[HomeController::class,'postPrevPasswordReset'])->middleware('visitante')->name('home.postPrevPasswordReset');
+
 //PERSONAS REGISTRADAS
 Route::get('/creditos', [ClienteController::class, 'creditos'])->middleware('cliente')->name('cliente.creditos');
 Route::get('/mi-cuenta', [ClienteController::class, 'miCuenta'])->middleware('cliente')->name('cliente.miCuenta');
@@ -99,4 +103,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');
     Route::get('/reportar/{id}',[AdminController::class,'banearCuenta'])->name('reportar');
     Route::get('/usuario-reportado/{id}',[AdminController::class,'verUsuarioReportado'])->name('admin.usuarioReportado');
+    Route::get('/pdf-orden/{id}',[AdminController::class,'pdfOrden'])->name('admin.pdfOrden');
 });

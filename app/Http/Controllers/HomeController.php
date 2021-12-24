@@ -12,15 +12,15 @@ use App\Models\UsersPhoneNumber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
-
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\MensajeRecibido;
+use App\Mail\MensajeResetPassword;
 use Illuminate\Support\Facades\Artisan;
+use Nette\Utils\Random;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Str;
 
 
 
@@ -37,6 +37,33 @@ class HomeController extends Controller
         //$anuncios = Anuncio::Paginate(3);
         return view('pages.index');
     }
+
+    
+    public function getPrevPasswordReset(){
+        return view('pages.prevRecuperarContrasenia');
+    }
+
+    public function postPrevPasswordReset(Request $request){
+        $user = DB::table('users')->where('email',$request['email'])->first();
+        // Mail::to($request['email'])->send(new MensajeResetPassword());
+        $token = Str::random(40);
+        return view('pages.recuperarContrasenia',compact('token'));
+    }
+
+    public function postPasswordReset(Request $request){
+        // dd($request);
+        if($request['password'] != $request['password_confirmation'])
+            return back()->with('mensaje','Su contraseña no ha sido confirmada correctamente.');
+
+        $user = DB::table('users')->where('email',$request['email'])->first();
+       $user->update([
+           "password"=>$request['password']
+       ]);
+       return redirect()->route('login')->with('mensaje','Contraseña actualizada');
+    }
+
+
+  
 
  public function filtrado(Request $request){
         $titulo = $request->get('titulo');

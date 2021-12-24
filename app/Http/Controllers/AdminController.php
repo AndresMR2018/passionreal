@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orden;
 use App\Models\Reporte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -17,6 +19,16 @@ class AdminController extends Controller
 
     public function goDashboard(){
         return view('admin.dashboard');
+    }
+
+    public function pdfOrden($id){
+        $orden = Orden::find($id);          
+        $pdf = PDF::loadView('pdfs.ordenes.compraCredito', ["orden"=>$orden]);
+        return $pdf->stream('compra_creditos.pdf');
+        // $orden = Orden::findOrFail($id);
+        // view()->share('admin.orden.index',$orden);
+        // $pdf = PDF::loadView('pdf_view', $orden);
+
     }
   
     public function reportes(){

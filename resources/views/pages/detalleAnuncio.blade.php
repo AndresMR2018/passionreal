@@ -168,7 +168,7 @@
                             <div class="recent-ads-container">
                                 <div class="recent-ads-list-image">
                                     <a href="#" class="recent-ads-list-image-inner">
-                                        <img src="{{URL::asset('images/car.png')}}" alt="">
+                                        <img src="{{$anuncio->images->pluck('url')[0]}}" alt="">
                                     </a><!-- /.recent-ads-list-image-inner -->
                                 </div>
                                 <!-- /.recent-ads-list-image -->
@@ -177,8 +177,9 @@
                                         <a href="#">Titulo anuncio</a>
                                     </h3>
                                     <ul class="recent-ads-list-location">
-                                        <li><a href="#">Direccion del anuncio</a>,</li>
-                                        <li><a href="#">Ubicacion</a></li>
+                                        <li><a href="#"></a>Ciudad: {{$anuncio->ciudad}}</li>
+                                        <br/>
+                                        <li><a href="#"></a>Dirección: {{$anuncio->direccion}}</li>
                                     </ul>
                                     <div class="recent-ads-list-price">
 
@@ -191,9 +192,7 @@
                         </div>
                     </div>
                     <h3>Descripcion</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book.</p>
+                    <p>{{$anuncio->descripcion}}.</p>
                     <h3>Enlace</h3>
                     <p><a href="{{request()->fullUrl()}}">{{request()->fullUrl()}}</a></p>
                 </div>

@@ -178,6 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         
 
     ],
@@ -236,7 +237,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
         'Nexmo' => Nexmo\Laravel\Facades\Nexmo::class,
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

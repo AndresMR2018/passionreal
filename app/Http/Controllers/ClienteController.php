@@ -51,46 +51,6 @@ class ClienteController extends Controller
     }
 
 
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(StoreClienteRequest $request)
-    {
-        //
-    }
-
-
-    public function show(Cliente $cliente)
-    {
-        //
-    }
-
-
-    public function edit(Cliente $cliente)
-    {
-        //
-    }
-
-
-    public function update(UpdateClienteRequest $request, Cliente $cliente)
-    {
-        //
-    }
-
-
-    public function destroy(Cliente $cliente)
-    {
-        //
-    }
-
     public function creditos()
     {
         $creditos = Credito::Paginate(3);
@@ -178,7 +138,18 @@ $anuncio->images()->create([
     {
         $urlimages = [];
         if ($request->hasFile('images')) {
+          
             $images = $request->file('images');
+            $this->validate($request, [
+                'images'   => 'required',
+                'images.*' => 'image|mimes:png,jpg,jpeg|dimensions:min_width=800,min_height=200,max_width:1800,max_height:600|max:5000',
+            ],[
+                'images.*.required'=>'La imagen es requerida',
+                'images.*.image'=>'El archivo tienen que ser una imagen',
+                'images.*.mimes'=>'La imagen debe ser tipo png, jpg o jpeg',
+                'images.*.dimensions'=>'La imagen no cumple con las dimensiones 800x200 mínimo; 1800x600 máximo',
+                'images.*.max'=>'La imagen supera el peso permitido (5Megabytes)'
+            ]);
             foreach ($images as $image) {
                 $nombre = time() . $image->getClientOriginalName();
                 $ruta = public_path() . '/imgs/anuncios/';
@@ -186,7 +157,8 @@ $anuncio->images()->create([
                 $urlimages[]['url'] = '/imgs/anuncios/' . $nombre;
             }
         }
-        $producto->images()->createMany($urlimages);
+       
+        return $urlimages;
     }
     /// PRODUCCION 
     // public function upload_file($request , $producto){
@@ -227,36 +199,58 @@ $anuncio->images()->create([
         }
         $datosAnuncio = request()->except('_token');
         $campos = [
-            'titulo' => 'required|string|max:100',
-            'descripcion' => 'required|string|max:250',
+            'titulo' => 'required|string|max:150',
+            'descripcion' => 'required|string|max:400',
             'categoria_id' => 'required',
             'ciudad' => 'required|String|max:100',
-            'direccion' => 'required|String|max:40',
+            'direccion' => 'required|String|max:100',
             'edad' => 'required|numeric|min:18',
-            'telefono' => 'required|string|max:10',
+            'telefono' => 'required|string|max:10|min:10',
             'paquete_id' => 'required'
         ];
         $mensaje = [
             'required' => 'El :attribute es requerido',
+            'titulo.max'=>'Título demasiado largo',
             'categoria_id.required' => 'La categoría es requerida',
             'ciudad.required' => 'La ciudad es requerida',
+            'ciudad.max'=>'El nombre de la ciudad es demasiado largo',
             'edad.required' => 'La edad es requerida',
+            'edad.min'=> 'La edad no puede ser menor a 18',
+            'telefono.min'=>'El teléfono no debe tener menos de 10 dígitos',
+            'telefono.max'=>'El teléfono no debe tener mas de 10 dígitos',
             'direccion.required' => 'La dirección es requerida',
+            'direccion.max'=>'La direccion no debe tener mas de 100 caracteres',
             'descripcion.required' => 'La descripción es requerida',
+            'descripcion.max'=>'La descripción no debe tener mas de 400 caracteres'
         ];
         $this->validate($request, $campos, $mensaje);
-        $anuncio =  Anuncio::create([
-            "ciudad" => $request->get('ciudad'),
-            "telefono" => $request->get('telefono'),
-            "edad" => $request->get('edad'),
-            "direccion" => $request->get('direccion'),
-            "descripcion" => $request->get('descripcion'),
-            "titulo" => $request->get('titulo'),
-            "paquete_id" => $request->get('paquete_id'),
-            "categoria_id" => $request->get('categoria_id'),
-            "user_id" => Auth::id(),
-        ]);
-        $this->upload_file($request, $anuncio);
+
+        
+
+        $anuncio = new Anuncio;
+        $anuncio->ciudad = e($request->ciudad);
+        $anuncio->telefono = e($request->telefono);
+        $anuncio->edad = e($request->edad);
+        $anuncio->direccion = e($request->direccion);
+        $anuncio->descripcion = e($request->descripcion);
+        $anuncio->paquete_id = e($request->paquete_id);
+        $anuncio->categoria_id = e($request->categoria_id);
+        $anuncio->user_id = Auth::id();
+       $url =  $this->upload_file($request, $anuncio);
+        $anuncio->save();
+        $anuncio->images()->createMany($url);
+        // $anuncio =  Anuncio::create([
+        //     "ciudad" => $request->get('ciudad'),
+        //     "telefono" => $request->get('telefono'),
+        //     "edad" => $request->get('edad'),
+        //     "direccion" => $request->get('direccion'),
+        //     "descripcion" => $request->get('descripcion'),
+        //     "titulo" => $request->get('titulo'),
+        //     "paquete_id" => $request->get('paquete_id'),
+        //     "categoria_id" => $request->get('categoria_id'),
+        //     "user_id" => Auth::id(),
+        // ]);
+       
 
         $creditos_perfil = $creditos_perfil - 1;
         auth()->user()->perfil->update(['creditos' => $creditos_perfil]);

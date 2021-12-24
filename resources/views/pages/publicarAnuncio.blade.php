@@ -149,10 +149,10 @@
                                     <!-- Image Upload  -->
                                     <div class="row">
                                         <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                            <label class="control-label">Fotos para tu anuncio <small>Por favor agrega
-                                                    imagenes para tu anuncio.</small></label>
-                                            <input class="dropify" type="file" name="images[]" id="images" multiple
+                                            <label class="control-label">Fotos para tu anuncio <small>Agregar imagenes. Dimensión mínima (800x200) |  máxima (1800x600)</small></label>
+                                            <input class="dropify" type="file" accept="image/*" name="images[]" id="images" multiple
                                                 required>
+                                             
                                         </div>
 
                                     </div>
@@ -160,7 +160,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                             <label class="control-label">Tu edad</label>
-                                            <input class="form-control" name="edad" placeholder="" type="text">
+                                            <input class="form-control" name="edad" placeholder="" type="number">
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                             <label class="control-label">Tu teléfono<small></small></label>

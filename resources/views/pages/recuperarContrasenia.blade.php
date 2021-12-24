@@ -2,6 +2,7 @@
 
 @section('content')
  <!-- Main Container -->
+ 
  <div class="container">
     <!-- Row -->
     <div class="row">
@@ -12,7 +13,7 @@
           <div class="form-grid">
             <div class="heading-panel">
                 <h3 class="main-title text-left">
-                  Inicia sesión en tu cuenta  
+                  Recuperar contraseña
                 </h3>
              </div>
              @if (Session::has('mensaje'))
@@ -23,8 +24,11 @@
                  </button>
              </div>
          @endif
-             <form method="POST" action="{{ route('login') }}">
+            
+             
+             <form method="POST" action="{{ route('home.postPasswordReset') }}">
                 @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group">
                    <label>Correo electrónico</label>
                    <input id="email" placeholder="Ingresa tu correo electrónico" class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -35,7 +39,7 @@
                @enderror
                 </div>
                 <div class="form-group">
-                   <label>Contraseña</label>
+                   <label>Nueva Contraseña</label>
                    <input id="password" placeholder="Ingresa tu contraseña" class="form-control @error('password') is-invalid @enderror" type="password" name="password" required autocomplete="current-password">
                    @error('password')
                    <span class="invalid-feedback" role="alert">
@@ -43,31 +47,20 @@
                    </span>
                @enderror
                 </div>
+
                 <div class="form-group">
-                    <div class="row">
-                       <div class="col-xs-12 col-sm-7">
-                          <div class="skin-minimal">
-                             <ul class="list">
-                                <li>
-                                   <input  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                   <label for="minimal-checkbox-1">Recordar contraseña</label>
-                                </li>
-                             </ul>
-                          </div>
-                       </div>
-                    </div>
+                    <label>Confirmar nueva contraseña</label>
+                    <input id="password-confirm" placeholder="Confirma tu contraseña" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                     @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                  </div>
+               
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Iniciar sesión</button>
                 <p></p>
-                <div class="row">
-                <div class="col-xs-12 center-block text-center">
-                   
-                    <p class="help-block"> 
-                        <a  href="{{route('home.getPrevPasswordReset') }}">¿Olvidaste tu contraseña?</a>
-                       
-                    </p>
-                </div>
-                 </div>
+              
              </form>
           </div>
           <!-- Form -->

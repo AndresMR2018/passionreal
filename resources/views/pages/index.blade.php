@@ -94,8 +94,7 @@
                                                     <ul class="additional-info pull-right">
                                                         <li>
                                                             <a data-toggle="tooltip" title="Enviar whatsapp"
-                                                                href="tel:{{$anuncio->telefono}}"
-                                                                class="fab fa-whatsapp"></a>
+                                                                    href="https://api.whatsapp.com/send?phone=+593{{$anuncio->telefono}}&text=Hola me encuentro interesado en tu anuncio {{$anuncio->titulo}}%20{{request()->fullUrl()}}" class="fab fa-whatsapp"></a>
                                                         </li>
                                                     </ul>
                                                     <!-- Ad Meta Info -->
