@@ -116,7 +116,7 @@
                         <p></p>
                         <div class="row">
                             <div class="col-xs-12 center-block text-center">
-                                <p class="help-block"><a data-target="#myModal" data-toggle="modal">¿Ya tienes una
+                                <p class="help-block"><a  href="{{ route('login') }}">¿Ya tienes una
                                         cuenta?</a>
                                 </p>
                             </div>

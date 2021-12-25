@@ -50,11 +50,18 @@
                              <ul class="list">
                                 <li>
                                    <input  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                   <label for="minimal-checkbox-1">Recordar contraseña</label>
+                                   <label for="minimal-checkbox-1">Guardar contraseña</label>
                                 </li>
                              </ul>
                           </div>
                        </div>
+                       <div class="col-xs-12 col-sm-5 text-right">
+                        <p class="help-block">
+                           @if (Route::has('password.request')) 
+                           <a  href="{{ route('password.request') }}">¿Olvidaste la contraseña?</a
+                           >@endif
+                        </p>
+                     </div>
                     </div>
                  </div>
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Iniciar sesión</button>
@@ -63,7 +70,7 @@
                 <div class="col-xs-12 center-block text-center">
                    
                     <p class="help-block"> 
-                        <a  href="{{route('home.getPrevPasswordReset') }}">¿Olvidaste tu contraseña?</a>
+                        <a  href="{{ route('register') }}">¿No tienes una cuenta?</a>
                        
                     </p>
                 </div>

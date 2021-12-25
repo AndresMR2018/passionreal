@@ -19,8 +19,10 @@
                         <h1>Iniciar sesión</h1>
                         @elseif(Request::path() == 'validar-cuenta')
                         <h1>Validar cuenta</h1>
-                        @else
+                        @elseif(Request::path() == 'register')
                         <h1>Registrarse</h1>
+                        @else
+                        <h1>Recuperar contraseña</h1>
                     @endif
                         {{-- @if(Request::url() === (env('APP_URL').':8000/login'))
                         <h1>Iniciar sesión</h1>
@@ -37,10 +39,14 @@
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    @if(Request::url() === (env('APP_URL').':8000/login'))
-                    <li><a class="active" href="{{route('login')}}">{{ __('Inicio de sesión') }}</a></li>
+                    @if(Request::path() == 'login'))
+                    <li><a class="active">{{ __('Inicio de sesión') }}</a></li>
+                    @elseif (Request::path() == 'register')
+                    <li><a class="active">{{ __('Registro') }}</a></li>
+                    @elseif (Request::path() == 'validar-cuenta')
+                    <li><a class="active">{{ __('Validación de cuenta') }}</a></li>
                     @else
-                    <li><a class="active" href="{{route('register')}}">{{ __('Registro') }}</a></li>
+                    <li><a class="active">{{ __('Recuperación de contraseña') }}</a></li>
                     @endif
 
                 </ul>

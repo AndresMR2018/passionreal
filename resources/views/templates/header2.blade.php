@@ -13,7 +13,7 @@
                         <ul class="listnone">
                             @guest
                                 @if (Route::has('login'))
-                                    <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i>Iniciar sesión</a>
+                                    <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i>Iniciar sesión</a>
                                     </li>
                                 @endif
                                 @if (Route::has('register'))
