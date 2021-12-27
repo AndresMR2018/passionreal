@@ -31,6 +31,7 @@ Route::get('/cuenta-baneada',[HomeController::class, 'cuentaBaneada'])->name('ho
 Route::get('/recuperar/password',[HomeController::class,'getPrevPasswordReset'])->name('home.getPrevPasswordReset');
 Route::post('/recuperar/password',[HomeController::class,'postPasswordReset'])->name('home.postPasswordReset');
 Route::post('/prev-recuperar/password',[HomeController::class,'postPrevPasswordReset'])->name('home.postPrevPasswordReset');
+
 });
 
 
@@ -62,7 +63,7 @@ Route::get('/estado-anuncio/{id}',[ClienteController::class,'estadoAnuncio'])->n
 // VISTAS DE ADMINISTRADOR
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
 {
-    Route::get('/', [AdminController::class, 'goDashboard'])->name('admin.dashboard');
+    Route::get('/',[AdminController::class,'administracion'])->name('admin.dashboard');
     Route::resource('categoria', CategoriaController::class);
     Route::resource('credito', CreditoController::class)->names('credito');
     Route::resource('paquete', PaqueteController::class);
@@ -73,5 +74,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');
     Route::get('/reportar/{id}',[AdminController::class,'banearCuenta'])->name('reportar');
     Route::get('/usuario-reportado/{id}',[AdminController::class,'verUsuarioReportado'])->name('admin.usuarioReportado');
-    
+   
 });

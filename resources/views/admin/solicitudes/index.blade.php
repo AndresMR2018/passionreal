@@ -1,7 +1,17 @@
-@extends('adminlte::page')
-{{-- <link rel="stylesheet" href="{!! asset('css/producto/productosInventario.css') !!}"> --}}
-@section('content')
-<div class="container">
+@extends('admin.spaceadmin')
+@section('contenido')
+<div class="page-header">
+    <h3 class="page-title">
+      Solicitudes
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Solicitudes</li>
+      </ol>
+    </nav>
+  </div>
+
 
 @if(Session::has('mensaje'))
 <div class="alert alert-success alert-dismissible" role="alert">
@@ -12,8 +22,15 @@
 </div>
 @endif
 
-<table class="table table-light">
-<thead class="thead-light">
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Solicitudes</h4>
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+
+<table id="order-listing" class="table">
+<thead>
 <tr>
 <th>#</th>
 <th>Usuario</th>
@@ -58,6 +75,11 @@
         @endforeach
     </tbody>
 </table>
-{{-- {!!$solicitudes->links() !!} --}}
 </div>
+</div>
+</div>
+</div>
+</div>
+{{-- {!!$solicitudes->links() !!} --}}
+
 @endsection

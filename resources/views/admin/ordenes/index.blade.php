@@ -1,6 +1,17 @@
-@extends('adminlte::page')
+@extends('admin.spaceadmin')
+@section('contenido')
+<div class="page-header">
+    <h3 class="page-title">
+      Ordenes
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ordenes</li>
+      </ol>
+    </nav>
+  </div>
 
-@section('content')
     <div class="container">
 
         @if (Session::has('mensaje'))
@@ -12,8 +23,15 @@
             </div>
         @endif
 
-        <table class="table table-light">
-            <thead class="thead-light">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Ordenes</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+
+        <table id="order-listing" class="table">
+            <thead >
                 <tr>
                     <th>#</th>
                     <th>Fecha de orden</th>
@@ -56,6 +74,11 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
         {!! $ordenes->links() !!}
     </div>
 @endsection

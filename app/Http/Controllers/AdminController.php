@@ -18,8 +18,12 @@ class AdminController extends Controller
     //     $this->middleware('auth');
     // }
 
-    public function goDashboard(){
-        return view('admin.dashboard');
+    // public function goDashboard(){
+    //     return view('admin.dashboard');
+    // }
+
+    public function administracion(){
+        return view('admin.spaceadmin');
     }
 
     public function pdfOrden($id){

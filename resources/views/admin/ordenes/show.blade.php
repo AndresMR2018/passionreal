@@ -1,6 +1,5 @@
-@extends('adminlte::page')
-
-@section('content')
+@extends('admin.spaceadmin')
+@section('contenido')
 <div class="contenedor">
 
 @if(Session::has('mensaje'))
@@ -18,8 +17,11 @@
       <div style="display:flex;
       justify-content: center;
       align-items: center;">
+      @if(!isset($cliente->perfil->image->url))
+      <img style="max-width:150px;" src="{{asset('images/user_default.png')}}" alt="foto">
+      @else
         <img style="max-width:300px;" src="{{$cliente->perfil->image->url}}" class="card-img-top" alt="...">
-       
+       @endif
       </div>
        <div class="card-body" style="text-align:center;">
           <h5 class="card-text">{{$cliente->name}}</h5>

@@ -1,6 +1,18 @@
-@extends('adminlte::page')
-{{-- <link rel="stylesheet" href="{!! asset('css/producto/productosInventario.css') !!}"> --}}
-@section('content')
+@extends('admin.spaceadmin')
+@section('contenido')
+
+<div class="page-header">
+    <h3 class="page-title">
+      Reportes
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+      </ol>
+    </nav>
+  </div>
+
 <div class="container">
 
 @if(Session::has('mensaje'))
@@ -14,9 +26,15 @@
 
 
 
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Reportes</h4>
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
 
-<table class="table table-light">
-<thead class="thead-light">
+<table id="order-listing" class="table">
+<thead >
 <tr>
 <th>Reporte #</th>
 <th>Motivo</th>
@@ -42,6 +60,12 @@
         @endforeach
     </tbody>
 </table>
-{!!$reportes->links() !!}
 </div>
+</div>
+</div>
+</div>
+</div>
+
+{!!$reportes->links() !!}
+</>
 @endsection

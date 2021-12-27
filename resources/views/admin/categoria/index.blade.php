@@ -1,6 +1,18 @@
-@extends('adminlte::page')
+@extends('admin.spaceadmin')
 {{-- <link rel="stylesheet" href="{!! asset('css/producto/productosInventario.css') !!}"> --}}
-@section('content')
+@section('contenido')
+<div class="page-header">
+    <h3 class="page-title">
+      Categorías
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Categorías</li>
+      </ol>
+    </nav>
+  </div>
+
 <div class="container">
 
 @if(Session::has('mensaje'))
@@ -33,9 +45,15 @@
 
 </div>
 
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Categorías</h4>
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
 
-<table class="table table-light">
-<thead class="thead-light">
+<table id="order-listing" class="table">
+<thead >
 <tr>
 <th>#</th>
 <th>Nombre de la categoría</th>
@@ -69,6 +87,12 @@
         @endforeach
     </tbody>
 </table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 </div>
 @endsection
