@@ -34,8 +34,14 @@
             <td>{{$s->codigo_generado}}</td>
             <td>{{$s->codigo_enviado}}</td>
             <td>
-                <img class="img-thumbnail img-fluid" width="100px" src="{{$s->foto}}" alt=" ">
-                </td>
+                @if(!isset($s->image->url))
+                <img  class="img-thumbnail img-fluid" width="100px" src="{{asset('images/default/solicitud.png')}}" alt="foto">
+                @else
+                <img   class="img-thumbnail img-fluid" width="100px" src="{{$s->image->url}}" alt="foto">
+                @endif
+              
+              
+            </td>
             
             <td>
               

@@ -82,7 +82,7 @@
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Titulo para el anuncio <small>Ingresar un título
                                                 para tu anuncio</small></label>
-                                        <input class="form-control" name="titulo"
+                                        <input class="form-control" name="titulo" value="{{old('titulo')}}"
                                             placeholder="Ponle un titulo llamativo a tu anuncio" type="text">
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                         <label class="control-label">Descripción para el anuncio <small>Ingresar una
                                                 descripción para tu anuncio </small></label>
                                         <textarea rows="4" class="form-control" name="descripcion"
-                                            placeholder="Utiliza este espacio para decir cómo eres, describir tu cuerpo, mencionar tus destrezas y expresar tus gustos..."></textarea>
+                                            placeholder="Utiliza este espacio para decir cómo eres, describir tu cuerpo, mencionar tus destrezas y expresar tus gustos...">{{ old('descripcion') }}</textarea>
                                     </div>
                                 </div>
                                 <!-- end row -->
@@ -104,7 +104,7 @@
                                         <select class="category form-control" name="categoria_id">
                                             <option label="Select Option"></option>
                                             @foreach ($categorias as $categoria)
-                                            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                                            <option {{ old('categoria_id') == $categoria->id ? 'selected' : '' }} value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -112,7 +112,7 @@
                                     <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                         <label class="control-label">Ciudad <small>Selecciona una ciudad para tu
                                                 anuncio</small></label>
-                                        <select class="category form-control" name="ciudad">
+                                        <select class="category form-control" name="ciudad" required>
                                             <option label="Select Option"></option>
                                             <option value="Quito">Quito</option>
                                             <option value="Esmeraldas">Esmeraldas</option>
@@ -134,14 +134,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                    {{-- <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                         <label class="control-label">Zona/distrito/barrio </label>
                                         <input class="form-control" name="zona" value="">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
 
                                         <label class="control-label">Dirección </label>
-                                        <input class="form-control" name="direccion" id="direccion" value="">
+                                        <input class="form-control" name="direccion" id="direccion" value="{{old('direccion')}}">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -150,7 +150,7 @@
                                     <div class="row">
                                         <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                             <label class="control-label">Fotos para tu anuncio <small>Agregar imagenes. Dimensión mínima (800x200) |  máxima (1800x600)</small></label>
-                                            <input class="dropify" type="file" accept="image/*" name="images[]" id="images" multiple
+                                            <input value="{{old('images[]')}}" class="dropify" type="file" accept="image/*" name="images[]" id="images" multiple
                                                 required>
                                              
                                         </div>
@@ -160,11 +160,11 @@
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                             <label class="control-label">Tu edad</label>
-                                            <input class="form-control" name="edad" placeholder="" type="number">
+                                            <input class="form-control" value="{{old('edad')}}" name="edad" placeholder="" type="number">
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                             <label class="control-label">Tu teléfono<small></small></label>
-                                            <input class="form-control" name="telefono" placeholder="" type="tel">
+                                            <input class="form-control" value="{{old('telefono')}}" name="telefono" placeholder="" type="tel">
                                         </div>
                                     </div>
                                     <!-- end row -->
@@ -176,7 +176,7 @@
                                             <select class="category form-control" name="paquete_id">
                                                 <option label="Select Option"></option>
                                                 @foreach ($paquetes as $paquete)
-                                                <option value="{{$paquete->id}}">Reactivación cada
+                                                <option  {{ old('paquete_id') == $paquete->id ? 'selected' : '' }} value="{{$paquete->id}}">Reactivación cada
                                                     {{$paquete->periodo_horas}} horas</option>
                                                 @endforeach
                                             </select>

@@ -12,7 +12,6 @@ class Image extends Model
 
         "url",
         "public_id"
-
     ];
 
     public function imageable(){

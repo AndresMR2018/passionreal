@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PaymentPlatformSeeder::class);
         $this->call(CurrencySeeder::class);
+        $this->call(CategoriaSeeder::class);
+        $this->call(PaqueteSeeder::class);
         $this->call(PermissionTableSeeder::class);
         $this->call(CreditosSeeder::class);
         // \App\Models\User::factory(10)->create();

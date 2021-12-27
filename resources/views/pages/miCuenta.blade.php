@@ -43,9 +43,7 @@
                             <div class="profile-detail">
                                 <h6>{{$user->name}}</h6>
                                 <ul class="contact-details">
-                                    <li>
-                                        <i class="fa fa-map-marker"></i> Ubicacion, agregar este campo en perfil
-                                    </li>
+                                   
                                     <li>
                                         <i class="fa fa-envelope"></i>{{$user->email}}
                                     </li>

@@ -65,12 +65,17 @@
                             <form method="POST" action="{{route('cliente.pasarela')}}" class="submit-form">
                                 <!-- Select Package  -->
                                 @csrf
+                               
                                 <div class="select-package">
+                                    @if(Auth::user()->credito_gratis=="0")
+                                    <h3 class="margin-bottom-20">Créditos gratis</h3>
+                                    @endif
                                     <div class="no-padding col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                        <h3 class="margin-bottom-20">Seleccionar crédito</h3>
+                                        
                                         {{-- @foreach ($creditos as $credito) --}}
+                                        @if(Auth::user()->credito_gratis=="0")
                                         <div class="pricing-list">
-                                            @if(Auth::user()->credito_gratis=="0")
+                                          
                                             <div class="row">
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                                     <h3>
@@ -96,19 +101,22 @@
 
                                                 <!-- end col -->
                                             </div>
-                                            @else
-                                            <h5>No hay cupos gratis disponibles</h5>
-                                            @endif
+                                           
+                                           
                                             <!-- end row -->
                                         </div>
+                                        @endif
                                         {{-- @endforeach --}}
-                                        <input type="text" id="idcredito" name="idcredito" style="display: none">
+                                        <input type="number" id="idcredito" value ="-1" name="idcredito" style="display: none">
                                     </div>
                                 </div>
+                             
+                                
                                 <div>
-                                    <label class="control-label">Créditos <small>Indique la cantidad de créditos a
+                                    
+                                    <label class="" style="font-size:24px;">Comprar créditos <small style="font-size:14px;">Indique la cantidad de créditos a
                                             adquirir</small></label>
-                                    <input type="number" class="creditos" min="1" max="100" name="creditos"
+                                    <input type="number" class="creditos" min="0" max="100" name="creditos"
                                         id="creditos">
                                 </div>
 
@@ -116,7 +124,7 @@
                                     style="display: flex; justify-content:flex-end; color:black; font-weight:700;">
                                     <p>Total:$<small id="total" style="color:black; font-weight:700;">0</small></p>
                                 </div>
-                                <button type="submit" class="btn btn-theme pull-right">Adquirir créditos</button>
+                                <button type="submit" disabled="true" id="btn_pagar" class="btn btn-theme pull-right btn_pagar">Adquirir créditos</button>
                             </form>
                         </div>
                         <!-- end post-ad-form-->
@@ -141,7 +149,17 @@ function actualizar(e){
     console.log(e.currentTarget.value);
     $subtotal = e.currentTarget.value * 0.20; //valor del euro
     $total = document.getElementById('total');
+    console.log($total);
     $total.textContent= $subtotal;
+    if($subtotal === 0){
+        $btnpagar = document.getElementById('btn_pagar');
+    $btnpagar.disabled=true;
+    }else
+    {
+        $btnpagar = document.getElementById('btn_pagar');
+    $btnpagar.disabled=false;
+    }
+   
 }
 
 document.addEventListener('DOMContentLoaded', e => {
@@ -165,8 +183,10 @@ function click(e){
     $text.textContent = "Seleccionado";
     var idcredito = document.getElementById('idcredito');
     idcredito.value = "0";
-    $creditos = document.getElementById('creditos');
-    $creditos.value = 10;
+    // $creditos = document.getElementById('creditos');
+    // $creditos.value = 10;
+    $creditos = document.getElementById('btn_pagar');
+    $creditos.disabled=false;
     console.log(idcredito.value);
     }else
     {
@@ -174,6 +194,10 @@ function click(e){
     $text.textContent = "Seleccionar";
     var idcredito = document.getElementById('idcredito');
     idcredito.value = "-1";
+    // $creditos = document.getElementById('creditos');
+    // $creditos.value = 0;
+    $creditos = document.getElementById('btn_pagar');
+    $creditos.disabled=true;
     console.log(idcredito.value);
     }
 

@@ -50,11 +50,20 @@
 
                             <div class="comment-info">
                                 <h3 style="text-align:center; color: black; font-weight:700">Carrito</h4>
-                                    <img class="pull-left hidden-xs img-circle" src="{{asset('/images/icons/coin-money-5.png')}}"
+                                    <img style="margin-top:-20px;" class="pull-left hidden-xs img-circle" src="{{asset('/images/icons/credito.png')}}"
                                         alt="author">
+                                        @if($idcredito == 0)
                                     <div class="author-desc">
                                         <div class="author-title">
-
+                                            <strong>10 Créditos gratis</strong>
+                                            
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if($creditosx>0)
+                                    <div class="author-desc">
+                                        <div class="author-title">
+                                            
                                             <strong>{{$creditosx}} Créditos</strong>
                                             <ul class="list-inline pull-right">
                                                 <li><a href="#">08-12-2021</a>
@@ -65,6 +74,7 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    @endif
                             </div>
                             <form method="POST" action="{{route('cliente.comprarCredito') }}">
                                 <!-- Title  -->
@@ -75,27 +85,27 @@
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Nombre completo <small>Ingresa tu nombre
                                                 completo</small></label>
-                                        <input name="nombre-completo" class="form-control" type="text">
+                                        <input name="nombre-completo" class="form-control" type="text" value="{{ old('nombre-completo') }}"  required>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-bottom:20px;">
                                     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-                                        <label class="control-label">Identificación<small>Ingresa tu número de
+                                        <label class="control-label">Identificación<small> Ingresa tu número de
                                                 identificación</small></label>
-                                        <input name="dni" class="form-control" type="text">
+                                        <input name="dni" class="form-control" type="text" value="{{ old('dni') }}" required>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-                                        <label class="control-label">Teléfono<small>Ingresa tu número de
+                                        <label class="control-label">Teléfono<small> Ingresa tu número de
                                                 contacto</small></label>
-                                        <input name="telefono" class="form-control" type="text">
+                                        <input name="telefono" class="form-control" value="{{ old('telefono') }}" type="text" required>
                                     </div>
                                 </div>
 
                                 <!-- Featured Ad  -->
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                        <label class="control-label">Selecciona la forma de pago</label>
-                                        <div class="skin-minimal">
+                                        {{-- <label class="control-label">Selecciona la forma de pago</label> --}}
+                                        {{-- <div class="skin-minimal">
                                             <ul class="list">
                                                 <li>
                                                     <input type="radio" id="bank" name="radio" value="1">
@@ -108,12 +118,15 @@
                                                 </li>
 
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
                                 <!-- end row -->
-                                <button type="submit" class="btn btn-theme pull-right">Pagar</button>
+                                <div style="display:flex; justify-content:center;">
+                                    <button type="submit" class="btn btn-theme pull-right">Pagar</button>
+                                </div>
+                               
                             </form>
                         </div>
                         <!-- end post-ad-form-->
@@ -128,8 +141,24 @@
                                 <div class="widget-heading">
                                     <h4 class="panel-title text-center"><a>Resumen </a></h4>
                                 </div>
+                                @if($idcredito==0)
+                                <div class="widget-heading">
+                                    <h4 class="panel-title"><a>créditos gratis: 10 </a></h4>
+                                </div>
+                                @endif
                                 <div class="widget-heading">
                                     <h4 class="panel-title"><a>N° créditos: {{ $creditosx }}</a></h4>
+                                </div>
+                                <div class="widget-heading">
+                                @php
+                                $creditosgratis=0;
+                                    if($idcredito==0){
+                                    $creditosgratis=10;
+                                    }
+                                @endphp
+
+                                    <h4 class="panel-title"><a>Total créditos: {{ $creditosx+$creditosgratis }}</a></h4>
+                              
                                 </div>
                                 <div class="widget-heading">
                                     <h4 class="panel-title"><a>Subtotal: ${{ $creditosx * 0.2 }} </a></h4>

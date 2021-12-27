@@ -16,13 +16,13 @@ class Anuncio extends Model
         'telefono',
         'direccion',
         'edad',
-        // 'foto',
         'categoria_id',
         'user_id',
         'paquete_id',
         'zona',
         'titulo',
-        'descripcion'
+        'descripcion',
+        'estado'
     ];
 
     public function categoria(){

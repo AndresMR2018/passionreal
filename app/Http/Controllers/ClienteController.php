@@ -70,7 +70,16 @@ class ClienteController extends Controller
 
 // LOCAL
 public function upload_image($request, $anuncio){
-      
+    $this->validate($request, [
+        'image'   => 'required',
+        'image' => 'image|mimes:png,jpg,jpeg|dimensions:min_width=800,min_height=200,max_width:1800,max_height:600|max:5000',
+    ],[
+        'image.required'=>'La imagen es requerida',
+        'image.image'=>'El archivo tienen que ser una imagen',
+        'image.mimes'=>'La imagen debe ser tipo png, jpg o jpeg',
+        'image.dimensions'=>'La imagen no cumple con las dimensiones 800x200 mínimo; 1800x600 máximo',
+        'image.max'=>'La imagen supera el peso permitido (5Megabytes)'
+    ]);
     $file = $request->file('image');
     $name = time().'_'.$file->getClientOriginalName();
     $ruta=public_path().'/imgs/anuncios/';
@@ -79,7 +88,6 @@ public function upload_image($request, $anuncio){
 $anuncio->images()->create([
     'url'=>$urlimage
 ]);
-
 }
 
     // EN PRODUCCION
@@ -90,14 +98,20 @@ $anuncio->images()->create([
     //         $file = $request->file('image');
     //         $extension = $request->file('image')->extension();
     //         if ($extension == "png" || $extension == "jpg" || $extension == "jpeg") {
-    //             $url = Cloudinary::upload($file->getRealPath(), ['folder' => 'testing'])->getSecurePath();
+    //             $elemento = Cloudinary::upload($file->getRealPath(), ['folder' => 'anuncios']);
+    //             $public_id = $elemento->getPublicId();
+    //             $url = $elemento->getSecurePath();
     //             $anuncio->images()->create([
-    //                 'url' => $url
+    //                 'url' => $url,
+    //                 'public_id'=>$public_id
     //             ]);
     //         } else {
-    //             $url = Cloudinary::uploadVideo($file->getRealPath(), ['folder' => 'testing'])->getSecurePath();
+    //             $elemento = Cloudinary::uploadVideo($file->getRealPath(), ['folder' => 'anuncios']);
+    //               $public_id = $elemento->getPublicId();
+    //             $url = $elemento->getSecurePath();
     //             $anuncio->images()->create([
-    //                 'url' => $url
+    //                 'url' => $url,
+    //                 'public_id'=>$public_id
     //             ]);
     //         }
     //     }
@@ -162,34 +176,66 @@ $anuncio->images()->create([
     }
     /// PRODUCCION 
     // public function upload_file($request , $producto){
-
     //     $urlimages = [];
+        
     //     if($request->hasFile('images')){
     //         $images = $request->file('images');
+           
     //         foreach($images as $image){
     //         $originalName =$image-> getClientOriginalName();
     //             if(Str::endsWith($originalName, 'mp4')){
-    //             $url = Cloudinary::uploadVideo($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
-    //         $urlimages[]['url']=$url;
+    //             $elemento= Cloudinary::uploadVideo($image->getRealPath(),['folder'=>'anunciosvideo']);
+    //           $public_id = $elemento->getPublicId();
+    //           $url = $elemento->getSecurePath();
+    //            $producto->images()->create([
+    //               'url'=>$url,
+    //               'public_id'=>$public_id
+    //               ]);
     //             }else{
-    //                  $url = Cloudinary::upload($image->getRealPath(),['folder'=>'testing'])->getSecurePath();
-    //         $urlimages[]['url']=$url;
+                    
+    //                  $this->validate($request, [
+    //             'images'   => 'required',
+    //             'images.*' => 'image|mimes:png,jpg,jpeg|dimensions:min_width=800,min_height=200,max_width:1800,max_height:600|max:5000',
+    //         ],[
+    //             'images.*.required'=>'La imagen es requerida',
+    //             'images.*.image'=>'El archivo tienen que ser una imagen',
+    //             'images.*.mimes'=>'La imagen debe ser tipo png, jpg o jpeg',
+    //             'images.*.dimensions'=>'La imagen no cumple con las dimensiones 800x200 mínimo; 1800x600 máximo',
+    //             'images.*.max'=>'La imagen supera el peso permitido (5Megabytes)'
+    //         ]);
+            
+    //                  $elemento= Cloudinary::upload($image->getRealPath(),['folder'=>'anuncios']);
+    //           $public_id = $elemento->getPublicId();
+    //           $url = $elemento->getSecurePath();
+    //            $producto->images()->create([
+    //               'url'=>$url,
+    //               'public_id'=>$public_id
+    //               ]);
+            
     //             }
-    //         }
-    //          $producto->images()->createMany($urlimages);
+                
+    //         }//fin foreach
+            
     //     }
     // }
 
     public function retirarImagen($id)
     {
-       $imagen =  Image::findOrFail($id);
-        $url = $imagen->url;
+        $img = Image::findOrFail($id);
+        //produccion
+        // $pid = $img->public_id;
+        // Cloudinary::destroy($pid);
+        //finproduccion
+        
+        //local
+       $url = $img->url;
         $str = substr($url, 1);//quitamos un caracter a la cadena de ruta para eliminar la img
         File::delete($str);//eliminamos la img fisica de nuestro servidor
-       
+       //finlocal
         Image::destroy($id);
         return back()->with('mensaje', 'Imagen eliminada de su galería');
     }
+
 
     public function guardarAnuncio(Request $request)
     {
@@ -224,9 +270,6 @@ $anuncio->images()->create([
             'descripcion.max'=>'La descripción no debe tener mas de 400 caracteres'
         ];
         $this->validate($request, $campos, $mensaje);
-
-        
-
         $anuncio = new Anuncio;
         $anuncio->titulo = e($request->titulo);
         $anuncio->ciudad = e($request->ciudad);
@@ -237,22 +280,20 @@ $anuncio->images()->create([
         $anuncio->paquete_id = e($request->paquete_id);
         $anuncio->categoria_id = e($request->categoria_id);
         $anuncio->user_id = Auth::id();
-       $url =  $this->upload_file($request, $anuncio);
-        $anuncio->save();
-        $anuncio->images()->createMany($url);
-        // $anuncio =  Anuncio::create([
-        //     "ciudad" => $request->get('ciudad'),
-        //     "telefono" => $request->get('telefono'),
-        //     "edad" => $request->get('edad'),
-        //     "direccion" => $request->get('direccion'),
-        //     "descripcion" => $request->get('descripcion'),
-        //     "titulo" => $request->get('titulo'),
-        //     "paquete_id" => $request->get('paquete_id'),
-        //     "categoria_id" => $request->get('categoria_id'),
-        //     "user_id" => Auth::id(),
-        // ]);
+        //local
+      $url =  $this->upload_file($request, $anuncio);
+       //finlocal
        
-
+        $anuncio->save();
+        
+       //produccion
+    //    $this->upload_file($request, $anuncio);
+       //finproduccion
+       
+       $anuncio->save();
+        //local
+        $anuncio->images()->createMany($url);
+        //finlocal
         $creditos_perfil = $creditos_perfil - 1;
         auth()->user()->perfil->update(['creditos' => $creditos_perfil]);
         return back()->with('mensaje', 'Anuncio publicado!');
@@ -261,6 +302,12 @@ $anuncio->images()->create([
 
     public function eliminarAnuncio($id)
     {
+        //produccion
+        // $imgsAnuncio = Image::where('imageable_id','=',$id)->get();//obtenemos todas las imagenes de ese anuncio
+        // foreach($imgsAnuncio as $ia){
+        //     $pid = $ia->public_id;
+        //      Cloudinary::destroy($pid);
+        // }
         Anuncio::destroy($id);
         return back()->with('mensaje', 'Anuncio eliminado');
     }
@@ -309,6 +356,30 @@ $anuncio->images()->create([
     }
     public function upload_perfil($request, $perfil)
     {
+        //produccion
+        //   $url="";
+        //   $file = $request['foto'];
+  
+        //       $elemento= Cloudinary::upload($file->getRealPath(),['folder'=>'perfil']);
+        //       $public_id = $elemento->getPublicId();
+        //       $url = $elemento->getSecurePath();
+        // if(is_null($perfil->image)){
+        //       $perfil->image()->create([
+        //           'url'=>$url,
+        //           'public_id'=>$public_id
+        //           ]);
+        // }else{
+        //       $pid = $perfil->image->public_id;
+        //       Cloudinary::destroy($pid);//Eliminamos la imagen anterior de cloud
+        //       $perfil->image()->update([
+        //           'url'=>$url,
+        //           'public_id'=>$public_id
+        //           ]);
+        // }
+        //finproduccion
+       
+                  
+              //local
         if (!(is_null($perfil->image))) {
             $idimg = $perfil->image->id;
             $url = $perfil->image->url;
@@ -335,6 +406,27 @@ $anuncio->images()->create([
         return view('pages.misAnuncios', compact('anuncios', 'user'));
     }
 
+    public function estadoAnuncio($id){
+        $anuncio = Anuncio::findOrFail($id);
+        $estado_anuncio = $anuncio->estado;
+        $titulo = $anuncio->titulo;
+
+        if($estado_anuncio=="desactivado"){
+            $estado = "activado";
+            $texto = "activado";
+        }
+        else{
+            $estado = "desactivado";
+            $texto = "desactivado";
+        }
+            
+        $anuncio->update([
+            "estado"=>$estado
+        ]);
+    
+        return back()->with('mensaje','Tu ha anuncio '.$titulo.' ha sido '.$texto);
+    }
+
     public function misOrdenes()
     {
         $user_id = Auth::id();
@@ -346,29 +438,7 @@ $anuncio->images()->create([
 
     public function comprarCredito(Request $request)
     {
-        if ($request['idcredito'] == "0") {
-            $user_id = Auth::id();
-            $user = User::findOrFail($user_id);
-            // dd($user);
-            $user = DB::table('users')
-                ->where('id', $user_id)
-                ->update(['credito_gratis' => '1']);
-            $cantidad_creditos = 10;
-            $user = auth()->user();
-            $creditos_actuales = auth()->user()->perfil->creditos;
-            $user->perfil->update([
-                "creditos" => $creditos_actuales + $cantidad_creditos,
-            ]);
-            return redirect()->route('home.inicio')->with('mensaje', 'Tus ' . $cantidad_creditos . ' creditos han sido recargados');
-        } else {
-
-            $cantidad_creditos = $request['creditos'];
-            $user = auth()->user();
-            $creditos_actuales = auth()->user()->perfil->creditos;
-            $user->perfil->update([
-                "creditos" => $creditos_actuales + $cantidad_creditos,
-            ]);
-          $this->validate($request,
+        $this->validate($request,
             [
                 'telefono'=>'required|string|min:10|max:10',
                 'dni'=>'required|string|min:10|max:10',
@@ -383,24 +453,32 @@ $anuncio->images()->create([
              'nombre-completo.required'=>'El nombre completo es requerido',
              'nombre-completo.max'=>'El nombre completo es muy largo'
         ]);
-        
-            // $orden = new Orden();
-            // $orden->subtotal = e($request->creditos*0.2);
-            // $orden->telefono = e($request->telefono);
-            Orden::create([
-                "subtotal" => $request["creditos"] * 0.2,
-                "telefono" => $request["telefono"],
-                "dni" => $request["dni"],
-                "nombre-completo" => $request["nombre-completo"],
-                "fecha_orden" => Carbon::now(),
-                "user_id" => Auth::id(),
-            ]);
-            //         $paymentPlatform = $this->paymentPlatformResolver->resolveService("paypal");
+        $creditos_gratis=0;
+        $creditos = $request['creditos'];
+        $user = auth()->user();
+        $creditos_usuario = $user->perfil->creditos;
+        if($request['idcredito']==0){
+            $creditos_gratis=10;
+            DB::table('users')->where('id', $user->id)->update(['credito_gratis' => '1']);
+        }
+       
+        $user->perfil->update([
+            "creditos" => $creditos_usuario + $creditos+$creditos_gratis
+        ]); 
+
+        Orden::create([
+            "subtotal" => $creditos * 0.2,
+            "telefono" => $request["telefono"],
+            "dni" => $request["dni"],
+            "nombre-completo" => $request["nombre-completo"],
+            "fecha_orden" => Carbon::now(),
+            "user_id" => Auth::id(),
+        ]);
+           //         $paymentPlatform = $this->paymentPlatformResolver->resolveService("paypal");
             //          session()->put('paymentPlatformId',"paypal");
             // return $paymentPlatform->handlePayment($request);
-
-            return redirect()->route('cliente.creditos')->with('mensaje', 'Tus ' . $cantidad_creditos . ' creditos han sido recargados');
-        }
+            return redirect()->route('cliente.creditos')->with('mensaje', 'Tus ' . $creditos+$creditos_gratis . ' creditos han sido recargados');
+        
     }
 
     public function getPasarela(Request $request)

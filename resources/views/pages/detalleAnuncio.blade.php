@@ -68,8 +68,11 @@
                                 <div class="flex-viewport">
                                     <ul class="slides slide-main">
                                         @foreach ($anuncio->images as $imagen)
-                                        <li class=""><img alt="" src="{{ $imagen->url }}" title="">
-                                        </li>
+                                        @if(Str::endsWith($imagen->url,'mp4'))
+                                        <li><video src="{{$imagen->url}}" width="200" height="200" autoplay muted loop controls></video></li>
+                                        @else
+                                       <li><img src="{{$imagen->url}}" alt="foto"></li> 
+                                        @endif
                                         @endforeach
                                     </ul>
                                 </div>

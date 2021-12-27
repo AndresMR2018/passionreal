@@ -19,6 +19,7 @@ class CreateAnunciosTable extends Migration
             $table->text('direccion')->nullable();
             $table->string('edad')->nullable();
             $table->string('titulo')->nullable();
+            $table->string('estado')->default('activado');
             $table->longtext('descripcion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('zona')->nullable();

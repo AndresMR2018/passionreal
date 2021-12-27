@@ -37,7 +37,7 @@
                                             <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                         @endif
                                         <li><a href="{{ route('cliente.misAnuncios') }}">Mis anuncios</a></li>
-
+                                        <li><a href="{{ route('cliente.misOrdenes') }}">Mis ordenes</a></li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
                                             @csrf

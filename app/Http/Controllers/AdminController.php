@@ -7,6 +7,7 @@ use App\Models\Reporte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class AdminController extends Controller
@@ -22,6 +23,20 @@ class AdminController extends Controller
     }
 
     public function pdfOrden($id){
+        $band=false;
+        $user_id = Auth::id();
+        
+        $ordenes_user = Orden::where('user_id',$user_id)->get();
+        // dd($user_id);
+        foreach($ordenes_user as $ou){
+            if($ou->id == $id){
+                $band=true;
+            }
+        }
+        if($band==false){
+            return redirect()->route('home.inicio')->with('mensaje','Comprobante de compra no encontrado');
+        }
+        
         $orden = Orden::find($id);          
         $pdf = PDF::loadView('pdfs.ordenes.compraCredito', ["orden"=>$orden]);
         return $pdf->stream('compra_creditos.pdf');

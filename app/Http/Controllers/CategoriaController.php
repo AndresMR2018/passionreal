@@ -70,26 +70,30 @@ class CategoriaController extends Controller
     // {
     //     $campos = [
     //         'nombre' => 'required|string|max:30',
-    //         'foto' => 'required|max:100000|mimes:jpeg,png,jpg',
     //     ];
 
     //     $mensaje = [
     //         'required' => 'El :attribute es requerido',
-    //         'foto.required' => 'La foto es requerida',
     //         'nombre.required' => 'El nombre es requerido',
     //     ];
 
     //     $this->validate($request, $campos, $mensaje);
     //     $datosCategoria = request()->except('_token');
     //     if ($request->hasFile('foto')) {
-    //         $file = $datosCategoria['foto'];
-    //         $url = Cloudinary::upload($file->getRealPath(), ['folder' => 'categorias'])->getSecurePath();
+    //         $url="";
+    //       $file = $request['foto'];
+    //           $elemento= Cloudinary::upload($file->getRealPath(),['folder'=>'categorias']);
+    //           $public_id = $elemento->getPublicId();
+    //           $url = $elemento->getSecurePath();
     //     }
-
-    //     Categoria::create([
-    //         'nombre' => $request['nombre'],
-    //         'foto' => $url
+        
+    //     $categoria = Categoria::create([
+    //         'nombre' => $request['nombre']
     //     ]);
+    //     $categoria->image()->create([
+    //         "url"=>$url,
+    //         "public_id"=>$public_id
+    //         ]);
 
     //     return redirect('admin/categoria')->with('mensaje', 'Categoría agregada!');
     // }
@@ -121,6 +125,26 @@ class CategoriaController extends Controller
 
     public function upload_categoria($request, $categoria)
     {
+         //produccion
+        //   $url="";
+        //   $file = $request['foto'];
+        //       $elemento= Cloudinary::upload($file->getRealPath(),['folder'=>'categorias']);
+        //       $public_id = $elemento->getPublicId();
+        //       $url = $elemento->getSecurePath();
+        // if(is_null($categoria->image)){
+        //       $categoria->image()->create([
+        //           'url'=>$url,
+        //           'public_id'=>$public_id
+        //           ]);
+        // }else{
+        //       $pid = $categoria->image->public_id;
+        //       Cloudinary::destroy($pid);//Eliminamos la imagen anterior de cloud
+        //       $categoria->image()->update([
+        //           'url'=>$url,
+        //           'public_id'=>$public_id
+        //           ]);
+        // }
+        //local
         if (!(is_null($categoria->image))) {
             $idimg = $categoria->image->id;
             $url = $categoria->image->url;
@@ -142,6 +166,20 @@ class CategoriaController extends Controller
 
     public function destroy($id)
     {
+                //produccion
+                // $categoria = Categoria::find($id);
+                // $pid = $categoria->image->public_id;
+                // Cloudinary::destroy($pid);
+                //  $idimg = $categoria->image->id;
+                //       Image::destroy($idimg);
+                //finproduccion
+                $categoria = Categoria::find($id);
+                $idimg = $categoria->image->id;
+                $url = $categoria->image->url;
+                $str = substr($url, 1);//quitamos un caracter a la cadena de ruta para eliminar la img
+                File::delete($str);//eliminamos la img fisica de nuestro servidor
+                Image::destroy($idimg);
+
         $categoria = Categoria::destroy($id);
         return redirect('admin/categoria')->with('mensaje', 'Categoría eliminada!');
     }

@@ -2,7 +2,7 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <meta name="description" content="">
   <meta name="author" content="ScriptsBundle">
-  <title>Pasión Real | @yield('title')</title>
+  <title>Pasión Real  @yield('title')</title>
   <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->

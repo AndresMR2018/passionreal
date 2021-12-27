@@ -152,7 +152,13 @@
                                                     {{-- <div class="last-updated">Updated: 1 day ago</div> --}}
 
                                                     <div class="ad-meta">
-                                                        <a class="btn save-ad"><i class="fa fa-down"></i>Desactivar</a>
+                                                        @if($anuncio->estado=="desactivado")
+                                                        <a href="{{route('cliente.estadoAnuncio',$anuncio->id)}}" class="btn save-ad">
+                                                            <i class="fa fa-down"></i>Activar</a>
+                                                            @else
+                                                            <a href="{{route('cliente.estadoAnuncio',$anuncio->id)}}" class="btn save-ad">
+                                                                <i class="fa fa-down"></i>Desactivar</a>
+                                                        @endif
                                                         <a href="{{url('/editar-anuncio/'.$anuncio->id)}}"
                                                             class="btn btn-success"><i class="fa fa-pencil"></i>
                                                             Editar</a>
