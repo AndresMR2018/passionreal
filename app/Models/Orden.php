@@ -14,8 +14,9 @@ class Orden extends Model
         "user_id",
         "dni",
         "telefono",
-        "nombre-completo",
+        "nombre_completo",
         "fecha_orden",
+        "cantidad_creditos",
         "subtotal"
     ];
 

@@ -25,6 +25,7 @@ class AdminController extends Controller
     public function pdfOrden($id){
         $band=false;
         $user_id = Auth::id();
+        $cliente = User::find($user_id);
         
         $ordenes_user = Orden::where('user_id',$user_id)->get();
         // dd($user_id);
@@ -38,7 +39,7 @@ class AdminController extends Controller
         }
         
         $orden = Orden::find($id);          
-        $pdf = PDF::loadView('pdfs.ordenes.compraCredito', ["orden"=>$orden]);
+        $pdf = PDF::loadView('pdfs.ordenes.compraCredito', compact('orden','cliente'));
         return $pdf->stream('compra_creditos.pdf');
         // $orden = Orden::findOrFail($id);
         // view()->share('admin.orden.index',$orden);

@@ -423,7 +423,6 @@ $anuncio->images()->create([
         $anuncio->update([
             "estado"=>$estado
         ]);
-    
         return back()->with('mensaje','Tu ha anuncio '.$titulo.' ha sido '.$texto);
     }
 
@@ -438,21 +437,24 @@ $anuncio->images()->create([
 
     public function comprarCredito(Request $request)
     {
-        $this->validate($request,
-            [
-                'telefono'=>'required|string|min:10|max:10',
-                'dni'=>'required|string|min:10|max:10',
-                'nombre-completo'=>'required|string|max:60',
-            ],
-            ['telefono.required'=>'El teléfono es requerido',
-             'telefono.min'=>'El teléfono no debe tener menos de 10 digitos',
-             'telefono.max'=>'El teléfono no debe tener mas de 10 digitos',
-             'dni.required'=>'El DNI es requerido',
-             'dni.min'=>'El dni no debe tener menos de 10 digitos',
-             'dni.max'=>'El dni no debe tener mas de 10 digitos',
-             'nombre-completo.required'=>'El nombre completo es requerido',
-             'nombre-completo.max'=>'El nombre completo es muy largo'
-        ]);
+      //este validate al redireccionar en caso de error, hara que recargue la pagina anterior,
+      //pero como la anterior recibe data de la vista anterior, no puede recargarse vacia
+        // $this->validate($request,
+        //     [
+        //         'telefono'=>'required|string|min:10|max:10',
+        //         'dni'=>'required|string|min:10|max:10',
+        //         'nombre_completo'=>'required|string|max:60',
+        //     ],
+        //     ['telefono.required'=>'El teléfono es requerido',
+        //      'telefono.min'=>'El teléfono no debe tener menos de 10 digitos',
+        //      'telefono.max'=>'El teléfono no debe tener mas de 10 digitos',
+        //      'dni.required'=>'El DNI es requerido',
+        //      'dni.min'=>'El dni no debe tener menos de 10 digitos',
+        //      'dni.max'=>'El dni no debe tener mas de 10 digitos',
+        //      'nombre_completo.required'=>'El nombre completo es requerido',
+        //      'nombre_completo.max'=>'El nombre completo es muy largo'
+        // ]);
+       
         $creditos_gratis=0;
         $creditos = $request['creditos'];
         $user = auth()->user();
@@ -463,14 +465,16 @@ $anuncio->images()->create([
         }
        
         $user->perfil->update([
-            "creditos" => $creditos_usuario + $creditos+$creditos_gratis
+            "creditos" => $creditos_usuario + $creditos+$creditos_gratis,
+            "dni"=>$request['dni']
         ]); 
 
         Orden::create([
             "subtotal" => $creditos * 0.2,
             "telefono" => $request["telefono"],
+            "cantidad_creditos"=>$creditos,
             "dni" => $request["dni"],
-            "nombre-completo" => $request["nombre-completo"],
+            "nombre_completo" => $request["nombre-completo"],
             "fecha_orden" => Carbon::now(),
             "user_id" => Auth::id(),
         ]);

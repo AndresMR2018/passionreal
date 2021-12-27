@@ -81,5 +81,8 @@ return array (
   'nunito' => array(
     'normal' => $fontDir . '/nunito_normal_3fa7fc9c8b0a3e0826b3af956a1a7179',
   ),
+  'fontawesome' => array(
+    'normal' => $fontDir . '/fontawesome_normal_a07c54af815ea54af1b5e5aa13cc5f8b',
+  ),
 );
 }; ?>
