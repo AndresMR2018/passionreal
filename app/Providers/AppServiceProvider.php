@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Schema;
 Use Illuminate\Pagination\Paginator;
 use App\Console\Commands\ReactivacionAnuncios;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,7 +31,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         $categorias = Categoria::all();
         $paquetes = Paquete::all();
-        $anuncios=Anuncio::orderBy('updated_at','desc')->paginate(5);
+        // $anuncios=Anuncio::where('estado','=','activado');
+        // $anuncios = Anuncio::orderBy('updated_at','desc')->paginate(5);
+        $anuncios = Anuncio::where('estado','=','activado')->orderBy('updated_at','desc')->paginate(1);
+        // $anuncios = $anuncios->orderBy('updated_at','desc')->paginate(1);
+        
 
  
                 view()->share([

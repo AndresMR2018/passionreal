@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Paquete extends Model
 {
     use HasFactory;
+    public $fillable=[
+        "periodo_horas"
+    ];
 }
