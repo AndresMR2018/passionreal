@@ -25,9 +25,9 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="{{route('home.inicio')}}"><img
+                <a class="navbar-brand brand-logo" href="{{ route('home.inicio') }}"><img
                         src="{{ asset('/images/logo/logoPassionReal.jpeg') }}" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="{{route('home.inicio')}}"><img
+                <a class="navbar-brand brand-logo-mini" href="{{ route('home.inicio') }}"><img
                         src="{{ asset('/images/logo/logoPassionReal.jpeg') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -54,35 +54,52 @@
                             <span class="btn btn-primary">+ Create new</span>
                         </a>
                     </li> --}}
-                   
+
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                             data-toggle="dropdown">
                             <i class="fas fa-bell mx-0"></i>
-                            <span class="count">16</span>
+                            <span class="count">
+
+                                {{ auth()->user()->unreadNotifications->count() }}
+
+                            </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
-                            <a class="dropdown-item">
-                                <p class="mb-0 font-weight-normal float-left">You have 16 new notifications
-                                </p>
-                                <span class="badge badge-pill badge-warning float-right">View all</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-danger">
-                                        <i class="fas fa-exclamation-circle mx-0"></i>
+                            @if (auth()->user()->unreadNotifications->count() > 0)
+                                <a class="dropdown-item" href="{{ route('marcar_todas_leidas') }}">
+                                    <p class="mb-0 font-weight-normal float-left">Tienes
+                                        {{ auth()->user()->unreadNotifications->count() }} nuevas notificaciones</p>
+
+                                    <span class="badge badge-pill badge-warning float-right">
+                                        Ver todas
+                                    </span>
+
+                                </a>
+                            @endif
+                            @foreach (auth()->user()->unreadNotifications as $notification)
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item"
+                                    href="{{ route('marcar_una_leida', [$notification->id, $notification->data['id']]) }}">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-danger">
+                                            <i class="fas {{ $notification->data['icon'] }} mx-0"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-medium">Application Error</h6>
-                                    <p class="font-weight-light small-text">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject font-weight-medium">
+                                            {{ $notification->data['titulo'] }}
+                                        </h6>
+                                        <p class="font-weight-light small-text">
+                                            {{ $notification->data['nombre_completo'] }} ha realizado realizado una
+                                            compra de {{ $notification->data['cantidad_creditos'] }} créditos por
+                                            {{ $notification->data['subtotal'] }} Euros.
+                                        </p>
+                                    </div>
+                                </a>
+                            @endforeach
+                            {{-- <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-warning">
@@ -109,10 +126,10 @@
                                         2 days ago
                                     </p>
                                 </div>
-                            </a>
+                            </a> --}}
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
                             data-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-envelope mx-0"></i>
@@ -171,15 +188,15 @@
                                 </div>
                             </a>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            @if(!isset(auth()->user()->perfil->image->url))
-                            <img style="max-width:150px;" src="{{asset('images/user_default.png')}}" alt="foto">
+                            @if (!isset(auth()->user()->perfil->image->url))
+                                <img style="max-width:150px;" src="{{ asset('images/user_default.png') }}" alt="foto">
                             @else
-                            <img src="{{auth()->user()->perfil->image->url}}" alt="profile" />
+                                <img src="{{ auth()->user()->perfil->image->url }}" alt="profile" />
                             @endif
-                            
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -188,11 +205,16 @@
                                 Configuración
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="dropdown-item">
                                 <i class="fas fa-power-off text-primary"></i>
                                 Salir
                             </a>
                         </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        class="d-none">
+                        @csrf
+                    </form>
                     </li>
                     {{-- <li class="nav-item nav-settings d-none d-lg-block">
                         <a class="nav-link" href="#">
@@ -376,7 +398,7 @@
                             </li>
                             <li class="list">
                                 <div class="profile">
-                                    @if(!isset(auth()->user()->perfil->image->url))
+                                    @if (!isset(auth()->user()->perfil->image->url))
                             <img style="max-width:150px;" src="{{asset('images/user_default.png')}}" alt="foto">
                             @else
                             <img src="{{auth()->user()->perfil->image->url}}" alt="profile" />
@@ -411,26 +433,27 @@
                     <li class="nav-item nav-profile">
                         <div class="nav-link">
                             <div class="profile-image">
-                                
-                                @if(!isset(auth()->user()->perfil->image->url))
-                                <img style="max-width:150px;" src="{{asset('images/user_default.png')}}" alt="foto">
+
+                                @if (!isset(auth()->user()->perfil->image->url))
+                                    <img style="max-width:150px;" src="{{ asset('images/user_default.png') }}"
+                                        alt="foto">
                                 @else
-                                <img src="{{auth()->user()->perfil->image->url}}" alt="profile" />
+                                    <img src="{{ auth()->user()->perfil->image->url }}" alt="profile" />
                                 @endif
                             </div>
                             <div class="profile-name">
                                 <p class="name">
-                                    Bienvenido {{auth()->user()->name}}
-                                
+                                    Bienvenido {{ auth()->user()->name }}
+
                                 </p>
                                 <p class="designation">
-                                    {{auth()->user()->getRoleNames()}}
+                                    {{ auth()->user()->getRoleNames() }}
                                 </p>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('home.inicio')}}">
+                        <a class="nav-link" href="{{ route('home.inicio') }}">
                             <i class="fa fa-home menu-icon"></i>
                             <span class="menu-title">Pagína de inicio</span>
                         </a>
@@ -440,9 +463,9 @@
                             aria-controls="page-layouts">
                             <i class="fab fa-trello menu-icon"></i>
                             <span class="menu-title">Mi cuenta</span>
-                           
+
                         </a>
-                     
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false"
@@ -454,10 +477,10 @@
                         <div class="collapse" id="page-layouts">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item d-none d-lg-block"><a class="nav-link"
-                                        href="{{route('categoria.create')}}">Agregar categoría</a></li>
+                                        href="{{ route('categoria.create') }}">Agregar categoría</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{route('categoria.index')}}">Ver categorías</a></li>
-                                
+                                        href="{{ route('categoria.index') }}">Ver categorías</a></li>
+
                             </ul>
                         </div>
                     </li>
@@ -472,10 +495,10 @@
                         <div class="collapse" id="page-layouts2">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item d-none d-lg-block"><a class="nav-link"
-                                        href="{{route('paquete.create')}}">Agregar paquete</a></li>
+                                        href="{{ route('paquete.create') }}">Agregar paquete</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{route('paquete.index')}}">Ver paquetes</a></li>
-                                
+                                        href="{{ route('paquete.index') }}">Ver paquetes</a></li>
+
                             </ul>
                         </div>
                     </li>
@@ -490,8 +513,8 @@
                         <div class="collapse" id="page-layouts3">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{route('orden.index')}}">Ver ordenes</a></li>
-                                
+                                        href="{{ route('orden.index') }}">Ver ordenes</a></li>
+
                             </ul>
                         </div>
                     </li>
@@ -505,8 +528,8 @@
                         <div class="collapse" id="page-layouts4">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{route('solicitud.index')}}">Ver solicitudes</a></li>
-                                
+                                        href="{{ route('solicitud.index') }}">Ver solicitudes</a></li>
+
                             </ul>
                         </div>
                     </li>
@@ -521,13 +544,13 @@
                         <div class="collapse" id="page-layouts5">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{route('admin.reportes')}}">Ver reportes</a></li>
-                                
+                                        href="{{ route('admin.reportes') }}">Ver reportes</a></li>
+
                             </ul>
                         </div>
                     </li>
 
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#page-layouts6" aria-expanded="false"
                             aria-controls="page-layouts">
@@ -537,35 +560,34 @@
                         </a>
                         <div class="collapse" id="page-layouts6">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="">Agregar rol</a></li>
-                                
+                                <li class="nav-item"> <a class="nav-link" href="">Agregar rol</a></li>
+
                             </ul>
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="">Ver roles</a></li>
-                                
+                                <li class="nav-item"> <a class="nav-link" href="">Ver roles</a></li>
+
                             </ul>
                         </div>
                     </li>
-                   
-                    
-                   
+
+
+
                 </ul>
             </nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
 
-               @yield('contenido')
+                    @yield('contenido')
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © {{date('Y')}}.
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
+                            {{ date('Y') }}.
                             Todos los derechos reservados.</span>
-               
+
                     </div>
                 </footer>
                 <!-- partial -->

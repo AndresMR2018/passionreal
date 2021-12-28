@@ -10,6 +10,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CreditoController;
+use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\OrdenController;
@@ -53,12 +54,19 @@ Route::post('/comprar-credito',[ClienteController::class,'comprarCredito'])->nam
 Route::get('/anuncio/{id}', [ClienteController::class,'eliminarAnuncio'])->name('cliente.deleteAnuncio');
 Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->name('cliente.validarCuenta');
 Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
-Route::get('/datos-cliente/{id}',[OrdenController::class, 'show']);
+
 Route::post('/pasarela',[ClienteController::class,'getPasarela'])->name('cliente.pasarela');
 Route::post('/reportar',[ClienteController::class,'reportar'])->name('cliente.reportar');
 Route::get('/pdf-orden/{id}',[AdminController::class,'pdfOrden'])->name('admin.pdfOrden');
 Route::get('/estado-anuncio/{id}',[ClienteController::class,'estadoAnuncio'])->name('cliente.estadoAnuncio');
 });
+
+//RUTAS PARA MARCAR NOTIFICACIONES
+Route::get('marcar_todas_leidas',[NotificacionController::class,'marcar_todas_leidas'])->name('marcar_todas_leidas');
+Route::get('marcar_una_leida/{notificacion_id}/{orden_id}',[NotificacionController::class,'marcar_una_leida'])->name('marcar_una_leida');
+
+//-------------------------------------
+
 
 // VISTAS DE ADMINISTRADOR
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
@@ -70,6 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::resource('roles', RoleController::class);
     Route::resource('orden',OrdenController::class);
     Route::resource('solicitud',SolicitudController::class);
+    Route::get('/datos-cliente/{id}',[OrdenController::class, 'show'])->name('orden.showOrden');
     Route::get('/admin/aprobar-cuenta/{id}',[SolicitudController::class,'aprobarCuenta'])->name('solicitud.aprobarCuenta');
     Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');
     Route::get('/reportar/{id}',[AdminController::class,'banearCuenta'])->name('reportar');

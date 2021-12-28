@@ -464,12 +464,9 @@ $anuncio->images()->create([
             DB::table('users')->where('id', $user->id)->update(['credito_gratis' => '1']);
         }
        
-        $user->perfil->update([
-            "creditos" => $creditos_usuario + $creditos+$creditos_gratis,
-            "dni"=>$request['dni']
-        ]); 
+        
 
-        Orden::create([
+       $orden =  Orden::create([
             "subtotal" => $creditos * 0.2,
             "telefono" => $request["telefono"],
             "cantidad_creditos"=>$creditos,
@@ -478,6 +475,13 @@ $anuncio->images()->create([
             "fecha_orden" => Carbon::now(),
             "user_id" => Auth::id(),
         ]);
+
+        Orden::make_order_notification($orden);
+        
+        $user->perfil->update([
+            "creditos" => $creditos_usuario + $creditos+$creditos_gratis,
+            "dni"=>$request['dni']
+        ]); 
            //         $paymentPlatform = $this->paymentPlatformResolver->resolveService("paypal");
             //          session()->put('paymentPlatformId',"paypal");
             // return $paymentPlatform->handlePayment($request);

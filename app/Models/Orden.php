@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Events\EventoOrden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Credito;
 use App\Models\User;
+use App\Notifications\NotificacionOrden;
 
 class Orden extends Model
 {
@@ -24,6 +26,9 @@ class Orden extends Model
         return $this->hasOne(Credito::class);
     }
 
+    public static function make_order_notification($orden){
+       event(new EventoOrden($orden));
+    }
     public function user(){
         return $this->belongTo(User::class);
     }

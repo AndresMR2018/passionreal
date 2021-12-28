@@ -4,7 +4,7 @@
   <meta name="author" content="ScriptsBundle">
   <title>Pasión Real  @yield('title')</title>
   <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  {{-- <link rel="icon" href="images/favicon.ico" type="image/x-icon" /> --}}
   <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- =-=-=-=-=-=-= Bootstrap CSS Style =-=-=-=-=-=-= -->
