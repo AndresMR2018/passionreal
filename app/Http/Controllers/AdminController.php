@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anuncio;
 use App\Models\Orden;
 use App\Models\Reporte;
+use App\Models\Solicitud;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +59,7 @@ class AdminController extends Controller
     }
 
     public function verUsuarioReportado($id){
+
         $cliente = User::findOrFail($id);
         return view('admin.reportes.show',compact('cliente'));
     }
@@ -80,6 +83,10 @@ class AdminController extends Controller
         }
 
         return back()->with('mensaje','Cuenta baneada con exito');
+    }
+
+    public function verTodas(){
+
     }
 
    

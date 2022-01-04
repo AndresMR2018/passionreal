@@ -58,6 +58,17 @@ class ClienteController extends Controller
         return view('pages.creditos', compact('creditos'));
     }
 
+    public function creditosGratis(Request $request){
+        $creditosgratis = 10;
+        $user = auth()->user();
+        DB::table('users')->where('id', $user->id)->update(['credito_gratis' => '1']);
+        $creditos_usuario = $user->perfil->creditos;
+        $user->perfil->update([
+            "creditos" => $creditos_usuario +$creditosgratis,
+        ]); 
+return back()->with('mensaje','Se te han agregado 10 créditos gratis a tu cuenta.');
+    }
+
 
     public function crearAnuncio()
     {
@@ -437,23 +448,25 @@ $anuncio->images()->create([
 
     public function comprarCredito(Request $request)
     {
+      
       //este validate al redireccionar en caso de error, hara que recargue la pagina anterior,
       //pero como la anterior recibe data de la vista anterior, no puede recargarse vacia
-        // $this->validate($request,
-        //     [
-        //         'telefono'=>'required|string|min:10|max:10',
-        //         'dni'=>'required|string|min:10|max:10',
-        //         'nombre_completo'=>'required|string|max:60',
-        //     ],
-        //     ['telefono.required'=>'El teléfono es requerido',
-        //      'telefono.min'=>'El teléfono no debe tener menos de 10 digitos',
-        //      'telefono.max'=>'El teléfono no debe tener mas de 10 digitos',
-        //      'dni.required'=>'El DNI es requerido',
-        //      'dni.min'=>'El dni no debe tener menos de 10 digitos',
-        //      'dni.max'=>'El dni no debe tener mas de 10 digitos',
-        //      'nombre_completo.required'=>'El nombre completo es requerido',
-        //      'nombre_completo.max'=>'El nombre completo es muy largo'
-        // ]);
+        $this->validate($request,
+            [
+                'telefono'=>'required|string|min:10|max:10',
+                'dni'=>'required|string|min:10|max:10',
+                'nombre_completo'=>'required|string|min:20|max:60',
+            ],
+            ['telefono.required'=>'El teléfono es requerido',
+             'telefono.min'=>'El teléfono no debe tener menos de 10 digitos',
+             'telefono.max'=>'El teléfono no debe tener mas de 10 digitos',
+             'dni.required'=>'El DNI es requerido',
+             'dni.min'=>'El dni no debe tener menos de 10 digitos',
+             'dni.max'=>'El dni no debe tener mas de 10 digitos',
+             'nombre_completo.required'=>'El nombre completo es requerido',
+             'nombre_completo.max'=>'El nombre completo es muy largo',
+             'nombre_completo.min'=>'El nombre completo es muy corto'
+        ]);
        
         $creditos_gratis=0;
         $creditos = $request['creditos'];
@@ -464,14 +477,12 @@ $anuncio->images()->create([
             DB::table('users')->where('id', $user->id)->update(['credito_gratis' => '1']);
         }
        
-        
-
        $orden =  Orden::create([
             "subtotal" => $creditos * 0.2,
             "telefono" => $request["telefono"],
             "cantidad_creditos"=>$creditos,
             "dni" => $request["dni"],
-            "nombre_completo" => $request["nombre-completo"],
+            "nombre_completo" => $request["nombre_completo"],
             "fecha_orden" => Carbon::now(),
             "user_id" => Auth::id(),
         ]);
@@ -491,7 +502,7 @@ $anuncio->images()->create([
 
     public function getPasarela(Request $request)
     {
-        // dd($request);
+        
         $idcredito = $request["idcredito"];
 
         $creditosx = $request["creditos"];
@@ -505,11 +516,13 @@ $anuncio->images()->create([
         $motivo = $request["minimal-radio"];
         $anuncio = Anuncio::find($request["anuncio_id"]);
         $user = $anuncio->user;
-        Reporte::create([
+        $reporte = Reporte::create([
             "motivo" => $motivo,
             "comentario" => $request["comentario"],
             "user_id" => $user->id
         ]);
+        $noti = Reporte::make_reporte_notification($reporte, $anuncio);
+    
         return redirect()->route('home.inicio')->with('mensaje', 'Su reporte ha sido realizado');
     }
 }

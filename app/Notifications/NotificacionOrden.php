@@ -43,9 +43,10 @@ class NotificacionOrden extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Nueva compra')
+                    ->line($this->orden->nombre_completo.' ha realizado una compra de '.$this->orden->cantidad.' créditos por '.$this->orden->subtotal.' EUROS', url('/'))
+                    ->action('Ver detalle de la compra',url('/datos-cliente/'.$this->orden->id));
+              
     }
 
     /**

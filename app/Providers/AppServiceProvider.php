@@ -10,6 +10,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 Use Illuminate\Pagination\Paginator;
 use App\Console\Commands\ReactivacionAnuncios;
+use App\Models\Orden;
+use App\Models\Reporte;
+use App\Models\Solicitud;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -36,7 +39,6 @@ class AppServiceProvider extends ServiceProvider
         $anuncios = Anuncio::where('estado','=','activado')->orderBy('updated_at','desc')->paginate(1);
         // $anuncios = $anuncios->orderBy('updated_at','desc')->paginate(1);
         
-
  
                 view()->share([
                 'categorias'=>$categorias,

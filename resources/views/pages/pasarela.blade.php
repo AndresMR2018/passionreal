@@ -29,6 +29,25 @@
             </div>
         </div>
     </div>
+    @if (Session::has('mensaje'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{ Session::get('mensaje') }}
+        <button type="button" class="close" data-dismiss="alert" role="alert">
+            <span aria-button="true">&times;</span>
+        </button>
+    </div>
+@endif
+@if (count($errors) > 0)
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>
+                    {{ $error }}
+                </li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Small Breadcrumb -->
     <!-- =-=-=-=-=-=-= Transparent Breadcrumb End =-=-=-=-=-=-= -->
     <!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
@@ -79,13 +98,13 @@
                             <form method="POST" action="{{route('cliente.comprarCredito') }}">
                                 <!-- Title  -->
                                 @csrf
-                                <input name="idcredito" value="{{$idcredito}}" style="display:none;">
-                                <input name="creditos" value="{{$creditosx}}" style="display:none;">
+                                <input type="hidden" name="idcredito" value="{{$idcredito}}" >
+                                <input type="hidden" name="creditos" value="{{$creditosx}}" >
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <label class="control-label">Nombre completo <small>Ingresa tu nombre
                                                 completo</small></label>
-                                        <input name="nombre-completo" class="form-control" type="text" value="{{ old('nombre-completo') }}"  required>
+                                        <input name="nombre_completo" class="form-control" type="text" value="{{ old('nombre-completo') }}"  required>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-bottom:20px;">

@@ -61,10 +61,12 @@
                                     Compra créditos
                                 </h3>
                             </div>
-
-                            <form method="POST" action="{{route('cliente.pasarela')}}" class="submit-form">
+<form method="post" action="{{route('cliente.creditosGratis')}}" id="formGratis">
+@csrf
+<input type="hidden" name="creditos_gratis" value="10">
+</form>
+                            <form method="GET" id="formPaga" action="{{route('cliente.pasarela')}}" class="submit-form">
                                 <!-- Select Package  -->
-                                @csrf
                                
                                 <div class="select-package">
                                     @if(Auth::user()->credito_gratis=="0")
@@ -94,7 +96,7 @@
                                                         @else
                                                         <h4>€ {{$credito->valor}} c/crédito </h4>
                                                         @endif --}}
-                                                        <a id="0" {{-- id="{{$credito->id}}" --}}
+                                                        <a  id="0"{{-- id="{{$credito->id}}" --}}
                                                             class="btn btn-theme btn-sm btn-block selection">Seleccionar</a>
                                                     </div>
                                                 </div>
@@ -107,7 +109,7 @@
                                         </div>
                                         @endif
                                         {{-- @endforeach --}}
-                                        <input type="number" id="idcredito" value ="-1" name="idcredito" style="display: none">
+                                        <input type="hidden" id="idcredito" value ="-1" name="idcredito" style="display: none">
                                     </div>
                                 </div>
                              
@@ -116,7 +118,7 @@
                                     
                                     <label class="" style="font-size:24px;">Comprar créditos <small style="font-size:14px;">Indique la cantidad de créditos a
                                             adquirir</small></label>
-                                    <input type="number" class="creditos" min="0" max="100" name="creditos"
+                                    <input type="number" class="creditos" min="0" max="100" name="creditos" value="0"
                                         id="creditos">
                                 </div>
 
@@ -124,7 +126,7 @@
                                     style="display: flex; justify-content:flex-end; color:black; font-weight:700;">
                                     <p>Total:$<small id="total" style="color:black; font-weight:700;">0</small></p>
                                 </div>
-                                <button type="submit" disabled="true" id="btn_pagar" class="btn btn-theme pull-right btn_pagar">Adquirir créditos</button>
+                                <a   id="btn_pagar" onclick="go();" class="btn btn-theme pull-right btn_pagar">Adquirir créditos</a>
                             </form>
                         </div>
                         <!-- end post-ad-form-->
@@ -140,70 +142,49 @@
 
 
     <script>
-        function traer(e){
-    var idcredito = document.getElementById('idcredito');
-    idcredito.value = e.currentTarget.id;
-    console.log('valor de id credito' , idcredito.value);
-}
-function actualizar(e){
-    console.log(e.currentTarget.value);
-    $subtotal = e.currentTarget.value * 0.20; //valor del euro
-    $total = document.getElementById('total');
-    console.log($total);
-    $total.textContent= $subtotal;
-    if($subtotal === 0){
-        $btnpagar = document.getElementById('btn_pagar');
-    $btnpagar.disabled=true;
-    }else
-    {
-        $btnpagar = document.getElementById('btn_pagar');
-    $btnpagar.disabled=false;
+function go()
+{   
+    var textBtnGratis = document.getElementById('0');
+    var creditosPaga = document.getElementById('creditos');
+
+    var formGratis = document.getElementById("formGratis");
+    var formPaga =document.getElementById("formPaga");
+
+    if(creditosPaga.value > 0 ){
+     formPaga.submit();
     }
-   
+
+    if(textBtnGratis.textContent === "Seleccionado" && creditosPaga.value == 0){
+        document.getElementById('idcredito').value="0"; 
+        // alert('primera opcion');
+        formGratis.submit();
+    }
+
+    if( textBtnGratis.textContent === "Seleccionado" && creditosPaga.value > 0 ){
+        document.getElementById('idcredito').value="0"; 
+        // alert('segunda opcion');
+        formPaga.submit();
+    }
+
+    if(textBtnGratis.textContent === "Seleccionar" && creditosPaga.value > 0 ){
+        // alert('tercera opcion');
+        formPaga.submit();
+    }
+
+}
+
+function selectGratis(e){
+    if(e.currentTarget.textContent === "Seleccionar"){
+        e.currentTarget.textContent = "Seleccionado";
+    }else{
+        e.currentTarget.textContent = "Seleccionar";
+    }
 }
 
 document.addEventListener('DOMContentLoaded', e => {
-    
-    document.querySelector('.creditos').addEventListener('change',actualizar);
-    // Obtener todos los li y asignar evento
-    document.querySelectorAll('.pricing-list-price a').forEach(item => {
-        item.addEventListener('click', traer);
-    });
-
-    document.querySelector('.selection').addEventListener('click',click);
-
+    document.querySelector('.selection').addEventListener('click',selectGratis);
 });
 
-function click(e){
-    console.log('seleccionar pushed');
-    console.log(e.currentTarget.textContent);
-    $texto = e.currentTarget.textContent;
-    if($texto=="Seleccionar"){
-        $text = document.getElementById('0');
-    $text.textContent = "Seleccionado";
-    var idcredito = document.getElementById('idcredito');
-    idcredito.value = "0";
-    // $creditos = document.getElementById('creditos');
-    // $creditos.value = 10;
-    $creditos = document.getElementById('btn_pagar');
-    $creditos.disabled=false;
-    console.log(idcredito.value);
-    }else
-    {
-        $text = document.getElementById('0');
-    $text.textContent = "Seleccionar";
-    var idcredito = document.getElementById('idcredito');
-    idcredito.value = "-1";
-    // $creditos = document.getElementById('creditos');
-    // $creditos.value = 0;
-    $creditos = document.getElementById('btn_pagar');
-    $creditos.disabled=true;
-    console.log(idcredito.value);
-    }
-
-     
-    
-}
 </script>
 
     @include('templates.scripts')

@@ -68,7 +68,7 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
                             @if (auth()->user()->unreadNotifications->count() > 0)
-                                <a class="dropdown-item" href="{{ route('marcar_todas_leidas') }}">
+                                <a class="dropdown-item" href="{{ route('notificaciones.todas') }}">
                                     <p class="mb-0 font-weight-normal float-left">Tienes
                                         {{ auth()->user()->unreadNotifications->count() }} nuevas notificaciones</p>
 
@@ -78,27 +78,52 @@
 
                                 </a>
                             @endif
+
                             @foreach (auth()->user()->unreadNotifications as $notification)
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item"
-                                    href="{{ route('marcar_una_leida', [$notification->id, $notification->data['id']]) }}">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-danger">
-                                            <i class="fas {{ $notification->data['icon'] }} mx-0"></i>
-                                        </div>
+                            <div class="dropdown-divider"></div>
+                            @if($notification->type=="App\Notifications\NotificacionOrden")
+                            <a class="dropdown-item preview-item"
+                            href="{{ route('marcar_una_leida', [$notification->id, $notification->data['id']]) }}">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-danger">
+                                        <i class="fas {{ $notification->data['icon'] }} mx-0"></i>
                                     </div>
-                                    <div class="preview-item-content">
-                                        <h6 class="preview-subject font-weight-medium">
-                                            {{ $notification->data['titulo'] }}
-                                        </h6>
-                                        <p class="font-weight-light small-text">
-                                            {{ $notification->data['nombre_completo'] }} ha realizado realizado una
-                                            compra de {{ $notification->data['cantidad_creditos'] }} créditos por
-                                            {{ $notification->data['subtotal'] }} Euros.
-                                        </p>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-medium">
+                                        {{ $notification->data['titulo'] }}
+                                    </h6>
+                                    <p class="font-weight-light small-text">
+                                        {{ $notification->data['nombre_completo'] }} ha realizado realizado una
+                                        compra de {{ $notification->data['cantidad_creditos'] }} créditos por
+                                        {{ $notification->data['subtotal'] }} Euros.
+                                    </p>
+                                </div>
+                            </a>
+                        
+                            @endif
+
+                            @if($notification->type=="App\Notifications\NotificacionReporte")
+                            <a class="dropdown-item preview-item"
+                            href="{{ route('marcar_un_reporte_leido', [$notification->id, $notification->data['id']]) }}">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-danger">
+                                        <i class="fas {{ $notification->data['icon'] }} mx-0"></i>
                                     </div>
-                                </a>
-                            @endforeach
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-medium">
+                                        Reporte de anuncio
+                                    </h6>
+                                    <p class="font-weight-light small-text">
+                                        El anuncio #{{ $notification->data['anuncio_id'] }} : {{$notification->data['titulo']}} fue reportado. 
+                                    </p>
+                                </div>
+                            </a>
+                            @endif
+                           
+                        @endforeach
+                          
                             {{-- <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
@@ -550,6 +575,22 @@
                         </div>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#page-layouts6" aria-expanded="false"
+                            aria-controls="page-layouts">
+                            <i class="fas fa-bell menu-icon"></i>
+                            <span class="menu-title">Notificaciones</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="page-layouts6">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="{{route('notificacion.todas')}}">Ver todas</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#page-layouts6" aria-expanded="false"
@@ -577,6 +618,88 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
+
+                    <div class="row grid-margin">
+
+                        <div class="col-12">
+                          <div class="card card-statistics">
+                            <div class="card-body">
+                              <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                                  <div class="statistics-item">
+                                    <p>
+                                      <i class="icon-sm fa fa-user mr-2"></i>
+                                      Nuevos usuarios
+                                    </p>
+                                    <h2>5</h2>
+                                 
+                                  </div>
+                                  <div class="statistics-item">
+                                    <p>
+                                      <i class="icon-sm fas fa-hourglass-half mr-2"></i>
+                                      # Anuncios
+                                    </p>
+                                    <h2>{{$count_ads}}</h2>
+                                  </div>
+                                  <div class="statistics-item">
+                                    <p>
+                                      <i class="icon-sm fas fa-chart-line mr-2"></i>
+                                      Ganancias
+                                    </p>
+                                    <h2>0</h2>
+                                  </div>
+                                  <div class="statistics-item">
+                                    <p>
+                                      <i class="icon-sm fas fa-check-circle mr-2"></i>
+                                      Reportes de cuenta
+                                    </p>
+                                    <h2>{{$count_reportes}}</h2>
+                                  </div>
+                                  <div class="statistics-item">
+                                    <p>
+                                      <i class="icon-sm fas fa-chart-line mr-2"></i>
+                                      Ordenes
+                                    </p>
+                                    <h2>{{$count_orders}}</h2>
+                                 </div>
+                                  <div class="statistics-item">
+                                    <p>
+                                      <i class="icon-sm fas fa-circle-notch mr-2"></i>
+                                      Solicitudes pendientes
+                                    </p>
+                                    <h2>{{$count_solicitudes}}</h2>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {{-- <div class="row">
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <i class="fas fa-gift"></i>
+                                Ordenes
+                              </h4>
+                              <canvas id="orders-chart"></canvas>
+                              <div id="orders-chart-legend" class="orders-chart-legend"></div>                  
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <i class="fas fa-chart-line"></i>
+                               Ventas
+                              </h4>
+                              <h2 class="mb-5">0 <span class="text-muted h4 font-weight-normal">Ventas</span></h2>
+                              <canvas id="sales-chart"></canvas>
+                            </div>
+                          </div>
+                        </div>
+                      </div> --}}
 
                     @yield('contenido')
                 </div>

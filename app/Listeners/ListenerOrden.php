@@ -26,7 +26,7 @@ class ListenerOrden
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle($event)//recibe el evento
     {
         User::role('Admin')
         // ->whereNotIn('id',$event->orden->user_id)

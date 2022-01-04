@@ -40,6 +40,10 @@ Route::post('/prev-recuperar/password',[HomeController::class,'postPrevPasswordR
 Route::group(['middleware' => 'cliente'], function()
 {
 Route::get('/creditos', [ClienteController::class, 'creditos'])->name('cliente.creditos');
+
+Route::post('/creditos/gratis',[ClienteController::class, 'creditosGratis'])->name('cliente.creditosGratis');
+
+
 Route::get('/mi-cuenta', [ClienteController::class, 'miCuenta'])->name('cliente.miCuenta');
 Route::get('/publicar-anuncio', [ClienteController::class, 'crearAnuncio'])->name('cliente.crearAnuncio');
 Route::post('/publicar-anuncio', [ClienteController::class, 'guardarAnuncio'])->name('cliente.guardarAnuncio');
@@ -55,19 +59,24 @@ Route::get('/anuncio/{id}', [ClienteController::class,'eliminarAnuncio'])->name(
 Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->name('cliente.validarCuenta');
 Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
 
-Route::post('/pasarela',[ClienteController::class,'getPasarela'])->name('cliente.pasarela');
+Route::get('/pasarela',[ClienteController::class,'getPasarela'])->name('cliente.pasarela');
 Route::post('/reportar',[ClienteController::class,'reportar'])->name('cliente.reportar');
 Route::get('/pdf-orden/{id}',[AdminController::class,'pdfOrden'])->name('admin.pdfOrden');
 Route::get('/estado-anuncio/{id}',[ClienteController::class,'estadoAnuncio'])->name('cliente.estadoAnuncio');
 });
 
+
+
 //RUTAS PARA MARCAR NOTIFICACIONES
+//COMPRAS DE CREDITOS
 Route::get('marcar_todas_leidas',[NotificacionController::class,'marcar_todas_leidas'])->name('marcar_todas_leidas');
 Route::get('marcar_una_leida/{notificacion_id}/{orden_id}',[NotificacionController::class,'marcar_una_leida'])->name('marcar_una_leida');
-
+//REPORTES
+Route::get('marcar_reportes_leidos',[NotificacionController::class,'marcar_reportes_leidos'])->name('marcar_reportes_leidos');
+Route::get('marcar_un_reporte_leido/{notificacion_id}/{reporte_id}',[NotificacionController::class,'marcar_un_reporte_leido'])->name('marcar_un_reporte_leido');
 //-------------------------------------
-
-
+Route::get('/notificaciones/todas',[NotificacionController::class,'ver_todas'])->name('notificacion.todas');
+Route::get('/notificacion/eliminar/{id}',[NotificacionController::class,'eliminar'])->name('notificacion.eliminar');
 // VISTAS DE ADMINISTRADOR
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
 {

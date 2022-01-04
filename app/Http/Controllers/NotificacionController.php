@@ -3,11 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orden;
+use App\Models\Reporte;
 use Illuminate\Http\Request;
 
 class NotificacionController extends Controller
 {
-    //
+
+    public function ver_todas(){
+        auth()->user()->unreadNotifications->markAsRead();
+         $notificaciones = auth()->user()->notifications;
+        
+ return view('admin.notificaciones.index', ['notificaciones'=>($notificaciones)]);
+     }
+ 
+     public function eliminar($id){
+         $notificaciones = auth()->user()->notifications;
+         $noti = $notificaciones->find($id)->delete();
+         return back();
+ 
+     }
+
+
+    //ORDENES DE COMPRA DE CREDITOS
     public function marcar_todas_leidas(){
 auth()->user()->unreadNotifications->markAsRead();
 return redirect()->route('orden.index');
@@ -20,5 +37,19 @@ return redirect()->route('orden.index');
         })->markAsRead();
         $orden = Orden::findOrFail($orden_id);
         return redirect()->route('orden.showOrden', $orden->id);
+    }
+
+    public function marcar_reportes_leidos(){
+        auth()->user()->unreadNotifications->markAsRead();
+    return redirect()->route('admin.reportes');
+    }
+
+    public function marcar_un_reporte_leido($notificacion_id, $reporte_id){
+            auth()->user()->unreadNotifications->when($notificacion_id, function ($query) use
+            ($notificacion_id){
+                return $query->where('id',$notificacion_id);
+            })->markAsRead();
+            $reporte = Reporte::findOrFail($reporte_id);
+            return redirect()->route('admin.usuarioReportado', $reporte->user->id);
     }
 }

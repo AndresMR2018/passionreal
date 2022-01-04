@@ -43,13 +43,13 @@
                    <span class="invalid-feedback" role="alert">
                        <strong>{{ $message }}</strong>
                    </span>
+                   @enderror
                  </div>
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Restablecer</button>
              </form>
           </div>
           <!-- Form -->
        </div>
-
        <!-- Middle Content Area  End -->
     </div>
     <!-- Row End -->
