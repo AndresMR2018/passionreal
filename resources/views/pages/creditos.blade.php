@@ -12,8 +12,8 @@
     <!-- =-=-=-=-=-=-= Light Header End  =-=-=-=-=-=-= -->
     <!-- =-=-=-=-=-=-= Transparent Breadcrumb =-=-=-=-=-=-= -->
     <div class="page-header-area">
-        <div class="container">
-            <div class="row">
+        <div class="container"  >
+            <div class="row ">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="header-page">
                         <h1>Comprar crédito</h1>
@@ -50,7 +50,7 @@
         <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
         <section class="section-padding  gray ">
             <!-- Main Container -->
-            <div class="container">
+            <div class="container" style="padding-bottom:20px;">
                 <!-- Row -->
                 <div class="row">
                     <div class="col-md-12">

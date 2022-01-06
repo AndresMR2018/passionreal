@@ -22,7 +22,8 @@ class Anuncio extends Model
         'zona',
         'titulo',
         'descripcion',
-        'estado'
+        'estado',
+        'reactivacion'
     ];
 
     public function categoria(){

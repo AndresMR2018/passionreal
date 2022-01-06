@@ -280,6 +280,7 @@ $anuncio->images()->create([
             'descripcion.required' => 'La descripción es requerida',
             'descripcion.max'=>'La descripción no debe tener mas de 400 caracteres'
         ];
+        $timereact = Paquete::find($request['paquete_id']);
         $this->validate($request, $campos, $mensaje);
         $anuncio = new Anuncio;
         $anuncio->titulo = e($request->titulo);
@@ -288,6 +289,7 @@ $anuncio->images()->create([
         $anuncio->edad = e($request->edad);
         $anuncio->direccion = e($request->direccion);
         $anuncio->descripcion = e($request->descripcion);
+        $anuncio->reactivacion = Carbon::now()->addHours($timereact);
         $anuncio->paquete_id = e($request->paquete_id);
         $anuncio->categoria_id = e($request->categoria_id);
         $anuncio->user_id = Auth::id();

@@ -60,16 +60,32 @@
                                             <img src="{{ $anuncio->images->pluck('url')[0] }}" class="img-responsive"
                                                 alt="">
 
+                                            @php
+                                                $contv = 0;
+                                                $conti = 0;
+                                                foreach($anuncio->images as $image){
+                                                    if(Str::endsWith($image->url,'mp4')){
+                                                        $contv= $contv+1;
+                                                    }else{
+                                                        $conti = $conti+1;
+                                                    }
+                                                }
+                                            @endphp
 
-
-                                            <div class="total-images">
-                                                <strong>{{ count($anuncio->images) }}</strong> fotos
+                                               
+                                            <div class="total-images">  
+                                                <strong>{{$conti}}</strong> fotos
+                                            </div>
+                                                
+                                            <div class="total-images" style="margin-left:53px;">
+                                                <strong>{{$contv}}</strong> videos
                                             </div>
                                             <div class="quick-view"> <a href="#ad-preview{{$anuncio->id}}"
                                                     data-toggle="modal" class="view-button"><i
                                                         class="fa fa-search"></i></a> </div>
                                         </div>
-                                        <!-- Ad Status --><span class="ad-status"> Top </span>
+                                        <!-- Ad Status -->
+                                        {{-- <span class="ad-status"> Top </span> --}}
                                         <!-- User Preview -->
                                         <div class="user-preview">
                                             <a href="{{route('home.detalle',$anuncio->id) }}"> <img

@@ -23,6 +23,7 @@ class CreateAnunciosTable extends Migration
             $table->longtext('descripcion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('zona')->nullable();
+            $table->dateTime('reactivacion',$precision = 0)->nullable();
             // $table->string('foto')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();

@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
- use App\Console\Commands\ReactivacionAnuncios;
+ use App\Console\Commands\reactivacion;
+ use App\Console\Commands\react;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -13,8 +14,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
-         ReactivacionAnuncios::class
+         reactivacion::class,
+         react::class
+
     ];
 
     /**
@@ -25,7 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('command:uploadAnuncio')->everyMinute();
+        $schedule->command('command:reactivacion')->everyMinute();
+        $schedule->command('command:react')->everyMinute();
 
     }
 
