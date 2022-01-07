@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Events\EventoOrden;
 use App\Listeners\ListenerOrden;
 use App\Events\EventoReporte;
+use App\Events\EventoSolicitud;
 use App\Listeners\ListenerReporte;
+use App\Listeners\ListenerSolicitud;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         EventoReporte::class=>[
             ListenerReporte::class,
+        ],
+        EventoSolicitud::class=>[
+            ListenerSolicitud::class,
         ]
     ];
 

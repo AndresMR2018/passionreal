@@ -50,11 +50,11 @@
             <td>{{$reporte->id}}</td>
             <td>{{$reporte->motivo}}</td>
             <td>{{$reporte->comentario}}</td>
-            <td><a href="{{route('admin.usuarioReportado',$reporte->user->id)}}">{{$reporte->user->name}}</a></td>
+            <td><a>{{$reporte->user->name}}</a></td>
             <td>
-            <a href="{{route('reportar',$reporte->user->id)}}" id="botoncol" class="btn btn-warning mb-2 "><i class="fas fa-edit">Banear</i></a>
-        <br/>
-        <a href="" class="btn btn-success mb-2"><i class=" fas fa-edit">Limpiar</i></a>    
+            {{-- <a href="{{route('reportar',$reporte->user->id)}}" id="botoncol" class="btn btn-warning mb-2 "><i class="fas fa-edit">Banear</i></a>
+        <br/> --}}
+        <a href="{{route('admin.usuarioReportado',$reporte->user->id)}}" class="btn btn-success mb-2"><i class=" fas fa-eye"></i></a>    
         </td>
         </tr>
         @endforeach

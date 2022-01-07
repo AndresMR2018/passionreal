@@ -504,7 +504,7 @@
                                               <div class="col-md-3 col-sm-3 col-xs-12">
                                                   <div class="pricing-list-price text-center">
                                                       <h4>${{$orden->subtotal}}</h4>
-                                                      <a target="_blank" href="{{route('admin.pdfOrden',$orden->id)}}"
+                                                      <a target="_blank" href="{{route('cliente.pdfOrden',$orden->id)}}"
                                                           class="btn btn-theme btn-sm btn-block"><i class="fas fa-file-download"></i> </a>
                                                   </div>
                                               </div>

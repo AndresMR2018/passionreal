@@ -41,11 +41,6 @@ class ClienteController extends Controller
     {
         $codigo = mt_rand(1000000000, 9999999999);
         Mail::to('gamr130898@gmail.com')->send(new MensajeRecibido($codigo));
-        // $codigo = mt_rand(1000000000,9999999999);
-        // Mail::send('emails.mensajeRecibido',$codigo,function($smj){
-        //     $smj->subject('Correo de contacto');
-        //     $smj->to('gamr130898@gmail.com');
-        // });
         // Session::flash('mensaje', 'Mensaje enviado');
         return redirect()->route('home.inicio');
     }
@@ -521,6 +516,7 @@ $anuncio->images()->create([
         $reporte = Reporte::create([
             "motivo" => $motivo,
             "comentario" => $request["comentario"],
+            "anuncio_id"=>$request["anuncio_id"],
             "user_id" => $user->id
         ]);
         $noti = Reporte::make_reporte_notification($reporte, $anuncio);

@@ -96,7 +96,7 @@
                                     class="ad-box col-md-4 col-sm-4 col-xs-12">
                                     <i class="fa fa-share-alt"></i> <span class="hidetext">Compartir</span>
                                 </div>
-                                <a class="ad-box col-md-4 col-sm-4 col-xs-12" href="tel:{{$anuncio->telefono}}"><i
+                                <a class="ad-box col-md-4 col-sm-4 col-xs-12" href="tel:+593 {{$anuncio->telefono}}"><i
                                         class="fa fa-phone active"></i>
                                     <span class="hidetext">Contactar</span></a>
                                 <div data-target=".report-quote" data-toggle="modal"

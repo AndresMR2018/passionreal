@@ -15,7 +15,7 @@
             <div class=" breadcrumb-link">
                 <ul>
                     <li><a href="{{url('/')}}">Inicio</a></li>
-                    <li><a href="{{route('cliente.miCuenta')}}">Mi perfil</a></li>
+                    <li><a href="{{route('cliente.miCuenta')}}">Mi cuenta</a></li>
                 </ul>
             </div>
         </div>
@@ -118,13 +118,15 @@
                                             <dd>
                                                 {{$perfil->telefono}}
                                             </dd>
-                                            <a href="{{route('home.getValidarCuenta')}}">
+                                            <a>
                                                 <dt><strong>Usuario verificado: </strong></dt>
                                             </a>
+                                           
 
                                             <dd>
                                                 {{$user->cta_validada}}
                                             </dd>
+                                            <a href="{{route('home.getValidarCuenta')}}"> ¿Deseas validar tu cuenta?</a>
                                         </dl>
                                     </div>
                                     <div class="profile-edit tab-pane fade" id="edit">

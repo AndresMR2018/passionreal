@@ -1,5 +1,6 @@
 @extends('admin.spaceadmin')
 @section('contenido')
+<link rel="stylesheet" href="{{asset('css/hoverimg.css')}}">
 <div class="contenedor">
 
 @if(Session::has('mensaje'))
@@ -16,13 +17,16 @@
     <div class="card">
       <div class="card-body">
         <div class="container text-center pt-5">
-          @if(!isset($cliente->perfil->image->url))
-          <img style="max-width:150px;" class="img-lg rounded-circle mb-3" src="{{asset('images/user_default.png')}}" alt="foto">
-          @else
-            <img style="max-width:300px;" class="img-lg rounded-circle mb-3" src="{{$cliente->perfil->image->url}}" class="card-img-top" alt="...">
-           @endif
-          <h4 class="mb-3 mt-5">Titulo del anuncio</h4>
-          <p class="w-75 mx-auto mb-5">Descripción del anuncio</p>
+            <div class="contenedor">
+                @if(!isset($solicitud->image->url))
+                <img style="max-width:200px;" class="image img-lg  mb-3" src="{{asset('images/user_default.png')}}" alt="foto">
+                @else
+                  <img style="max-width:200px;" class="image  mb-3" src="{{$solicitud->image->url}}" class="card-img-top" alt="...">
+                 @endif
+            </div>
+          
+          <h4 class="mb-3 mt-5">Solicitud de verificación de cuenta</h4>
+          <p class="w-75 mx-auto mb-5"></p>
           <div class="row pricing-table">
             <div class="col-md-4 grid-margin stretch-card pricing-card">
             
@@ -31,12 +35,12 @@
               <div class="card border border-success pricing-card-body">
                 <div class="text-center pricing-card-head">
                   <h3 class="text-success">{{$cliente->name}}</h3>
-                  <p>{{$cliente->email}}</p>
-                  <h1 class="font-weight-normal mb-4">{{$cliente->perfil->telefono}}</h1>
+                  <p></p>
+                  <h1 class="font-weight-normal mb-4">Generado: {{$solicitud->codigo_generado}} <br> Enviado: {{$solicitud->codigo_enviado}}</h1>
                 </div>
                 <ul class="list-unstyled plan-features">
-                  <li>{{$cliente->perfil->dni}}</li>
-                  <li>{{$cliente->direccion}}</li>
+                  {{-- <li>{{$cliente->perfil->dni}}</li>
+                  <li>{{$cliente->direccion}}</li> --}}
                 
                 </ul>
                 <div class="wrapper">

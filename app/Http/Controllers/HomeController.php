@@ -157,9 +157,9 @@ class HomeController extends Controller
                 $key = mt_rand(1000000000, 9999999999);
                 $email = $user->email;
                 //  Mail::to($email)->send(new MensajeRecibido($key));
-                return view('pages.validarCuenta', compact('key'));
+                return redirect()->route('home.getValidarCuenta');
             } else
-                return view('admin.dashboard');
+                return redirect()->route('admin.dashbhoard');
         }
     }
 
@@ -170,8 +170,8 @@ class HomeController extends Controller
         $user = User::find($user_id);
         $email = $user->email;
         // Mail::to( $email = $user->email)->send(new MensajeRecibido($key));//enviamos el mail al correo del cliente que se registro
-
-        return view('pages.validarCuenta', compact('key'));
+        session()->put('key', $key);
+        return view('pages.validarCuenta');
     }
 
     public function upload_imageSolicitud($request, $solicitud){
@@ -191,14 +191,29 @@ class HomeController extends Controller
         $url = "";
         $datosValidacion = request()->except('_token');
       
+        if ($request->hasFile('foto')){
+            $this->validate($request, [
+                'foto' => 'required',
+                'foto' => 'image|mimes:png,jpg,jpeg|dimensions:min_width=800,min_height=200,max_width:1800,max_height:600|max:5000',
+            ],[
+                'foto.required'=>'La foto es requerida',
+                'foto.image'=>'El archivo tienen que ser una imagen',
+                'foto.mimes'=>'La foto debe ser tipo png, jpg o jpeg',
+                'foto.dimensions'=>'La foto no cumple con las dimensiones 800x200 mínimo; 1800x600 máximo',
+                'foto.max'=>'La foto supera el peso permitido (5Megabytes)'
+            ]);
+            
         $solicitud = Solicitud::create([
             'user_id' => Auth::id(),
-            'codigo_generado' => $request['key'],
+            'codigo_generado' => session('key'),
             'codigo_enviado' => $request['codigo_enviado'],
         ]);
-        if ($request->hasFile('foto')){
+        
+       
             $this->upload_imageSolicitud($request, $solicitud);
          }
+
+         Solicitud::make_solicitud_notification($solicitud);
 
         // if ($request->hasFile('foto')) {
         //     $file = $request['foto'];

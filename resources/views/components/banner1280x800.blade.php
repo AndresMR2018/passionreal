@@ -1,8 +1,14 @@
-<div id="banner">
+<div id="video">
+
+   <video autoplay muted loop id="myVideo">
+      <source src="{{asset('images/bg_pasion.mp4')}}" type="video/mp4">
+    </video>
+
     <div class="container">
        <div class="search-container">
           <!-- Form -->
-          <h2>Qué estás buscando ?</h2>
+          <h2>¿ Qué estás buscando ?</h2>
+          
           <form action="{{route('home.filtrado')}}" method="GET">
              <!-- Search Input -->
              <div class="col-md-4 col-sm-6 col-xs-12 no-padding">
@@ -39,3 +45,4 @@
        </div>
     </div>
  </div>
+

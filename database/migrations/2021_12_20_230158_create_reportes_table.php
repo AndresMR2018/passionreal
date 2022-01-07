@@ -17,6 +17,7 @@ class CreateReportesTable extends Migration
             $table->id();
             $table->longText('comentario')->nullable();
             $table->string('motivo');
+            $table->unsignedBigInteger('anuncio_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

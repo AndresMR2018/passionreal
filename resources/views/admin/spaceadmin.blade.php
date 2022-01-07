@@ -6,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Melody Admin</title>
+    <title>Pasion real</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('spaceadmin/vendors/iconfonts/font-awesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('spaceadmin/vendors/css/vendor.bundle.base.css') }}">
@@ -39,11 +39,12 @@
                         <div class="nav-link">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                    {{-- <span class="input-group-text">
                                         <i class="fas fa-search"></i>
-                                    </span>
+                                    </span> --}}
                                 </div>
-                                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar">
+                                {{-- <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar">
+                           --}}
                             </div>
                         </div>
                     </li>
@@ -68,7 +69,7 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
                             @if (auth()->user()->unreadNotifications->count() > 0)
-                                <a class="dropdown-item" href="{{ route('notificaciones.todas') }}">
+                                <a class="dropdown-item" href="{{ route('notificacion.todas') }}">
                                     <p class="mb-0 font-weight-normal float-left">Tienes
                                         {{ auth()->user()->unreadNotifications->count() }} nuevas notificaciones</p>
 
@@ -117,6 +118,25 @@
                                     </h6>
                                     <p class="font-weight-light small-text">
                                         El anuncio #{{ $notification->data['anuncio_id'] }} : {{$notification->data['titulo']}} fue reportado. 
+                                    </p>
+                                </div>
+                            </a>
+                            @endif
+
+                            @if($notification->type=="App\Notifications\NotificacionSolicitud")
+                            <a class="dropdown-item preview-item"
+                            href="">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-danger">
+                                        <i class="fas {{ $notification->data['icon'] }} mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-medium">
+                                        Solitud
+                                    </h6>
+                                    <p class="font-weight-light small-text">
+                                        El usuario # {{ $notification->data['user_id'] }}, {{$notification->data['nombre']}} solicita que su cuenta sea verificada. 
                                     </p>
                                 </div>
                             </a>
@@ -225,10 +245,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
+                            {{-- <a class="dropdown-item">
                                 <i class="fas fa-cog text-primary"></i>
                                 Configuración
-                            </a>
+                            </a> --}}
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();" class="dropdown-item">
@@ -484,7 +504,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="" aria-expanded="false"
+                        <a class="nav-link"  href="{{route('cliente.miCuenta')}}" 
                             aria-controls="page-layouts">
                             <i class="fab fa-trello menu-icon"></i>
                             <span class="menu-title">Mi cuenta</span>
@@ -538,7 +558,7 @@
                         <div class="collapse" id="page-layouts3">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('orden.index') }}">Ver ordenes</a></li>
+                                        href="{{ route('marcar_ordenes_leidas') }}">Ver ordenes</a></li>
 
                             </ul>
                         </div>
@@ -553,7 +573,7 @@
                         <div class="collapse" id="page-layouts4">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('solicitud.index') }}">Ver solicitudes</a></li>
+                                        href="{{ route('marcar_solicitudes_leidas') }}">Ver solicitudes</a></li>
 
                             </ul>
                         </div>
@@ -569,7 +589,7 @@
                         <div class="collapse" id="page-layouts5">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('admin.reportes') }}">Ver reportes</a></li>
+                                        href="{{ route('marcar_reportes_leidos') }}">Ver reportes</a></li>
 
                             </ul>
                         </div>
@@ -592,14 +612,14 @@
                     </li>
 
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#page-layouts6" aria-expanded="false"
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#page-layouts7" aria-expanded="false"
                             aria-controls="page-layouts">
                             <i class="fas fa-user-tag menu-icon"></i>
                             <span class="menu-title">Roles</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="page-layouts6">
+                        <div class="collapse" id="page-layouts7">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="">Agregar rol</a></li>
 
@@ -609,7 +629,7 @@
 
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
 
 
@@ -628,7 +648,7 @@
                                   <div class="statistics-item">
                                     <p>
                                       <i class="icon-sm fa fa-user mr-2"></i>
-                                      Nuevos usuarios
+                                      # Usuarios
                                     </p>
                                     <h2>5</h2>
                                  
@@ -645,12 +665,12 @@
                                       <i class="icon-sm fas fa-chart-line mr-2"></i>
                                       Ganancias
                                     </p>
-                                    <h2>0</h2>
+                                    <h2>{{$ganancias}} </h2>
                                   </div>
                                   <div class="statistics-item">
                                     <p>
                                       <i class="icon-sm fas fa-check-circle mr-2"></i>
-                                      Reportes de cuenta
+                                      # Reportes de cuenta
                                     </p>
                                     <h2>{{$count_reportes}}</h2>
                                   </div>
@@ -666,7 +686,15 @@
                                       <i class="icon-sm fas fa-circle-notch mr-2"></i>
                                       Solicitudes pendientes
                                     </p>
-                                    <h2>{{$count_solicitudes}}</h2>
+                                    @php
+                                   $noleidas =  auth()->user()->unreadNotifications;
+                                   $cont = 0;
+                                   foreach($noleidas as $nl){
+                                       if($nl->type=="App\Notifications\NotificacionSolicitud")
+                                    $cont = $cont + 1;
+                                   }
+                                    @endphp
+                                    <h2>{{$cont}}</h2>
                                   </div>
                               </div>
                             </div>

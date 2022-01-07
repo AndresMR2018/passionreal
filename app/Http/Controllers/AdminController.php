@@ -28,6 +28,13 @@ class AdminController extends Controller
         return view('admin.spaceadmin');
     }
 
+    public function pdfOrdenAdmin($id){
+        $orden = Orden::find($id); 
+        $cliente = User::find($orden->user_id);
+         $pdf = PDF::loadView('pdfs.ordenes.compraCredito', compact('orden','cliente'));
+        return $pdf->stream('compra_creditos.pdf');
+    }
+
     public function pdfOrden($id){
         $band=false;
         $user_id = Auth::id();

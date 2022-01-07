@@ -61,7 +61,7 @@ Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
 
 Route::get('/pasarela',[ClienteController::class,'getPasarela'])->name('cliente.pasarela');
 Route::post('/reportar',[ClienteController::class,'reportar'])->name('cliente.reportar');
-Route::get('/pdf-orden/{id}',[AdminController::class,'pdfOrden'])->name('admin.pdfOrden');
+Route::get('/pdf/orden/{id}',[AdminController::class,'pdfOrden'])->name('cliente.pdfOrden');
 Route::get('/estado-anuncio/{id}',[ClienteController::class,'estadoAnuncio'])->name('cliente.estadoAnuncio');
 });
 
@@ -69,7 +69,7 @@ Route::get('/estado-anuncio/{id}',[ClienteController::class,'estadoAnuncio'])->n
 
 //RUTAS PARA MARCAR NOTIFICACIONES
 //COMPRAS DE CREDITOS
-Route::get('marcar_todas_leidas',[NotificacionController::class,'marcar_todas_leidas'])->name('marcar_todas_leidas');
+Route::get('marcar_todas_leidas',[NotificacionController::class,'marcar_todas_leidas'])->name('marcar_ordenes_leidas');
 Route::get('marcar_una_leida/{notificacion_id}/{orden_id}',[NotificacionController::class,'marcar_una_leida'])->name('marcar_una_leida');
 //REPORTES
 Route::get('marcar_reportes_leidos',[NotificacionController::class,'marcar_reportes_leidos'])->name('marcar_reportes_leidos');
@@ -77,6 +77,11 @@ Route::get('marcar_un_reporte_leido/{notificacion_id}/{reporte_id}',[Notificacio
 //-------------------------------------
 Route::get('/notificaciones/todas',[NotificacionController::class,'ver_todas'])->name('notificacion.todas');
 Route::get('/notificacion/eliminar/{id}',[NotificacionController::class,'eliminar'])->name('notificacion.eliminar');
+// SOLICITUDES
+Route::get('marcar_solicitudes_leidas',[NotificacionController::class,'marcar_solicitudes_leidas'])->name('marcar_solicitudes_leidas');
+Route::get('marcar_solicitud_leida/{notificacion_id}/{solicitud_id}',[NotificacionController::class,'marcar_solicitud_leida'])->name('marcar_solicitud_leida');
+
+
 // VISTAS DE ADMINISTRADOR
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
 {
@@ -86,7 +91,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::resource('paquete', PaqueteController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('orden',OrdenController::class);
+    Route::get('rol/create',[RoleController::class,'create'])->name('role.create');
+    Route::post('rol/store',[RoleController::class,'store'])->name('role.store');
     Route::resource('solicitud',SolicitudController::class);
+    Route::get('/pdf/orden/{id}',[AdminController::class,'pdfOrdenAdmin'])->name('admin.pdfOrden');
     Route::get('/datos-cliente/{id}',[OrdenController::class, 'show'])->name('orden.showOrden');
     Route::get('/admin/aprobar-cuenta/{id}',[SolicitudController::class,'aprobarCuenta'])->name('solicitud.aprobarCuenta');
     Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');

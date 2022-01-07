@@ -992,16 +992,24 @@ ul {
 
 
 /* =-=-=-=-=-=-= Home With Static Banner =-=-=-=-=-=-= */
-#banner {
-	background: url("../images/banner_1280_880.jpg");
+#video {
+	/* background: url("../images/banner_1280_880.jpg");
 	background-position: center center;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat; */
 	background-size: cover;
 	min-height: 600px;
 	position: relative;
-	width: 100%;
+	max-width: 100%;
 }
-#banner::before {
+#myVideo {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+  }
+
+#video::before {
 	background-color: rgba(34, 34, 34, 0.6);
 	content: "";
 	display: inline-block;

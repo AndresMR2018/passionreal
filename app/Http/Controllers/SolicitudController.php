@@ -14,7 +14,7 @@ class SolicitudController extends Controller
    
     public function index()
     {
-        $solicitudes = Solicitud::all();
+        $solicitudes = Solicitud::paginate(5);
         return view('admin.solicitudes.index',compact('solicitudes'));
     }
 
@@ -31,9 +31,11 @@ class SolicitudController extends Controller
     }
 
     
-    public function show($id)
+    public function show(Solicitud $solicitud)
     {
-        //
+        $cliente = User::find($solicitud->user_id);
+
+        return view('admin.solicitudes.show', compact('solicitud','cliente'));
     }
 
 

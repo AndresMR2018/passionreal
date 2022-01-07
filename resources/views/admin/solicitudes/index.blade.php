@@ -62,13 +62,14 @@
             
             <td>
               
-                   <a class="btn btn-success" href="{{url('/admin/aprobar-cuenta/'.$s->user->id)}}">Cambiar estado</a>
+                   <a class="btn btn-success" title="Cambiar estado" href="{{route('solicitud.aprobarCuenta',$s->user_id)}}"><i class="fas fa-user-check"></i></a>
+                   <a class="btn btn-info" title="Ver solicitud" href="{{route('solicitud.show',$s)}}"><i class="fas fa-eye"></i></a>
       
            
             <form method="post" action="{{url('admin/solicitud/'.$s->id)}}" class="d-inline">
             @csrf
             {{method_field('DELETE')}}
-                <input type="submit" value="Borrar" id="botoncol" class="btn btn-danger" onclick="return confirm('Desea borrar?')">
+                <input type="submit" value="Borrar" id="botoncol" class=" btn btn-danger" onclick="return confirm('Desea borrar?')">
             </form>
             </td>
         </tr>
@@ -80,6 +81,6 @@
 </div>
 </div>
 </div>
-{{-- {!!$solicitudes->links() !!} --}}
+{!!$solicitudes->links() !!}
 
 @endsection

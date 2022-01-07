@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('content')
+
+<link rel="stylesheet" href="{{asset('css/visible_info.css')}}">
  <!-- Main Container -->
  <div class="container">
     <!-- Row -->
@@ -13,6 +15,25 @@
                  Validar cuenta  
                 </h3>
              </div>
+             @if (Session::has('mensaje'))
+             <div class="alert alert-success alert-dismissible" role="alert">
+                 {{ Session::get('mensaje') }}
+                 <button type="button" class="close" data-dismiss="alert" role="alert">
+                     <span aria-button="true">&times;</span>
+                 </button>
+             </div>
+         @endif
+         @if (count($errors) > 0)
+             <div class="alert alert-danger" role="alert">
+                 <ul>
+                     @foreach ($errors->all() as $error)
+                         <li>
+                             {{ $error }}
+                         </li>
+                     @endforeach
+                 </ul>
+             </div>
+         @endif
              <form method="POST" action="{{route('home.validacionCuenta')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -25,7 +46,18 @@
                @enderror
                 </div>
                 <div class="form-group">
-                   <label>Foto</label>
+                   <label>Foto de ti   </label>
+                   <input type="checkbox" title="ayuda" class="ayuda" name="ayuda" id="ayuda">
+
+                   <div class="info hidden" id="info">
+                      <ul>
+                         <p>Para facilitar la validación de tu cuenta, la foto deberá ser tomada:</p>
+                         <li>1. De frente*</li>
+                         <li>2. Desde la cintura a la cabeza*</li>
+                         <li>3. Mostrando el código que será enviado a su correo electrónico*</li>
+                      </ul>
+                   </div>
+
                    <input id="foto" class="form-control @error('foto') is-invalid @enderror" type="file" name="foto"  autocomplete="current-foto">
                    @error('foto')
                    <span class="invalid-feedback" role="alert">
@@ -33,7 +65,7 @@
                    </span>
                @enderror
                 </div>
-                <input type="text" name="key" value="{{$key}}" style="display:none;">
+              
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Enviar código</button>
              </form>
           </div>
@@ -44,4 +76,20 @@
     <!-- Row End -->
  </div>
  <!-- Main Container End -->
+
+ <script>
+   
+    function change(e){
+      var info = document.getElementById('info');
+      if(e.currentTarget.checked)
+         info.classList.remove('hidden');
+      else
+         info.className += " hidden";
+      
+    }
+
+    document.addEventListener('DOMContentLoaded', e => {
+    document.querySelector('.ayuda').addEventListener('change',change);
+});
+ </script>
 @endsection

@@ -57,12 +57,12 @@
             <td>{{$notificacion->read_at}}</td>
             <td style="display:flex; justify-content: space-between;">
                 @if($notificacion->type=="App\Notifications\NotificacionOrden")
-                <a class="btn btn-info" href="{{ route('marcar_una_leida', [$notificacion->id, $notificacion->data['id']]) }}">Ver</a>
+                <a class="btn btn-info" title="Ver notificación" href="{{ route('marcar_una_leida', [$notificacion->id, $notificacion->data['id']]) }}"><li class="fas fa-eye"></li></a>
                 @else
-                <a class="btn btn-info" href="{{ route('marcar_un_reporte_leido', [$notificacion->id, $notificacion->data['id']]) }}">Ver</a>
+                <a class="btn btn-info" title="Ver notificación" href="{{ route('marcar_un_reporte_leido', [$notificacion->id, $notificacion->data['id']]) }}"><li class="fas fa-eye"></li></a>
                 
                 @endif
-                <a class="btn btn-danger mx-0" href="{{route('notificacion.eliminar',$notificacion->id)}}">Eliminar</a></td>
+                <a class="btn btn-danger mx-0" title="Eliminar notificación" href="{{route('notificacion.eliminar',$notificacion->id)}}"><li class="fas fa-trash"></li></a></td>
            
         </tr>
         @endforeach

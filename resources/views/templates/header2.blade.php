@@ -72,7 +72,7 @@
                         <ul class="menu-logo">
                             <li>
                                 <a href="{{ route('home.inicio') }}"><img style="width: 100px"
-                                        src="{{ asset('/images/logo/logoPassionReal.jpeg') }}" alt="logo"> </a>
+                                        src="{{ asset('/images/logo_pasion2.png') }}" alt="logo"> </a>
                             </li>
                         </ul>
                         <!-- menu links -->
