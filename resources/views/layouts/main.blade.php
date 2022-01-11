@@ -57,7 +57,7 @@
     <!-- =-=-=-=-=-=-= Main Content Area =-=-=-=-=-=-= -->
       <div class="main-content-area clearfix">
          <!-- =-=-=-=-=-=-= Latest Ads =-=-=-=-=-=-= -->
-         <section class="section-padding error-page">
+         <section class="section-padding error-page" style="background-color: white;">
             @yield('content')
          </section>
         

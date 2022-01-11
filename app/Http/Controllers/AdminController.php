@@ -92,9 +92,7 @@ class AdminController extends Controller
         return back()->with('mensaje','Cuenta baneada con exito');
     }
 
-    public function verTodas(){
-
+    
     }
 
-   
-}
+

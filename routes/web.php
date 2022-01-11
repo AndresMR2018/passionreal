@@ -10,6 +10,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CreditoController;
+use App\Http\Controllers\MiembroController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SolicitudController;
@@ -29,10 +30,13 @@ Route::get('/categoria/{id}', [HomeController::class, 'findByCategoria'])->name(
 Route::get('/categorias',[HomeController::class, 'findAllCategorias'])->name('home.findAllCategorias');
 Route::get('/buscar',[HomeController::class, 'filtrado'])->name('home.filtrado');
 Route::get('/cuenta-baneada',[HomeController::class, 'cuentaBaneada'])->name('home.cuentaBaneada');
+
 Route::get('/recuperar/password',[HomeController::class,'getPrevPasswordReset'])->name('home.getPrevPasswordReset');
 Route::post('/recuperar/password',[HomeController::class,'postPasswordReset'])->name('home.postPasswordReset');
 Route::post('/prev-recuperar/password',[HomeController::class,'postPrevPasswordReset'])->name('home.postPrevPasswordReset');
 
+//=== ESTA RUTA SE USA PARA PODER MOSTRAR EL MENSAJE DE NOTIFICACION CON SESSION EN LA VISTA DE INICIO==//
+Route::get('/redireccion',[ClienteController::class, 'redireccion'])->name('cliente.redireccion');
 });
 
 
@@ -52,13 +56,12 @@ Route::get('/mis-ordenes',[ClienteController::class,'misOrdenes'])->name('client
 Route::post('/editar-perfil',[ClienteController::class,'editarMiPerfil'])->name('cliente.editarMiPerfil');
 Route::get('/editar-anuncio/{id}',[ClienteController::class,'editarAnuncio'])->name('cliente.editarAnuncio');
 Route::post('/editar-anuncio',[ClienteController::class,'postEditarAnuncio'])->name('cliente.postEditarAnuncio');
-Route::get('/retirar-imagen/{id}',[ClienteController::class,'retirarImagen'])->middleware('cliente');
+Route::get('/retirar/{id}',[ClienteController::class,'retirarImagen'])->middleware('cliente');
 Route::get('/creditos',[ClienteController::class,'creditos'])->name('cliente.creditos');
 Route::post('/comprar-credito',[ClienteController::class,'comprarCredito'])->name('cliente.comprarCredito');
 Route::get('/anuncio/{id}', [ClienteController::class,'eliminarAnuncio'])->name('cliente.deleteAnuncio');
 Route::get('/validar-cuenta2',[ClienteController::class,'validarCuenta'])->name('cliente.validarCuenta');
 Route::get('/payments/pay',[PaymentController::class, 'pay'])->name('pay');
-
 Route::get('/pasarela',[ClienteController::class,'getPasarela'])->name('cliente.pasarela');
 Route::post('/reportar',[ClienteController::class,'reportar'])->name('cliente.reportar');
 Route::get('/pdf/orden/{id}',[AdminController::class,'pdfOrden'])->name('cliente.pdfOrden');
@@ -68,8 +71,9 @@ Route::get('/estado-anuncio/{id}',[ClienteController::class,'estadoAnuncio'])->n
 
 
 //RUTAS PARA MARCAR NOTIFICACIONES
-//COMPRAS DE CREDITOS
-Route::get('marcar_todas_leidas',[NotificacionController::class,'marcar_todas_leidas'])->name('marcar_ordenes_leidas');
+Route::group(['middleware' => 'admin'], function()
+{
+Route::get('marcar_ordenes_leidas',[NotificacionController::class,'marcar_ordenes_leidas'])->name('marcar_ordenes_leidas');
 Route::get('marcar_una_leida/{notificacion_id}/{orden_id}',[NotificacionController::class,'marcar_una_leida'])->name('marcar_una_leida');
 //REPORTES
 Route::get('marcar_reportes_leidos',[NotificacionController::class,'marcar_reportes_leidos'])->name('marcar_reportes_leidos');
@@ -80,7 +84,7 @@ Route::get('/notificacion/eliminar/{id}',[NotificacionController::class,'elimina
 // SOLICITUDES
 Route::get('marcar_solicitudes_leidas',[NotificacionController::class,'marcar_solicitudes_leidas'])->name('marcar_solicitudes_leidas');
 Route::get('marcar_solicitud_leida/{notificacion_id}/{solicitud_id}',[NotificacionController::class,'marcar_solicitud_leida'])->name('marcar_solicitud_leida');
-
+});
 
 // VISTAS DE ADMINISTRADOR
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
@@ -89,8 +93,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::resource('categoria', CategoriaController::class);
     Route::resource('credito', CreditoController::class)->names('credito');
     Route::resource('paquete', PaqueteController::class);
-    Route::resource('roles', RoleController::class);
+    // Route::resource('roles', RoleController::class)->only('index');
     Route::resource('orden',OrdenController::class);
+    Route::resource('miembros',MiembroController::class)->names('miembro');
     Route::get('rol/create',[RoleController::class,'create'])->name('role.create');
     Route::post('rol/store',[RoleController::class,'store'])->name('role.store');
     Route::resource('solicitud',SolicitudController::class);
@@ -100,5 +105,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::get('/reportes',[AdminController::class,'reportes'])->name('admin.reportes');
     Route::get('/reportar/{id}',[AdminController::class,'banearCuenta'])->name('reportar');
     Route::get('/usuario-reportado/{id}',[AdminController::class,'verUsuarioReportado'])->name('admin.usuarioReportado');
-   
+    
 });

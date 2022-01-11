@@ -54,9 +54,9 @@
                         <td>{{ $orden->subtotal }}</td>
                         <td>{{ $orden->user_id }}</td>
                         <td>
-                            <a href="{{url('/admin/datos-cliente/' . $orden->id)}}" title="Ver más"><li class="fa fa-eye"></li></a>
+                            <a href="{{url('/admin/datos-cliente/' . $orden->id)}}" class="btn btn-success" title="Ver más"><li class="fa fa-eye"></li></a>
                             
-                            <a target="_blank" style="margin-left:10px;" href="{{route('admin.pdfOrden',$orden->id)}}" title="Descargar orden"><li class="fa fa-file-pdf"></li></a>
+                            <a target="_blank" class="btn btn-info" style="margin-left:10px;" href="{{route('admin.pdfOrden',$orden->id)}}" title="Descargar orden"><li class="fa fa-file-pdf"></li></a>
                         </td>
                         {{-- <td>
                             <a href="{{ url('admin/orden/' . $orden->id . '/edit') }}" id="botoncol"

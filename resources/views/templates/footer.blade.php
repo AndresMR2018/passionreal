@@ -9,7 +9,7 @@
                    <div class="col-lg-7 col-sm-6 col-xs-12 column">
                       <div class="footer-widget about-widget">
                          <div class="logo">
-                            <a href="index.html"><img alt="" class="img-responsive" src="{{asset('images/logo/logoPassionReal.jpeg')}}"></a>
+                            <a href="index.html"><img alt="" class="img-responsive" src="{{asset('images/logo_pasion.jpeg')}}"></a>
                          </div>
                          <div class="text">
                             <p>Encuentra tu libido</p>

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Image;
 use Illuminate\Support\Facades\File;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 
 class SolicitudController extends Controller
 {
@@ -54,18 +56,18 @@ class SolicitudController extends Controller
     public function destroy($id)
     {
            //produccion
-        // $solicitud = Solicitud::find($id);
-        // $pid = $solicitud->image->public_id;
-        // Cloudinary::destroy($pid);
-        //  $idimg = $solicitud->image->id;
-        //       Image::destroy($idimg);
-        //finproduccion
         $solicitud = Solicitud::find($id);
-        $idimg = $solicitud->image->id;
-        $url = $solicitud->image->url;
-        $str = substr($url, 1);//quitamos un caracter a la cadena de ruta para eliminar la img
-        File::delete($str);//eliminamos la img fisica de nuestro servidor
-        Image::destroy($idimg);
+        $pid = $solicitud->image->public_id;
+        Cloudinary::destroy($pid);
+         $idimg = $solicitud->image->id;
+              Image::destroy($idimg);
+        //finproduccion
+        // $solicitud = Solicitud::find($id);
+        // $idimg = $solicitud->image->id;
+        // $url = $solicitud->image->url;
+        // $str = substr($url, 1);//quitamos un caracter a la cadena de ruta para eliminar la img
+        // File::delete($str);//eliminamos la img fisica de nuestro servidor
+        // Image::destroy($idimg);
 
         $solicitud=Solicitud::destroy($id);
        

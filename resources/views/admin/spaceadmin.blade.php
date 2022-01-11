@@ -559,7 +559,6 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
                                         href="{{ route('marcar_ordenes_leidas') }}">Ver ordenes</a></li>
-
                             </ul>
                         </div>
                     </li>
@@ -612,6 +611,25 @@
                     </li>
 
 
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#page-layouts8" aria-expanded="false"
+                            aria-controls="page-layouts">
+                            <i class="fas fa-user-tag menu-icon"></i>
+                            <span class="menu-title">Miembros</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="page-layouts8">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{route('miembro.create')}}">Agregar miembro</a></li>
+
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{route('miembro.index')}}">Ver miembros</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
                     {{-- <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#page-layouts7" aria-expanded="false"
                             aria-controls="page-layouts">
@@ -620,12 +638,9 @@
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="page-layouts7">
+                       
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="">Agregar rol</a></li>
-
-                            </ul>
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="">Ver roles</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{route('roles.index')}}">Ver roles</a></li>
 
                             </ul>
                         </div>

@@ -2,7 +2,7 @@
 
 @section('content')
  <!-- Main Container -->
- <div class="container">
+ <div class="container" >
     <!-- Row -->
     <div class="row">
        <!-- Middle Content Area -->
@@ -44,8 +44,8 @@
                @enderror
                 </div>
                 <div class="form-group">
-                    <div class="row">
-                       <div class="col-xs-12 col-sm-7">
+                    {{-- <div class="row"> --}}
+                       {{-- <div class="col-xs-12 col-sm-7">
                           <div class="skin-minimal">
                              <ul class="list">
                                 <li>
@@ -54,20 +54,21 @@
                                 </li>
                              </ul>
                           </div>
-                       </div>
-                       <div class="col-xs-12 col-sm-5 text-right">
-                        <p class="help-block">
-                           @if (Route::has('password.request')) 
-                           <a  href="{{ route('password.request') }}">¿Olvidaste la contraseña?</a
-                           >@endif
-                        </p>
-                     </div>
-                    </div>
+                       </div> --}}
+                       
+                    {{-- </div> --}}
                  </div>
                 <button class="btn btn-theme btn-lg btn-block" type="submit">Iniciar sesión</button>
                 <p></p>
                 <div class="row">
-                <div class="col-xs-12 center-block text-center">
+                  <div class="col-xs-6 center-block text-center">
+                     <p class="help-block">
+                        @if (Route::has('password.request')) 
+                        <a  href="{{ route('password.request') }}">¿Olvidaste la contraseña?</a
+                        >@endif
+                     </p>
+                  </div>
+                <div class="col-xs-6 center-block text-center">
                    
                     <p class="help-block"> 
                         <a  href="{{ route('register') }}">¿No tienes una cuenta?</a>

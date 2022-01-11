@@ -18,10 +18,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MensajeResetPassword;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Artisan;
 use Nette\Utils\Random;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+
 use Illuminate\Support\Str;
 use App\Mail\MensajeRecibido;
 
@@ -81,9 +79,6 @@ class HomeController extends Controller
     {
 
         $anunciosByCategoria = Anuncio::where('categoria_id', $id)->get();
-        // $cantidadAnuncios = Anuncio::count();
-        // $categoriasByName = Categoria::where('nombre', $nombre)->get();
-        // dd($categorias);
         return view('pages.anunciosByCategoria', compact('anunciosByCategoria'));
     }
 
@@ -98,9 +93,6 @@ class HomeController extends Controller
         $categorias = Categoria::all();
         return view('pages.categorias', compact('categorias', 'anuncios'));
     }
-
-
-
 
     public function detalleAnuncio($id)
     {
@@ -142,9 +134,9 @@ class HomeController extends Controller
         //asignamos un rol de cliente al usuario que se registre
         $user->assignRole('Client');
         $user->perfil()->create([
-            'telefono' => '0987654321',
-            'dni' => '2100000000',
-            'nombre' => 'edite su nombre',
+            'telefono' => '',
+            'dni' => '',
+            'nombre' => 'Edite su datos',
         ]); //creamos el perfil vacio
         Auth::login($user);
         //generamos el codigo random
@@ -169,7 +161,8 @@ class HomeController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
         $email = $user->email;
-        // Mail::to( $email = $user->email)->send(new MensajeRecibido($key));//enviamos el mail al correo del cliente que se registro
+        Mail::to( $email = $user->email)->send(new MensajeRecibido($key));//enviamos el mail al correo del cliente que se registro
+      
         session()->put('key', $key);
         return view('pages.validarCuenta');
     }
@@ -203,36 +196,36 @@ class HomeController extends Controller
                 'foto.max'=>'La foto supera el peso permitido (5Megabytes)'
             ]);
             
-        $solicitud = Solicitud::create([
-            'user_id' => Auth::id(),
-            'codigo_generado' => session('key'),
-            'codigo_enviado' => $request['codigo_enviado'],
-        ]);
-        
-       
-            $this->upload_imageSolicitud($request, $solicitud);
-         }
-
-         Solicitud::make_solicitud_notification($solicitud);
-
-        // if ($request->hasFile('foto')) {
-        //     $file = $request['foto'];
-        //     $elemento = Cloudinary::upload($file->getRealPath(), ['folder' => 'solicitudes']);
-        //     $public_id = $elemento->getPublicId();
-        //     $url = $elemento->getSecurePath();
-        // }
-
         // $solicitud = Solicitud::create([
         //     'user_id' => Auth::id(),
-        //     'codigo_generado' => $request['key'],
+        //     'codigo_generado' => session('key'),
         //     'codigo_enviado' => $request['codigo_enviado'],
         // ]);
-        // $solicitud->image()->create([
-        //     "url" => $url,
-        //     "public_id" => $public_id
-        // ]);
+        
+       
+        //     $this->upload_imageSolicitud($request, $solicitud);
+        //  }
+
+        if ($request->hasFile('foto')) {
+            $file = $request['foto'];
+            $elemento = Cloudinary::upload($file->getRealPath(), ['folder' => 'solicitudes']);
+            $public_id = $elemento->getPublicId();
+            $url = $elemento->getSecurePath();
+        }
+
+        $solicitud = Solicitud::create([
+            'user_id' => Auth::id(),
+            'codigo_generado' => $request['key'],
+            'codigo_enviado' => $request['codigo_enviado'],
+        ]);
+        $solicitud->image()->create([
+            "url" => $url,
+            "public_id" => $public_id
+        ]);
+        Solicitud::make_solicitud_notification($solicitud);
         return redirect()->route('home.inicio')->with('mensaje', 'Solicitud de registro enviada. Por la comodidad y bienestar de nuestros usuarios PassionReal se tomará unos minutos hasta validar sus datos.');
     }
+}
 
     public function cuentaBaneada()
     {

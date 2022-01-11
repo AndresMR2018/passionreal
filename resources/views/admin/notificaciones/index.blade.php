@@ -62,7 +62,7 @@
                 <a class="btn btn-info" title="Ver notificación" href="{{ route('marcar_un_reporte_leido', [$notificacion->id, $notificacion->data['id']]) }}"><li class="fas fa-eye"></li></a>
                 
                 @endif
-                <a class="btn btn-danger mx-0" title="Eliminar notificación" href="{{route('notificacion.eliminar',$notificacion->id)}}"><li class="fas fa-trash"></li></a></td>
+                <a class="btn btn-danger mx-1" title="Eliminar notificación" href="{{route('notificacion.eliminar',$notificacion->id)}}"><li class="fas fa-trash"></li></a></td>
            
         </tr>
         @endforeach

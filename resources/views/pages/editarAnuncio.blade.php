@@ -136,11 +136,11 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                    {{-- <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                         <label class="control-label">Zona/distrito/barrio </label>
                                         <input class="form-control" name="zona" value="">
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                    </div> --}}
+                                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
 
                                         <label class="control-label">Dirección </label>
                                         <input class="form-control" name="direccion" id="direccion"
@@ -151,7 +151,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                            <div class="form-control">
-                                            <label class="control-label">Agregar nueva foto para tu anuncio <label>
+                                            <label class="control-label">Agregar nueva foto o video para tu anuncio <label>
                                      
                                                 <input type="file" name="image" id="image">  
                                             </div>    
@@ -163,30 +163,55 @@
                                     <!-- end row -->
                                     <!-- Image Upload  -->
                                     <label class="control-label">Imágenes de tu anuncio<small>Puedes retirar o añadir más</small></label>
-<div class="row">
+
+                                    <div class="row">
     @foreach ($anuncio->images as $imagen)
+    @if(!Str::endsWith($imagen->url,'mp4'))
     <div class="col-md-3 col-sm-4 col-xs-12">
-        
         <div class="opciones">
             <a
-                href="{{ url('/retirar-imagen/' . $imagen->id) }}"><i
+                href="{{ url('/retirar/' . $imagen->id) }}"><i
                     title="Retirar imagen"
                     class="fas fa-calendar-times"></i></a>
-
         </div>
             <div class="minimal-category">
-                
-                <div class="minimal-img">
-                   
+                <div class="minimal-img"> 
                     <img alt="imagen de anuncio" class="img-responsive" src="{{ $imagen->url }}">
                 </div>
-                <div class="minimal-overlay"></div>
-                
+                {{-- <div class="minimal-overlay"></div>    --}}
             </div>
-       
     </div>
+    @endif
     @endforeach
 </div>
+@php
+$contv = 0;
+foreach($anuncio->images as $imagen){
+    if(Str::endsWith($imagen->url,'mp4')){
+        $contv=$contv+1;
+        $video = $imagen; //se guarda el archivo de tipo video
+    }
+}
+@endphp
+@if($contv>0)
+    <label class="control-label">Video de tu anuncio<small>1 video permitido por anuncio. Peso máximo permitido: 6KB.</small></label>
+    <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="opciones">
+                <a
+                  href="{{ url('/retirar/' . $video->id) }}"><i
+                    title="Retirar video"
+                    class="fas fa-calendar-times"></i></a>
+            </div>
+            <div class="minimal-category"> 
+                <div class="minimal-img">   
+                    <video src="{{$imagen->url}}" width="200" height="200" autoplay muted loop controls></video>
+                </div>
+                {{-- <div class="minimal-overlay"></div> --}}
+            </div>
+        </div>
+    </div>
+@endif
 
                                    
 
@@ -206,7 +231,7 @@
                                     </div>
                                     <!-- end row -->
 
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
                                             <label class="control-label">Paquete <small>Costo por activación de paquete
                                                     (1 crédito)</small></label>
@@ -219,12 +244,10 @@
                                                     </option>
 
                                                 @endforeach
-                                                {{-- <option value="{{$categoria->id}}" {{ old('categoria_id',
-                                                    $anuncio->categoria_id) == $categoria->id ? 'selected' : '' }}>{{
-                                                    $categoria->nombre}}</option> --}}
+                                            
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 
 

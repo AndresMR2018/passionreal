@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+  
     public function register()
     {
         //
@@ -35,28 +31,8 @@ class AppServiceProvider extends ServiceProvider
         $categorias = Categoria::all();
         $paquetes = Paquete::all();
       
-
-        
-        // $anuncios=Anuncio::where('estado','=','activado');
-        // $anuncios = Anuncio::orderBy('updated_at','desc')->paginate(5);
         $anuncios = Anuncio::where('estado','=','activado')->orderBy('updated_at','asc')->paginate(2);
-        // $anuncios = $anuncios->orderBy('updated_at','desc')->paginate(1);
-        
- 
-
-        // foreach($anuncios as $anuncio){
-        //     $now = Carbon::now()->format('Y-m-d H:i:s');
-           
-        //     $user = User::find($anuncio->user_id);
-           
-        //     if(
-        //    date('Y-m-d') == "2022-01-05")
-        //     {
-        //        dd("cumple");
-        //     }
-
-        // }
-
+     
                 view()->share([
                 'categorias'=>$categorias,
                 'paquetes'=>$paquetes,

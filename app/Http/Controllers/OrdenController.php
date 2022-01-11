@@ -15,19 +15,6 @@ class OrdenController extends Controller
         return view('admin.ordenes.index', compact("ordenes"));
     }
 
- 
-    public function create()
-    {
-        //
-    }
-
-   
-    public function store(Request $request)
-    {
-        //
-    }
-
-
     public function show($id)
     {
         $orden = Orden::findOrFail($id);
@@ -38,20 +25,4 @@ class OrdenController extends Controller
     }
 
     
-    public function edit(Orden $orden)
-    {
-        //
-    }
-
-  
-    public function update(Request $request, Orden $orden)
-    {
-        //
-    }
-
-   
-    public function destroy(Orden $orden)
-    {
-        //
-    }
 }

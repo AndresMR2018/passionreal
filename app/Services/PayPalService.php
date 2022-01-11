@@ -2,8 +2,13 @@
 
 namespace App\Services;
 
+use App\Http\Controllers\ClienteController;
+use App\Models\Orden;
 use Illuminate\Http\Request;
 use App\Traits\ConsumesExternalServices;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PayPalService
 {
@@ -46,14 +51,10 @@ class PayPalService
     {
         $currency="usd";
          $total=$request['creditos']*0.20;
-        $order = $this->createOrder($total, $currency);
-
+        $order = $this->createOrder($total, $currency, $request);
         $orderLinks = collect($order->links);
-
         $approve = $orderLinks->where('rel', 'approve')->first();
-
         session()->put('approvalId', $order->id);
-
         return redirect($approve->href);
     }
 
@@ -68,14 +69,12 @@ class PayPalService
             $payment = $payment->purchase_units[0]->payments->captures[0]->amount;
             $amount = $payment->value;
             $currency = $payment->currency_code;
-
-            return redirect()
-                ->route('home')
-                ->withSuccess(['payment' => "Thanks, {$name}. We received your {$amount}{$currency} payment."]);
+            // return redirect()->route('home.inicio')->with('mensaje', 'Su reporte ha sido realizado');
+            return redirect()->route('home.inicio')->with('mensaje' , 'Gracias. Hemos recibido su pago.');
         }
 
         return redirect()
-            ->route('home')
+            ->route('home.creditos')
             ->withErrors('We cannot capture your payment. Try again, please');
     }
 
@@ -109,8 +108,20 @@ class PayPalService
         return false;
     }
 
-    public function createOrder($value, $currency)
+    public function createOrder($value, $currency, $request)
     {
+        
+              $data =  array([
+            "idcredito"=>$request['idcredito'],
+            "subtotal" => $request['creditos'] * 0.2,
+            "telefono" => $request["telefono"],
+            "cantidad_creditos"=>$request['creditos'],
+            "dni" => $request["dni"],
+            "nombre_completo" => $request["nombre_completo"],
+        ]);
+
+        session(['data'=>$data]);
+
         return $this->makeRequest(
             'POST',
             '/v2/checkout/orders',
@@ -129,14 +140,16 @@ class PayPalService
                     'brand_name' => config('app.name'),
                     'shipping_preference' => 'NO_SHIPPING',
                     'user_action' => 'PAY_NOW',
-                    'return_url' => route('home.inicio'),
-                    'cancel_url' => route('home.inicio'),
+                    'return_url' => route('cliente.redireccion'),
+                    'cancel_url' => route('cliente.creditos'),
                 ]
             ],
             [],
             $isJsonRequest = true,
         );
     }
+
+    
 
     public function capturePayment($approvalId)
     {

@@ -54,7 +54,7 @@
                          <p>Para facilitar la validación de tu cuenta, la foto deberá ser tomada:</p>
                          <li>1. De frente*</li>
                          <li>2. Desde la cintura a la cabeza*</li>
-                         <li>3. Mostrando el código que será enviado a su correo electrónico*</li>
+                         <li>3. Mostrando en una hoja el código que será enviado a su correo electrónico*</li>
                       </ul>
                    </div>
 

@@ -19,23 +19,25 @@ class RoleController extends Controller
     {
         //
         $roles = Role::get();
-        return view('admin.role.index', compact('roles'));
+        return view('admin.roles.index', compact('roles'));
     }
 
 
     public function create()
     {
         //
-        $permisos = Permission::get();
-        return view('admin.role.create', compact('permisos'));
+    
+        return view('admin.roles.create');
     }
 
    
     public function store(Request $request)
     {
-        $role = Role::create($request->all());
-        $role->permissions()->sync($request->get('permissions'));
-        return redirect()->route('roles.index');
+        $role = Role::create(
+            ["name"=>$request['nombre']]
+        );
+        // $role->permissions()->sync($request->get('permissions'));
+        return redirect()->route('roles.index')->with('mensaje','Rol agregado');
 
     }
 

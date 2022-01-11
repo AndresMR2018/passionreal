@@ -152,7 +152,7 @@
 
 .mega-menu .menu-links {
   /*---------------------------------------- MENU LINKS */
-  margin: 0;
+  margin: 0 ;
   padding: 0;
   display: block;
   float: left;
@@ -161,7 +161,7 @@
 @media screen and (max-width: 992px) {
   .mega-menu .menu-links {
     width: 100%;
-    background: #fff;
+    background: #161616;
   }
 }
 @media screen and (min-width: 993px) {
@@ -213,9 +213,9 @@
   display: inline-block;
   float: none;
   width: 100%;
-  color:#232323;
-  font-size: 14px;
-  font-weight:600;
+  color:#f20c93;
+  font-size: 18px;
+  font-weight:700;
   line-height: 50px;
   position: relative;
   text-transform: uppercase;
@@ -324,7 +324,7 @@
   display: inline-block;
   float: left;
   width: 100%;
-  color: #fff;
+  color: rgb(173, 67, 67);
   font-size: 0.875em;
   padding: 0 5px;
   transition: background-color 200ms ease;
@@ -543,7 +543,7 @@
   right: auto;
   z-index: 50;
   width: 100%;
-  background: #fff;
+  background: #f20c93;
   float: left;
   max-width: 210px;
 }
@@ -633,6 +633,10 @@
   transition: color 200ms ease;
   min-height: 48px;
   text-transform:uppercase;
+}
+
+.mega-menu .drop-down-multilevel li a:hover{
+color:black;
 }
 
 @media screen and (max-width: 992px) {
@@ -1470,7 +1474,7 @@
 @media screen and (min-width: 993px) {
   .mega-menu.desktopTopFixed .menu-list-items {
     /*--------------------------------------------------------- TOP FIXED FOR DESKTOP */
-   background: #fff none repeat scroll 0 0;
+   background: #181616 none repeat scroll 0 0;
     left: 0;
     max-width: 100%;
     padding: 20px 0;
@@ -1882,14 +1886,14 @@ box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 .mega-menu .drop-down-multilevel.right-menu { right: 0px;  }
 .mega-menu .menu-links > li:last-child > a { padding-right: 0px; }
 .mega-menu .menu-links > li.active .drop-down-multilevel a { color: #555555; }
-.mega-menu .menu-links > li.active .drop-down-multilevel a:hover { color: #00a9da; }
+.mega-menu .menu-links > li.active .drop-down-multilevel a:hover { color: #000000; }
 .mega-menu .menu-links > li.active .drop-down a { color: #323232; }
 
 .mega-menu .menu-links > li.active .drop-down li.active a i { color: #00a9da; }
 .mega-menu .menu-links > li.active .drop-down a i:hover { color: #00a9da; }
 .mega-menu .menu-links > li.active .drop-down-multilevel li.active a { color: #00a9da; background: #eceff7; }
 .mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li a { color: #323232; background:transparent; }
-.mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li a:hover { color: #00a9da; }
+.mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li a:hover { color: black; }
 .mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li.active a { color: #00a9da; background: #eceff7; }
 .mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li.active .drop-down-multilevel li a { color: #323232; background:transparent; }
 .mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li a .drop-down-multilevel li a:hover { color: #00a9da; }

@@ -489,12 +489,12 @@
                                 <div class="select-package">
                                     <div class="no-padding col-md-12 col-lg-12 col-xs-12 col-sm-12">
                                         <h3 class="margin-bottom-20">Ordenes</h3>
-                                        @foreach ($ordenes as $orden)
+                                        @foreach ($ordenes as $key=>$orden)
                                         <div class="pricing-list">
                                           <div class="row">
                                               <div class="col-md-9 col-sm-9 col-xs-12">
                                                   <h3>
-                                                      Orden # {{$orden->id}} <small>{{$orden->fecha_orden}}</small>
+                                                      Orden # {{$key+1}} <small>{{$orden->fecha_orden}}</small>
                                                   </h3>
                                                   <p>
                                                      
@@ -516,6 +516,8 @@
                                         
                                     
                                     </div>
+
+                                    {!! $ordenes->links() !!}
                                 </div>
 
                                

@@ -69,7 +69,7 @@
                                     <ul class="slides slide-main">
                                         @foreach ($anuncio->images as $imagen)
                                         @if(Str::endsWith($imagen->url,'mp4'))
-                                        <li><video src="{{$imagen->url}}" width="200" height="200" autoplay muted loop controls></video></li>
+                                        <li><video src="{{$imagen->url}}" style="max-width: 350px;" autoplay muted loop controls></video></li>
                                         @else
                                        <li><img src="{{$imagen->url}}" alt="foto"></li> 
                                         @endif
@@ -82,10 +82,12 @@
                                 <div class="flex-viewport">
                                     <ul class="slides slide-thumbnail">
                                         @foreach ($anuncio->images as $imagen)
-                                        <li><img alt="" draggable="false" src="{{ $imagen->url }}"></li>
-
+                                        @if(!Str::endsWith($imagen->url,"mp4"))
+                                        <li><img alt="foto" draggable="false" src="{{ $imagen->url }}"></li>
+                                        @else
+                                        <li><video style="max-width:150px;" src="{{$imagen->url}}" ></video></li>
+                                        @endif
                                         @endforeach
-
                                         <!-- items mirrored twice, total of 12 -->
                                     </ul>
                                 </div>

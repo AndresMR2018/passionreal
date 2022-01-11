@@ -54,7 +54,7 @@
                                             <td>{{ $paquete->periodo_horas }}</td>
                                             <td>
                                                 <a href="{{ url('admin/paquete/' . $paquete->id . '/edit') }}" id="botoncol"
-                                                    class="btn btn-warning mb-2 "><i class="fas fa-edit"></i></a>
+                                                    class="btn btn-warning  "><i class="fas fa-edit"></i></a>
 
                                                 <form method="post" action="{{ url('admin/paquete/' . $paquete->id) }}"
                                                     class="d-inline">

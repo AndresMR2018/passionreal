@@ -5,6 +5,7 @@
 
 
 <body>
+   
 
     <!-- =-=-=-=-=-=-= Transparent Header =-=-=-=-=-=-= -->
     @include('templates.header2')
@@ -46,6 +47,7 @@
                         </div>
                     </div>
                     <!-- Middle Content Box -->
+                   
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <ul class="list-unstyled">
                             <!-- Listing Grid -->

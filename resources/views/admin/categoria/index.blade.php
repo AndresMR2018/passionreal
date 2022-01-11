@@ -75,9 +75,10 @@
             </td>
             
             <td>
-            <a href="{{url('admin/categoria/'.$c->id.'/edit')}}" id="botoncol" class="btn btn-warning mb-2 ">Editar</a>
-
+            
             <form method="post" action="{{url('admin/categoria/'.$c->id)}}" class="d-inline">
+              <a href="{{url('admin/categoria/'.$c->id.'/edit')}}" id="botoncol" class="btn btn-warning  ">Editar</a>
+
             @csrf
             {{method_field('DELETE')}}
                 <input type="submit" value="Borrar" id="botoncol" class="btn btn-danger" onclick="return confirm('Desea borrar?')">

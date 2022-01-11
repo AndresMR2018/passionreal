@@ -14,7 +14,7 @@ class PaymentPlatformResolver
         $this->paymentPlatforms = PaymentPlatform::all();
     }
 
-    public function resolveService($paymentPlatformId)
+    public static function resolveService($paymentPlatformId)
     {
         // $name = strtolower($this->paymentPlatforms->firstWhere('id', $paymentPlatformId)->name);
 

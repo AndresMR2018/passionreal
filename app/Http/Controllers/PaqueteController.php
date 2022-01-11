@@ -23,21 +23,21 @@ class PaqueteController extends Controller
    
     public function store(Request $request)
     {
-        $request->validate([
-'periodo_horas'=>'unique:paquetes,periodo_horas'
-        ]);
+        $campos = [
+            'periodo_horas' => 'required|unique:paquetes,periodo_horas|numeric',
+        ];
+        $mensaje = [
+            'periodo_horas.required' => 'El periodo de horas es requerido',
+            'periodo_horas.unique'=> ' El periodo de horas debe ser único',
+            'perido_horas.numeric'=>' El valor para el periodo de horas debe ser numérico'
+        ];
+        $this->validate($request, $campos, $mensaje);
 
         $datosPaquete = request()->except('_token');
 
         $c =  Paquete::insert($datosPaquete);
        
         return redirect('admin/paquete')->with('mensaje','Paquete agregado!');
-    }
-
-   
-    public function show(Paquete $paquete)
-    {
-        //
     }
 
   
@@ -50,9 +50,16 @@ class PaqueteController extends Controller
  
     public function update(Request $request, Paquete $paquete)
     {
-        // $request->validate([
-        //     'periodo_horas'=>'required|string|unique:paquetes,periodo_horas'.$paquete->id
-        // ]);
+        $campos = [
+            'periodo_horas' => 'required|unique:paquetes,periodo_horas|numeric',
+        ];
+        $mensaje = [
+            'periodo_horas.required' => 'El periodo de horas es requerido',
+            'periodo_horas.unique'=> ' El periodo de horas debe ser único',
+            'perido_horas.numeric'=>' El valor para el periodo de horas debe ser numérico'
+        ];
+        $this->validate($request, $campos, $mensaje);
+      
 
 $datosPaquete = request()->except(['_token','_method']);
 
