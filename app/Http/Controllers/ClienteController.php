@@ -61,6 +61,12 @@ class ClienteController extends Controller
 return back()->with('mensaje','Se te han agregado 10 créditos gratis a tu cuenta.');
     }
 
+    public function comentarAnuncio(Request $request, Anuncio $anuncio){
+        $rating =  $anuncio->rate($request['rate'], $request['comentario']);
+        // $producto->comment($request['comentario']);
+        return back()->with('mensaje','Comentario agregado al anuncio.');
+
+    }
 
     public function crearAnuncio()
     {

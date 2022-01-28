@@ -20,7 +20,8 @@
         "realrashid/sweet-alert": "^4.1",
         "s-ichikawa/laravel-sendgrid-driver": "^3.0",
         "spatie/laravel-permission": "^5.3",
-        "twilio/sdk": "^6.31"
+        "twilio/sdk": "^6.31",
+        "willvincent/laravel-rateable": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Categoria;
 use App\Models\Paquete;
 use App\Models\Image;
+use willvincent\Rateable\Rateable;
 
 class Anuncio extends Model
 {
+
+    use Rateable;
 
     protected $fillable = [
         'ciudad',

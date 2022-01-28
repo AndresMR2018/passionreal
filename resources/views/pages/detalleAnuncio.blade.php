@@ -2,6 +2,8 @@
 <html lang="es">
 @include('templates.head')
 
+<link rel="stylesheet" href="{{asset('css/rating.css')}}">
+
 <body>
 
 
@@ -95,16 +97,20 @@
                             <!-- Share Ad  -->
                             <div class="ad-share text-center">
                                 <div data-toggle="modal" data-target=".share-ad"
-                                    class="ad-box col-md-4 col-sm-4 col-xs-12">
+                                    class="ad-box col-md-3 col-sm-3 col-xs-12">
                                     <i class="fa fa-share-alt"></i> <span class="hidetext">Compartir</span>
                                 </div>
-                                <a class="ad-box col-md-4 col-sm-4 col-xs-12" href="tel:+593 {{$anuncio->telefono}}"><i
+                                <a class="ad-box col-md-3 col-sm-3 col-xs-12" href="tel:+593 {{$anuncio->telefono}}"><i
                                         class="fa fa-phone active"></i>
                                     <span class="hidetext">Contactar</span></a>
                                 <div data-target=".report-quote" data-toggle="modal"
-                                    class="ad-box col-md-4 col-sm-4 col-xs-12">
+                                    class="ad-box col-md-3 col-sm-3 col-xs-12">
                                     <i class="fa fa-warning"></i> <span class="hidetext">Reportar</span>
                                 </div>
+                                <div data-target=".modal-comentar" data-toggle="modal"
+                                class="ad-box col-md-3 col-sm-3 col-xs-12">
+                                <i class="fa fa-comments"></i> <span class="hidetext">Comentar</span>
+                            </div>
                             </div>
                             <div class="clearfix"></div>
 
@@ -133,6 +139,41 @@
                                     <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
                                         <span><strong>Publicado</strong> :</span>{{ $anuncio->created_at }}
                                     </div>
+                                </div>
+
+                            </div>
+
+                            {{-- VALORACION CON ESTRELLAS --}}
+
+                            <div class="ad-box" style="margin-top:20px;">
+                                <div class="short-features">
+                                    <!-- Heading Area -->
+                                    <div class="heading-panel">
+                                        <h3 class="main-title text-left">
+                                            Comentarios
+                                        </h3>
+                                    </div>
+                                    @foreach($anuncio->ratings as $rating)
+                                    <div class="col-sm-12 col-md-12 col-xs-12 no-padding" style="display:flex; justify-content:space-between;"> 
+                                        <div style="text-align: left">
+                                        {{ $rating->created_at }}
+                                         </div>
+                                 
+                                            <div class="rate"  >
+                                            @for($i=1; $i<=$rating->rating; $i++)
+                                                <input type="radio" id="star1" name="rate" value="1" />
+                                                <label for="star1" style="color:#ffc700" title="text">1 star</label>
+                                    
+                                            @endfor
+                                        </div>
+                                       
+                                       
+                                    </div>
+
+                                    <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
+                                        <span><strong>{{$rating->user->name}}</strong>:</span> {{ $rating->comment }}
+                                    </div>
+                                   @endforeach
                                 </div>
 
                             </div>
@@ -269,6 +310,9 @@
             </div>
         </div>
     </div>
+
+
+   @include('components.modalComentar')
 
     <!-- SCRIPTS -->
     @include('templates.scripts')

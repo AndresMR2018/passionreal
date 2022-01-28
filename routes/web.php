@@ -44,9 +44,8 @@ Route::get('/redireccion',[ClienteController::class, 'redireccion'])->name('clie
 Route::group(['middleware' => 'cliente'], function()
 {
 Route::get('/creditos', [ClienteController::class, 'creditos'])->name('cliente.creditos');
-
 Route::post('/creditos/gratis',[ClienteController::class, 'creditosGratis'])->name('cliente.creditosGratis');
-
+Route::post('/comentar/{anuncio}',[ClienteController::class,'comentarAnuncio'])->name('cliente.comentarAnuncio');
 
 Route::get('/mi-cuenta', [ClienteController::class, 'miCuenta'])->name('cliente.miCuenta');
 Route::get('/publicar-anuncio', [ClienteController::class, 'crearAnuncio'])->name('cliente.crearAnuncio');

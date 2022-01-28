@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class CategoriaController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        
+        $inventarios = Inventario::all();
         return view('admin.categoria.index', compact('categorias'));
     }
 
