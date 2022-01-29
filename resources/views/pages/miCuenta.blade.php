@@ -137,32 +137,51 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label>Tu nombre completo <span class="color-red">*</span> </label>
-                                                    <input name="nombre" type="text"
+                                                    <input name="nombre" type="text" value="{{$perfil->nombre}}"
                                                         class="form-control margin-bottom-20">
                                                 </div>
 
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label>Número de contacto <span class="color-red">*</span></label>
-                                                    <input name="telefono" type="text"
+                                                    <input name="telefono" type="text" value="{{$perfil->telefono}}"
                                                         class="form-control margin-bottom-20">
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label>DNI <span class="color-red">*</span></label>
-                                                    <input name="dni" type="text" class="form-control margin-bottom-20">
+                                                    <input name="dni" type="text" value="{{$perfil->dni}}" class="form-control margin-bottom-20">
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label>Foto <span class="color-red">*</span></label>
 
-                                                    <input type="file" name="foto" id="foto"
+                                                    @if(!isset($perfil->image->url))
+                                                    <img style="max-width:40%" src="{{asset('images/user_default.png')}}" alt="foto">
+                                                    @else
+                                                    <img src="{{$perfil->image->url}}" alt="foto">
+                                                    @endif
+                                                    <input type="file" name="foto" id="foto" value="{{$perfil->image}}"
                                                         class="form-control margin-bottom-20">
+                                                </div>
+
+                                                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                                    <label>Visibilidad de comentarios<span class="color-red">*</span></label>
+                                                    <select class="category form-control" name="estado_comentario" required>
+                                                        @if(isset($user->estado_comentar))
+                                                            <option selected disabled>Estado actual: {{$user->estado_comentar}}</option>
+                                                            <option value="1" >Activar comentarios</option>
+                                                            <option value="2" >Desactivar comentarios</option>
+                                                      
+                                                            @endif
+                                                        
+                                                    </select>
+                                                    
                                                 </div>
 
                                             </div>
 
                                             <div class="clearfix"></div>
-                                            <div class="row">
+                                            <div class="row" style="padding-top:20px; display:flex; justify-content:center;">
                                                 <div class="col-md-4 col-sm-4 col-xs-12 text-right">
                                                     <button type="submit" class="btn btn-theme btn-sm">Actualizar mis
                                                         datos</button>

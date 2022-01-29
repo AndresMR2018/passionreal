@@ -110,26 +110,63 @@
                                     </div>
                                     <!-- Ciudad  -->
                                     <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
-                                        <label class="control-label">Ciudad <small>Selecciona una ciudad para tu
+                                        <label class="control-label">Provincia <small>Selecciona una provincia para tu
                                                 anuncio</small></label>
-                                        <select class="category form-control" name="ciudad" required>
-                                            <option label="Select Option"></option>
-                                            <option value="Quito">Quito</option>
-                                            <option value="Esmeraldas">Esmeraldas</option>
-                                            <option value="Riobamba">Riobamba</option>
-                                            <option value="Cuenca">Cuenca</option>
-                                            <option value="Guayaquil">Guayaquil</option>
-                                            <option value="Ambato">Ambato</option>
-                                            <option value="Ibarra">Ibarra</option>
-                                            <option value="Latacunga">Latacunga</option>
-                                            <option value="Loja">Loja</option>
-                                            <option value="Machala">Machala</option>
-                                            <option value="Salinas">Salinas</option>
-                                            <option value="Portoviejo">Portoviejo</option>
-                                            <option value="Durán">Durán</option>
-                                            <option value="Manta">Manta</option>
-                                            <option value="Sangolqui">Sangolqui</option>
-                                        </select>
+                                                <select required name="ciudad" class="form-control">
+                                                    <option value="">Elige Provincia</option>
+                                                    <option value="Álava/Araba">Álava/Araba</option>
+                                                    <option value="Albacete">Albacete</option>
+                                                    <option value="Alicante">Alicante</option>
+                                                    <option value="Almería">Almería</option>
+                                                    <option value="Asturias">Asturias</option>
+                                                    <option value="Ávila">Ávila</option>
+                                                    <option value="Badajoz">Badajoz</option>
+                                                    <option value="Baleares">Baleares</option>
+                                                    <option value="Barcelona">Barcelona</option>
+                                                    <option value="Burgos">Burgos</option>
+                                                    <option value="Cáceres">Cáceres</option>
+                                                    <option value="Cádiz">Cádiz</option>
+                                                    <option value="Cantabria">Cantabria</option>
+                                                    <option value="Castellón">Castellón</option>
+                                                    <option value="Ceuta">Ceuta</option>
+                                                    <option value="Ciudad Real">Ciudad Real</option>
+                                                    <option value="Córdoba">Córdoba</option>
+                                                    <option value="Cuenca">Cuenca</option>
+                                                    <option value="Gerona/Girona">Gerona/Girona</option>
+                                                    <option value="Granada">Granada</option>
+                                                    <option value="Guadalajara">Guadalajara</option>
+                                                    <option value="Guipúzcoa/Gipuzkoa">Guipúzcoa/Gipuzkoa</option>
+                                                    <option value="Huelva">Huelva</option>
+                                                    <option value="Huesca">Huesca</option>
+                                                    <option value="Jaén">Jaén</option>
+                                                    <option value="La Coruña/A Coruña">La Coruña/A Coruña</option>
+                                                    <option value="La Rioja">La Rioja</option>
+                                                    <option value="Las Palmas">Las Palmas</option>
+                                                    <option value="León">León</option>
+                                                    <option value="Lérida/Lleida">Lérida/Lleida</option>
+                                                    <option value="Lugo">Lugo</option>
+                                                    <option value="Madrid">Madrid</option>
+                                                    <option value="Málaga">Málaga</option>
+                                                    <option value="Melilla">Melilla</option>
+                                                    <option value="Murcia">Murcia</option>
+                                                    <option value="Navarra">Navarra</option>
+                                                    <option value="Orense/Ourense">Orense/Ourense</option>
+                                                    <option value="Palencia">Palencia</option>
+                                                    <option value="Pontevedra">Pontevedra</option>
+                                                    <option value="Salamanca">Salamanca</option>
+                                                    <option value="Segovia">Segovia</option>
+                                                    <option value="Sevilla">Sevilla</option>
+                                                    <option value="Soria">Soria</option>
+                                                    <option value="Tarragona">Tarragona</option>
+                                                    <option value="Tenerife">Tenerife</option>
+                                                    <option value="Teruel">Teruel</option>
+                                                    <option value="Toledo">Toledo</option>
+                                                    <option value="Valencia">Valencia</option>
+                                                    <option value="Valladolid">Valladolid</option>
+                                                    <option value="Vizcaya/Bizkaia">Vizcaya/Bizkaia</option>
+                                                    <option value="Zamora">Zamora</option>
+                                                    <option value="Zaragoza">Zaragoza</option>
+                                                  </select>
                                     </div>
                                 </div>
 

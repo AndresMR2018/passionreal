@@ -51,19 +51,18 @@ class ClienteController extends Controller
     }
 
     public function creditosGratis(Request $request){
-        $creditosgratis = 10;
+        $creditosgratis = 3;
         $user = auth()->user();
         DB::table('users')->where('id', $user->id)->update(['credito_gratis' => '1']);
         $creditos_usuario = $user->perfil->creditos;
         $user->perfil->update([
             "creditos" => $creditos_usuario +$creditosgratis,
         ]); 
-return back()->with('mensaje','Se te han agregado 10 créditos gratis a tu cuenta.');
+return back()->with('mensaje','Se te han agregado 3 créditos gratis a tu cuenta.');
     }
 
     public function comentarAnuncio(Request $request, Anuncio $anuncio){
         $rating =  $anuncio->rate($request['rate'], $request['comentario']);
-        // $producto->comment($request['comentario']);
         return back()->with('mensaje','Comentario agregado al anuncio.');
 
     }
@@ -160,8 +159,8 @@ return back()->with('mensaje','Se te han agregado 10 créditos gratis a tu cuent
             'titulo.min' =>'Título demasiado corto',
             'titulo.max'=>'Título demasiado largo',
             'categoria_id.required' => 'La categoría es requerida',
-            'ciudad.required' => 'La ciudad es requerida',
-            'ciudad.max'=>'El nombre de la ciudad es demasiado largo',
+            'ciudad.required' => 'La provincia es requerida',
+            'ciudad.max'=>'El nombre de la provincia es demasiado largo',
             'edad.required' => 'La edad es requerida',
             'edad.min'=> 'La edad no puede ser menor a 18',
             'telefono.min'=>'El teléfono no debe tener menos de 10 dígitos',
@@ -325,8 +324,8 @@ return back()->with('mensaje','Se te han agregado 10 créditos gratis a tu cuent
             'titulo.min' =>'Título demasiado corto',
             'titulo.max'=>'Título demasiado largo',
             'categoria_id.required' => 'La categoría es requerida',
-            'ciudad.required' => 'La ciudad es requerida',
-            'ciudad.max'=>'El nombre de la ciudad es demasiado largo',
+            'ciudad.required' => 'La provincia es requerida',
+            'ciudad.max'=>'El nombre de la provincia es demasiado largo',
             'edad.required' => 'La edad es requerida',
             'edad.min'=> 'La edad no puede ser menor a 18',
             'telefono.min'=>'El teléfono no debe tener menos de 10 dígitos',
@@ -412,12 +411,24 @@ return back()->with('mensaje','Se te han agregado 10 créditos gratis a tu cuent
 
         $this->validate($request, $campos, $advertencia);
         $perfil = Perfil::where('user_id', Auth::id())->first();
-
+        $user = User::find(Auth::id());
         $perfil->update([
             "dni" => $request['dni'],
             "telefono" => $request['telefono'],
             "nombre" => $request['nombre'],
         ]);
+
+        if($request['estado_comentario']=="1"){
+            $user->update([
+                "estado_comentar"=>"habilitado"
+            ]);
+        }
+        if($request['estado_comentario']=="2"){
+            $user->update([
+                "estado_comentar"=>"deshabilitado"
+            ]);
+        }
+
         if ($request->hasFile('foto'))
             $this->upload_perfil($request, $perfil);
 
@@ -550,7 +561,7 @@ return $paymentPlatform->handlePayment($request);
         $user = auth()->user();
         $creditos_usuario = $user->perfil->creditos;
         if($datasesion[0]["idcredito"]==0){
-            $creditos_gratis=10;
+            $creditos_gratis=3;
             DB::table('users')->where('id', $user->id)->update(['credito_gratis' => '1']);
         }
 

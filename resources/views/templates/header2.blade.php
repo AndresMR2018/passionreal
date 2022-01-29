@@ -71,8 +71,14 @@
                         <!-- menu logo -->
                         <ul class="menu-logo">
                             <li>
-                                <a href="{{ route('home.inicio') }}"><img style="width: 100px"
-                                        src="{{ asset('/images/logo_pasion.jpeg') }}" alt="logo"> </a>
+                                <a href="{{ route('home.inicio') }}">
+                                    <div style="max-width:150px;">
+                                        <img 
+                                        src="{{ asset('/images/logo_pasion-mod.jpeg') }}" alt="logo">
+                                    </div>
+                                  
+
+                                     </a>
                             </li>
                         </ul>
                         <!-- menu links -->

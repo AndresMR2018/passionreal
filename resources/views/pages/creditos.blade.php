@@ -63,12 +63,13 @@
                             </div>
 <form method="post" action="{{route('cliente.creditosGratis')}}" id="formGratis">
 @csrf
-<input type="hidden" name="creditos_gratis" value="10">
+<input type="hidden" name="creditos_gratis" value="3">
 </form>
                             <form method="GET" id="formPaga" action="{{route('cliente.pasarela')}}" class="submit-form">
                                 <!-- Select Package  -->
-                               
+                               @if($count_users!=100)
                                 <div class="select-package">
+
                                     @if(Auth::user()->credito_gratis=="0")
                                     <h3 class="margin-bottom-20">Créditos gratis</h3>
                                     @endif
@@ -82,7 +83,7 @@
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                                     <h3>
                                                         {{-- {{$credito->cantidad}} --}}
-                                                        10 créditos </h3>
+                                                        3 créditos </h3>
                                                     <p>Por la aquisición de cada crédito tendrás la posibilidad de
                                                         ubicar a tus anuncios en lo más alto.</p>
                                                 </div>
@@ -113,7 +114,7 @@
                                     </div>
                                 </div>
                              
-                                
+                                @endif
                                 <div>
                                     
                                     <label class="" style="font-size:24px;">Comprar créditos <small style="font-size:14px;">Indique la cantidad de créditos a

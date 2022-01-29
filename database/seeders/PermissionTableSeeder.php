@@ -29,7 +29,7 @@ class PermissionTableSeeder extends Seeder
         ]);
         $admin_user->perfil()->create();
         $admin_user->assignRole('Admin');
-
+        
         $client_user = User::create([
             'name'=>'Alex',
             'email'=>'alexis.suarez@espoch.edu.ec',

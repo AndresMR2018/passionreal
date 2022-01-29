@@ -95,6 +95,7 @@
                                 </div>
                             </div>
                             <!-- Share Ad  -->
+                            @if($anuncio->user->estado_comentar=="habilitado") 
                             <div class="ad-share text-center">
                                 <div data-toggle="modal" data-target=".share-ad"
                                     class="ad-box col-md-3 col-sm-3 col-xs-12">
@@ -112,6 +113,25 @@
                                 <i class="fa fa-comments"></i> <span class="hidetext">Comentar</span>
                             </div>
                             </div>
+                            @else
+                            <div class="ad-share text-center">
+                                <div data-toggle="modal" data-target=".share-ad"
+                                    class="ad-box col-md-4 col-sm-4 col-xs-12">
+                                    <i class="fa fa-share-alt"></i> <span class="hidetext">Compartir</span>
+                                </div>
+                                <a class="ad-box col-md-4 col-sm-4 col-xs-12" href="tel:+593 {{$anuncio->telefono}}"><i
+                                        class="fa fa-phone active"></i>
+                                    <span class="hidetext">Contactar</span></a>
+                                <div data-target=".report-quote" data-toggle="modal"
+                                    class="ad-box col-md-4 col-sm-4 col-xs-12">
+                                    <i class="fa fa-warning"></i> <span class="hidetext">Reportar</span>
+                                </div>
+                                {{-- <div data-target=".modal-comentar" data-toggle="modal"
+                                class="ad-box col-md-3 col-sm-3 col-xs-12">
+                                <i class="fa fa-comments"></i> <span class="hidetext">Comentar</span>
+                            </div> --}}
+                            </div>
+@endif
                             <div class="clearfix"></div>
 
                             <!-- Short Description  -->
@@ -143,8 +163,8 @@
 
                             </div>
 
-                            {{-- VALORACION CON ESTRELLAS --}}
-
+                            {{-- VALORACION CON ESTRELLAS - SECCION COMENTARIOS --}}
+                            @if($anuncio->user->estado_comentar=="habilitado")
                             <div class="ad-box" style="margin-top:20px;">
                                 <div class="short-features">
                                     <!-- Heading Area -->
@@ -153,6 +173,10 @@
                                             Comentarios
                                         </h3>
                                     </div>
+                                    @if(count($anuncio->ratings)==0)
+                                    <p class="lead">Aún no hay comentarios. Se el primero en comentar.</p>
+                                    @else
+                                    
                                     @foreach($anuncio->ratings as $rating)
                                     <div class="col-sm-12 col-md-12 col-xs-12 no-padding" style="display:flex; justify-content:space-between;"> 
                                         <div style="text-align: left">
@@ -174,9 +198,12 @@
                                         <span><strong>{{$rating->user->name}}</strong>:</span> {{ $rating->comment }}
                                     </div>
                                    @endforeach
+
+                                   @endif
                                 </div>
 
                             </div>
+                            @endif
 
 
                         </div>

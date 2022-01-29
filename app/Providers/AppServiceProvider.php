@@ -30,13 +30,15 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         $categorias = Categoria::all();
         $paquetes = Paquete::all();
-      
+        $users = User::all();
+        $count_users = count($users);
         $anuncios = Anuncio::where('estado','=','activado')->orderBy('updated_at','asc')->paginate(2);
      
                 view()->share([
                 'categorias'=>$categorias,
                 'paquetes'=>$paquetes,
-                'anuncios'=>$anuncios
+                'anuncios'=>$anuncios,
+                'count_users'=>$count_users
                 ]);
     }
 }

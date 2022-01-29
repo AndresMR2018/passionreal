@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'cta_validada',
-        'estado_cuenta'
+        'estado_cuenta',
+        'estado_comentar'
     ];
 
     /**
